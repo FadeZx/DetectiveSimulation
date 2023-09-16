@@ -1,2 +1,7 @@
+<<<<<<< Updated upstream:AGENTS HONK/Game/x64/Debug/Game.tlog/Game.lastbuildstate
 PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.36.32532:TargetPlatformVersion=10.0.22000.0:
 Debug|x64|C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\AGENTS HONK\|
+=======
+PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.34.31933:TargetPlatformVersion=10.0.22000.0:
+Debug|x64|C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\|
+>>>>>>> Stashed changes:HonkEngine/Engine/x64/Debug/Engine.tlog/Engine.lastbuildstate
