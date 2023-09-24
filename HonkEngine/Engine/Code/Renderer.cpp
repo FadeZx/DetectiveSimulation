@@ -18,6 +18,7 @@ void Renderer::Initialize(int width, int height)
 	const char* SHADER_VERTEX_PATH = "Assets/Shaders/color_tex_transparency.vert";
 	const char* SHADER_FRAGMENT_PATH = "Assets/Shaders/color_tex_transparency.frag";
 	m_shader.Initialize(SHADER_VERTEX_PATH, SHADER_FRAGMENT_PATH);
+	m_camera.Init(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), m_windowWidth, m_windowHeight);
 }
 
 void Renderer::SetRenderMode(int mode, float alpha) {
@@ -33,14 +34,15 @@ void Renderer::SetRenderMode(int mode, float alpha) {
 
 void Renderer::SetTransform(const glm::mat4& modelMat) {
 
-	cdt_MVP = cdt_ProjectionMatrix * cdt_ViewMatrix * modelMat;
+	//cdt_MVP = cdt_ProjectionMatrix * cdt_ViewMatrix * modelMat;
+	cdt_MVP = m_camera.GetProjectionMatrix() * m_camera.GetViewMatrix() * modelMat;
 	m_shader.SetMatrix4("MVP", cdt_MVP);
 	int errocode = glGetError();
 
 	//std::cout << "Error code" << errocode << std::endl;
 }
 
-void Renderer::SetTexture(GLuint tex, float offsetX, float offsetY) {
+void Renderer::SetTexture(Tex tex, float offsetX, float offsetY) {
 
 	//std::cout << "SetTexture::TextureID " << tex << std::endl;
 	glActiveTexture(GL_TEXTURE0);
@@ -58,4 +60,18 @@ void Renderer::DrawMesh(const Mesh& mesh) {
 	glDrawArrays(GL_TRIANGLES, 0, mesh.vertices.size());
 
 	glBindVertexArray(0);
+}
+
+
+void Renderer::UnloadMesh(Mesh& mesh)
+{
+	glDeleteBuffers(1, &mesh.vertexBuffer);
+	glDeleteVertexArrays(1, &mesh.vaoHandle);
+
+	mesh.vertices.clear();
+}
+void Renderer::TextureUnload(Tex& tex)
+{
+	glDeleteTextures(1, &tex);
+	tex = GL_INVALID_INDEX;
 }

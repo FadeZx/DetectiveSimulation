@@ -62,7 +62,7 @@ public:
 	}
 	virtual void Render() override
 	{
-		Renderer& renderer = Application::GetRenderer();
+		
 
 		//std::cout << "Rendering GameObject: " << m_name << std::endl;
 
@@ -72,16 +72,16 @@ public:
 		renderer.SetTexture(texture_Id,animX/s_col, animY/s_row);
 		//std::cout << "Render::TextureID " << texture_Id << std::endl;	
 		renderer.SetTransform(model);
-		//renderer.DrawMesh(meshVert);
-		DrawMesh(meshVert);
+		renderer.DrawMesh(meshVert);
+		//DrawMesh(meshVert);
 		//plication::Get().DrawTexture(*textureId, model);
 		//Engine::DrawTexture(texture_id, glm::mat4{1});
 	}
 
 	virtual void Clear()
 	{
-		UnloadMesh(meshVert);
-		TextureUnload(texture_Id);
+		renderer.UnloadMesh(meshVert);
+		renderer.TextureUnload(texture_Id);
 	}
 
 	void SetAnim(float x, float y)
@@ -96,5 +96,6 @@ protected:
 	Tex texture_Id;
 	Mesh meshVert;
 	glm::mat4 model{ 1 };
+	Renderer& renderer = Application::GetRenderer();
 
 };

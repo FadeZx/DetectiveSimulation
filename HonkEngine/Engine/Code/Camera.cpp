@@ -11,16 +11,20 @@ void Camera::Init(const glm::vec3& position, const glm::vec3& direction, const g
     m_camZoom = 1.0f;
     m_camDegree = 0.0f;
 
-    UpdateViewMatrix();
-    UpdateProjectionMatrix();
+   UpdateViewMatrix();
+    //UpdateProjectionMatrix();
 }
 
 Camera::~Camera() {}
 
 void Camera::UpdateProjectionMatrix() {
     m_projectionMatrix = glm::ortho(-(m_windowWidth / 2) * m_camZoom, (m_windowWidth / 2) * m_camZoom,
+        -(m_windowHeight / 2) * m_camZoom, (m_windowHeight / 2) * m_camZoom, -10.0f, 10.0f);
+
+    /* m_projectionMatrix = glm::ortho(-(m_windowWidth / 2) * m_camZoom, (m_windowWidth / 2) * m_camZoom,
         -(m_windowHeight / 2) * m_camZoom, (m_windowHeight / 2) * m_camZoom,
-        NEAR_PLANE, FAR_PLANE);
+        NEAR_PLANE, FAR_PLANE);*/
+
 }
 
 void Camera::UpdateViewMatrix() {
