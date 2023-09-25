@@ -99,3 +99,11 @@ float Camera::GetPosX() const {
 float Camera::GetPosY() const {
     return m_camPos.y;
 }
+
+float Camera::GetZoom() const {
+	return m_camZoom;
+}
+
+float Camera::GetRotation() const {
+	return m_camDegree;
+}

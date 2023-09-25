@@ -25,6 +25,8 @@ public:
 
     float GetPosX() const;
     float GetPosY() const;
+    float GetZoom() const;
+    float GetRotation() const;
 
 private:
     int m_windowWidth;

@@ -3,6 +3,7 @@
 #include "Shader.h"
 #include <glm/glm.hpp>
 #include"Camera.h"
+#include"Application.h"
 
 class Mesh;
 typedef GLuint Tex;
@@ -25,8 +26,8 @@ private:
 	glm::mat4	cdt_ViewMatrix;
 	glm::mat4	cdt_ProjectionMatrix;
 	glm::mat4	cdt_MVP;
-
 	int m_windowWidth, m_windowHeight;
 	Shader m_shader;
-	Camera m_camera;
+	
+
 };

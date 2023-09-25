@@ -1,7 +1,6 @@
 #include "Renderer.h"
 #include "Engine.h"
 
-
 void Renderer::Initialize(int width, int height)
 {
 	m_windowWidth = width;
@@ -18,7 +17,7 @@ void Renderer::Initialize(int width, int height)
 	const char* SHADER_VERTEX_PATH = "Assets/Shaders/color_tex_transparency.vert";
 	const char* SHADER_FRAGMENT_PATH = "Assets/Shaders/color_tex_transparency.frag";
 	m_shader.Initialize(SHADER_VERTEX_PATH, SHADER_FRAGMENT_PATH);
-	m_camera.Init(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), m_windowWidth, m_windowHeight);
+	
 }
 
 void Renderer::SetRenderMode(int mode, float alpha) {
@@ -34,8 +33,9 @@ void Renderer::SetRenderMode(int mode, float alpha) {
 
 void Renderer::SetTransform(const glm::mat4& modelMat) {
 
+	Camera& camera = Application::GetCamera();
 	//cdt_MVP = cdt_ProjectionMatrix * cdt_ViewMatrix * modelMat;
-	cdt_MVP = m_camera.GetProjectionMatrix() * m_camera.GetViewMatrix() * modelMat;
+	cdt_MVP = camera.GetProjectionMatrix() * camera.GetViewMatrix() * modelMat;
 	m_shader.SetMatrix4("MVP", cdt_MVP);
 	int errocode = glGetError();
 

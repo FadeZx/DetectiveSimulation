@@ -66,6 +66,7 @@ public:
 
 	static Renderer& GetRenderer() { return s_instance->m_renderer; }
 	static Input& GetInput() { return s_instance->m_input; }
+	static Camera& GetCamera() { return s_instance->m_camera; }
 
 
 private:
@@ -74,6 +75,7 @@ private:
 	static Application* s_instance;
 	GLFWwindow* m_window;
 	Input m_input;
+	Camera m_camera;
 	Scene* m_currentScene = nullptr;
 	std::map<std::string, Scene*> m_sceneMap;
 

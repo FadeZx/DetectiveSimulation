@@ -74,6 +74,7 @@ Application::Application(int win_width, int win_height, const char* title)
 
     m_input.Initialize(m_window);
     m_renderer.Initialize(SCR_WIDTH, SCR_HEIGHT);
+    m_camera.Init(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3(0.0f, 1.0f, 0.0f), win_width, win_height);
 
 
 }
@@ -107,13 +108,24 @@ void Application::Run()
         processInput(m_window);
 
 
+        
+        // Null Pointer Check
+       
+
       
+
+        
+        if (m_input.GetKey(GLFW_KEY_PAGE_UP))
+        {
+            m_camera.SetZoom( m_camera.GetZoom() + 1.0f);
+
+        }
            
 
         // render
         // ------
  
-
+        
 
         if (m_currentScene) {
 
