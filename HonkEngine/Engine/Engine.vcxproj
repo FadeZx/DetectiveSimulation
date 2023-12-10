@@ -158,6 +158,8 @@
     <ClInclude Include="Code\Renderer\Shader.h" />
     <ClInclude Include="Code\Text\Text.h" />
     <ClInclude Include="Code\Text\TextRenderer.h" />
+    <ClInclude Include="Code\UI\UIButton.h" />
+    <ClInclude Include="Code\UI\UIElement.h" />
     <ClInclude Include="External\Include\GLFW\glfw3.h" />
     <ClInclude Include="External\Include\GLFW\glfw3native.h" />
     <ClInclude Include="External\Include\stb_image.h" />

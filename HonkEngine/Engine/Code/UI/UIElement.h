@@ -1,0 +1,86 @@
+#pragma once
+
+#include "../GameObjects/RenderGameObject.h"
+#include <glm/glm.hpp>
+#include"../Scene/Scene.h"
+#include "../Input/Input.h"
+#include <iostream>
+#include "../GameObjects/GameObject.h"
+#include "../Engine.h"
+#include "../Application.h"
+
+class UIElement : public RenderGameObject {
+
+
+	public:
+
+
+		enum UICategory {
+			BOOK_PAGE1,
+			BOOK_PAGE2,
+			IN_GAME, //journal access button etc.
+			PAUSED,
+			//Add more stages as needed
+		};
+
+		UIElement(const std::string& name, const std::string& texturePath, UICategory UIcategory, const glm::vec3& position, const glm::vec3& scale) : RenderGameObject(name, texturePath, position) {
+
+			m_scale = scale;
+			button_name = name;
+			isClickable = true;
+			category = UIcategory;
+
+
+
+		}
+
+		void Update(float dt, long frame) override{
+
+			RenderGameObject::Update(dt, frame);
+
+			// Implement UI-specific update logic here
+			// For example, handling UI animations, interactions, etc
+
+		}
+
+		virtual void OnClick() = 0;
+
+		bool IsClickable() {
+			return isClickable;
+		}
+
+		void SetClickable(bool clickable) {
+			isClickable = clickable;
+		}
+
+		bool IsPointInside(float x, float y) const {
+
+			float xpos = x - SCR_WIDTH / 2.0f;
+			float ypos = SCR_HEIGHT / 2.0f - y;
+
+			float minX = m_position.x - (m_scale.x * SCR_WIDTH / 2.0f);
+			float maxX = m_position.x + (m_scale.x * SCR_WIDTH / 2.0f);
+			float minY = m_position.y - (m_scale.y * SCR_HEIGHT / 2.0f);
+			float maxY = m_position.y + (m_scale.y * SCR_HEIGHT / 2.0f);
+
+			std::cout << "maxX: " << maxX << " minX: " << minX << std::endl;
+			std::cout << "maxY: " << maxY << " minY: " << minY << std::endl;
+			std::cout << "x: " << x << " y: " << y << std::endl;
+			std::cout << "new xpos: " << xpos << " new ypos: " << ypos << std::endl;
+
+			return (xpos >= minX && xpos <= maxX && ypos >= minY && ypos <= maxY);
+
+		}
+
+
+		//Implement cleanup logic for UI elements
+		//virtual void Clear() override {}
+
+
+	private:
+		std::string button_name;
+		bool isClickable;
+		UICategory category;
+
+
+};
