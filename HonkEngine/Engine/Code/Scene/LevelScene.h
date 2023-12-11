@@ -9,6 +9,7 @@
 	#include "../Text/Text.h"
 	#include"../Audio/AudioManager.h"	
 	#include "../UI/UIButton.h"
+	#include "../UI/UIDraggable.h"
 
 	class LevelScene : public Scene
 	{
@@ -33,15 +34,17 @@
 			helloText->SetPosition(glm::vec3(-2.0f, 2.0f, 0.0f));
 		
 		
-		
-		
 			m_gameObjects.push_back(cabin);
 			m_gameObjects.push_back(Bus);
 			m_gameObjects.push_back(helloText);
 
 
-			UIElement* journalButton = new UIButton("JournalButton", "Assets/Images/JournalButton.png", UIElement::IN_GAME, glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f));
+			UIButton* journalButton = new UIButton("JournalButton", "Assets/Images/JournalButton.png", glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f));
+			UIDraggable* ticket = new UIDraggable("ticket", "Assets/Images/Journal_CaseSummary_Ticket_WithText.png", glm::vec3(4.0f, -1.0f, 0.0f), glm::vec3(2.0f, 1.0f, 0.0f));
+			m_gameObjects.push_back(ticket);
 			m_gameObjects.push_back(journalButton);
 
+			//UIButton* ticket = new UIButton("ticket", "Assets/Images/Journal_CaseSummary_Ticket_WithText.png", UIElement::IN_GAME, glm::vec3(4.0f, -1.0f, 0.0f), glm::vec3(2.0f, 1.0f, 0.0f));
+			//m_gameObjects.push_back(ticket);
 		}
 	};
