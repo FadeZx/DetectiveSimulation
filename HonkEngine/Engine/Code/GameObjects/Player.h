@@ -50,6 +50,8 @@ void Update(float dt, long frame) override
         if (m_scale.x < 0) m_scale.x *= -1.0f;
         currentAnimation = "walk";
     }
+
+    /*
     if (input.Get().GetMouseButtonDown(GLFW_MOUSE_BUTTON_1))
     {
 
@@ -57,6 +59,9 @@ void Update(float dt, long frame) override
 
      
     }
+
+    */
+
     if (m_position.x > GetWindowWidth() / 2.0f)
     {
         // If the player's x-position is greater than half the window's width, change the scene

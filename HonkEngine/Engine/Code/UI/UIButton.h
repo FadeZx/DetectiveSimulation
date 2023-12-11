@@ -12,7 +12,7 @@ class UIButton : public UIElement {
         }
 
 
-        virtual void OnClick() {
+        virtual void OnClick(){
 
             std::cout << "Button Clicked" << std::endl;
         }
@@ -38,7 +38,8 @@ class UIButton : public UIElement {
                 if (IsClickable() && IsPointInside(mousePos.x, mousePos.y)) {
 
                     //std::cout << "x: " << mousePos.x << " y: " << mousePos.y << std::endl;
-                    std::cout << "Button Clicked" << std::endl;
+                    //std::cout << "Button Clicked" << std::endl;
+                    OnClick();
 
                 }
 

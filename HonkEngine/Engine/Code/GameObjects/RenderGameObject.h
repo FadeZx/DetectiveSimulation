@@ -85,7 +85,7 @@ public:
 	}
 	virtual void Render() override
 	{
-		std::cout << "RenderObjectRender: " << m_name << std::endl;
+		//std::cout << "RenderObjectRender: " << m_name << std::endl;
 		
 
 		//std::cout << "Rendering GameObject: " << m_name << std::endl;

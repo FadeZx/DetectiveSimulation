@@ -40,7 +40,7 @@
 			m_gameObjects.push_back(helloText);
 
 
-			UIElement* journalButton = new UIButton("JournalButton", "Assets/Images/JournalButton.png", UIElement::IN_GAME, glm::vec3(3.5f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f));
+			UIElement* journalButton = new UIButton("JournalButton", "Assets/Images/JournalButton.png", UIElement::IN_GAME, glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f));
 			m_gameObjects.push_back(journalButton);
 
 		}

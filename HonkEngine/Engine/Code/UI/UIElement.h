@@ -31,7 +31,6 @@ class UIElement : public RenderGameObject {
 			category = UIcategory;
 
 
-
 		}
 
 		void Update(float dt, long frame) override{
@@ -55,18 +54,27 @@ class UIElement : public RenderGameObject {
 
 		bool IsPointInside(float x, float y) const {
 
-			float xpos = x - SCR_WIDTH / 2.0f;
-			float ypos = SCR_HEIGHT / 2.0f - y;
+			float xpos = x - (SCR_WIDTH / 2.0f);
+			float ypos = y - (SCR_HEIGHT / 2.0f);
 
-			float minX = m_position.x - (m_scale.x * SCR_WIDTH / 2.0f);
-			float maxX = m_position.x + (m_scale.x * SCR_WIDTH / 2.0f);
-			float minY = m_position.y - (m_scale.y * SCR_HEIGHT / 2.0f);
-			float maxY = m_position.y + (m_scale.y * SCR_HEIGHT / 2.0f);
+			xpos = xpos / (SCR_WIDTH / (8 * 2)) - 0.4f ; //TEMPORARY FIX
+			ypos = ypos / (SCR_HEIGHT / (4.5 * 2)) * -1; //TEMPORARY FIX
 
-			std::cout << "maxX: " << maxX << " minX: " << minX << std::endl;
-			std::cout << "maxY: " << maxY << " minY: " << minY << std::endl;
+			float minX = m_position.x - (m_scale.x / 2.0f);
+			float maxX = m_position.x + (m_scale.x / 2.0f);
+			float minY = m_position.y - (m_scale.y / 2.0f);
+			float maxY = m_position.y + (m_scale.y / 2.0f);
+
+			//std::cout << "maxX: " << maxX << " minX: " << minX << std::endl;
+			//std::cout << "maxY: " << maxY << " minY: " << minY << std::endl;
+
+
 			std::cout << "x: " << x << " y: " << y << std::endl;
 			std::cout << "new xpos: " << xpos << " new ypos: " << ypos << std::endl;
+			std::cout << "obj x: " << m_position.x << "obj y: " << m_position.y << std::endl;
+			std::cout << "maxX: " << maxX << " minX: " << minX << std::endl;
+			std::cout << "maxY: " << maxY << " minY: " << minY << std::endl;
+
 
 			return (xpos >= minX && xpos <= maxX && ypos >= minY && ypos <= maxY);
 
