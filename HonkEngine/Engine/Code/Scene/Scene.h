@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include "../GameObjects/Gameobject.h"
+#include "../Application.h"
+#include <glm/glm.hpp>
 
 class Scene
 {
@@ -18,12 +20,14 @@ public:
 
 	void Update(float dt,long frame)
 	{
+
+		
 		for (auto& object : m_gameObjects) {
 			object->Update(dt, frame);
 			//std::cout << "Gameobject Update" << std::endl;
 		}
-			
 
+		
 		 
 		for (auto& object : m_toAddGameObjects)
 			m_gameObjects.push_back(object);

@@ -39,10 +39,11 @@
 			m_gameObjects.push_back(helloText);
 
 
-			UIButton* journalButton = new UIButton("JournalButton", "Assets/Images/JournalButton.png", glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f));
-			UIDraggable* ticket = new UIDraggable("ticket", "Assets/Images/Journal_CaseSummary_Ticket_WithText.png", glm::vec3(4.0f, -1.0f, 0.0f), glm::vec3(2.0f, 1.0f, 0.0f));
-			m_gameObjects.push_back(ticket);
+			UIElement* journalButton = new UIButton("JournalButton", "Assets/Images/JournalButton.png", glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f));
+			UIElement* ticket = new UIDraggable("ticket", "Assets/Images/Journal_CaseSummary_Ticket_WithText.png", glm::vec3(4.0f, -1.0f, 0.0f), glm::vec3(2.0f, 1.0f, 0.0f));
+			
 			m_gameObjects.push_back(journalButton);
+			m_gameObjects.push_back(ticket);
 
 			//UIButton* ticket = new UIButton("ticket", "Assets/Images/Journal_CaseSummary_Ticket_WithText.png", UIElement::IN_GAME, glm::vec3(4.0f, -1.0f, 0.0f), glm::vec3(2.0f, 1.0f, 0.0f));
 			//m_gameObjects.push_back(ticket);
