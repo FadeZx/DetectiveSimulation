@@ -45,17 +45,31 @@ public:
 
                     OnClick();
                     isDragging = true;
+                    dragStartPos = MousetoScreen(mousePos.x, mousePos.y); // Capture the starting point of the drag
+                    dragOffset = glm::vec2(m_position.x, m_position.y) - mousePos; // Offset between mouse and object position
 
                 }
 
-                //if button up
-                //isDragging false
-
+            
             }
         }
 
+        if (input.Get().GetMouseButtonUp(GLFW_MOUSE_BUTTON_1)) {
 
-        //if isdragging true
+            isDragging = false;
+            std::cout << "DRAGGABLE RELEASED" << std::endl;
+
+        }
+
+        if (isDragging) {
+
+            // Continue drag - Update object position
+            glm::vec2 newUiPosition = mousePos + dragOffset; // Apply offset to maintain relative position under cursor
+
+            glm::vec2 convertedPosition = MousetoScreen(newUiPosition.x, newUiPosition.y);
+            m_position = glm::vec3(convertedPosition.x, convertedPosition.y, 0.0f);
+
+        }
 
     }
 
@@ -64,5 +78,7 @@ private:
     glm::vec2 mousePos;
     glm::vec2 dragStartPos;
     bool isDragging;
+
+    glm::vec2 dragOffset; // Offset between
 
 };
