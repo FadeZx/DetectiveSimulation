@@ -31,13 +31,20 @@ public:
         Input& input = Application::GetInput();
         RenderGameObject::Update(dt, frame);
 
-        mousePos = Application::Get().CursorPos();
+        CurrentMousePos = Application::Get().CursorPos();
+
+        if (input.Get().GetMouseButtonUp(GLFW_MOUSE_BUTTON_1)) {
+
+            isDragging = false;
+            //std::cout << "DRAGGABLE RELEASED" << std::endl;
+
+        }
 
         if (IsClickable()) {
 
             //std::cout << "DRAGGABLE CLICK" << std::endl;
 
-            if (IsPointInside(mousePos.x, mousePos.y)) {
+            if (IsPointInside(CurrentMousePos.x, CurrentMousePos.y)) {
 
                // std::cout << "DRAGGABLE POINT" << std::endl;
 
@@ -45,8 +52,9 @@ public:
 
                     OnClick();
                     isDragging = true;
-                    dragStartPos = MousetoScreen(mousePos.x, mousePos.y); // Capture the starting point of the drag
-                    dragOffset = glm::vec2(m_position.x, m_position.y) - mousePos; // Offset between mouse and object position
+                    dragStartPos = CurrentMousePos; // Capture the starting point of the drag
+
+                    dragOffset = glm::vec2(m_position.x, m_position.y) - MousetoScreen(CurrentMousePos.x, CurrentMousePos.y); // Offset between mouse and object position
 
                 }
 
@@ -54,20 +62,14 @@ public:
             }
         }
 
-        if (input.Get().GetMouseButtonUp(GLFW_MOUSE_BUTTON_1)) {
-
-            isDragging = false;
-            std::cout << "DRAGGABLE RELEASED" << std::endl;
-
-        }
-
+        
         if (isDragging) {
 
             // Continue drag - Update object position
-            glm::vec2 newUiPosition = mousePos + dragOffset; // Apply offset to maintain relative position under cursor
+            glm::vec2 mouseDelta = MousetoScreen(CurrentMousePos.x, CurrentMousePos.y) - dragStartPos; // Apply offset to maintain relative position under cursor
 
-            glm::vec2 convertedPosition = MousetoScreen(newUiPosition.x, newUiPosition.y);
-            m_position = glm::vec3(convertedPosition.x, convertedPosition.y, 0.0f);
+            //glm::vec2 convertedPosition = MousetoScreen(newUiPosition.x, newUiPosition.y);
+            m_position = glm::vec3(dragStartPos, 0.0f) + glm::vec3(mouseDelta, 0.0f) + glm::vec3(dragOffset, 0.0f);
 
         }
 
@@ -75,7 +77,7 @@ public:
 
 private:
 
-    glm::vec2 mousePos;
+    glm::vec2 CurrentMousePos;
     glm::vec2 dragStartPos;
     bool isDragging;
 
