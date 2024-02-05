@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../UI/UIElement.h"
+#include <functional> 
 
 
 class UIButton : public UIElement {
@@ -16,11 +17,16 @@ class UIButton : public UIElement {
 
         }
 
-        void OnClick(){
-
-            std::cout << "Button Clicked" << std::endl;
+        // Method to set the click action
+        void SetOnClickAction(const std::function<void()>& action) {
+            onClickAction = action;
         }
 
+        void OnClick() override {
+            if (onClickAction) {
+                onClickAction();
+            }
+        }
 
         void Update(float dt, long frame) override {
 
@@ -47,6 +53,7 @@ class UIButton : public UIElement {
 
     private:
 
+        std::function<void()> onClickAction;
         std::string button_name;
         bool isClickable;
         //UICategory category;

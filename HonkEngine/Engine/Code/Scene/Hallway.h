@@ -5,7 +5,7 @@
 	#include"../GameObjects/AnimateGameObject.h"	
 
 	#include "../GameObjects/Player.h"
-	#include "../Text/TextRenderer.h"
+
 	#include "../Text/Text.h"
 	#include"../Audio/AudioManager.h"	
 	#include "../UI/UIButton.h"
@@ -17,7 +17,6 @@
 	{
 
 	private:
-		std::unique_ptr<TextRenderer> textRenderer;
 		AudioManager& audioManager;
 	public:
 		Hallway() :audioManager(AudioManager::GetInstance())

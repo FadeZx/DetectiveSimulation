@@ -119,6 +119,12 @@
     <ClInclude Include="Code\UI\UINormal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Dialogue\DialogueManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Dialogue\DialogueBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\text.vs" />
