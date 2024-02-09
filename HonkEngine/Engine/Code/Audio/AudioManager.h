@@ -126,6 +126,7 @@ public:
         return false; // Sound is not playing
     }
 
+
 private:
 
     AudioManager() {

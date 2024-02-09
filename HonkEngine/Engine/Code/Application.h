@@ -23,7 +23,6 @@ class Application
 {
 public:
 	Application(int width, int height, const char* title);
-	
 
 	~Application();
 
@@ -44,10 +43,12 @@ public:
 
 	void Run();
 
-	static Application& Get() { return *s_instance; }
+	static Application& Get();
+	
 
 	//void DrawTexture(unsigned int textureId, const glm::mat4& transform);
 
+	void toggleWindowBorder(GLFWwindow* window);
 
 	glm::vec2  CursorPos()
 	{
@@ -70,11 +71,12 @@ public:
 		return m_currentScene;
 	}
 
+
 	static Renderer& GetRenderer() { return s_instance->m_renderer; }
 	static Input& GetInput() { return s_instance->m_input; }
 	static Camera& GetCamera() { return s_instance->m_camera; }
 	
-
+	
 
 private:
 
@@ -87,5 +89,6 @@ private:
 	Input m_input;
 	Scene* m_currentScene = nullptr;
 	std::map<std::string, Scene*> m_sceneMap;
+
 
 };

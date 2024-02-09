@@ -1,24 +1,21 @@
-﻿  Main.cpp
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): warning C4099: 'Mesh': type name first seen using 'class' now seen using 'struct'
-  (compiling source file 'Code/Main.cpp')
-  C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8):
-  see declaration of 'Mesh'
-  
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(20,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Code/Main.cpp')
-  
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(20,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Code/Main.cpp')
-  
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Text\TextRenderer.h(12,7): warning C4099: 'Mesh': type name first seen using 'struct' now seen using 'class'
-  (compiling source file 'Code/Main.cpp')
-  C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8):
-  see declaration of 'Mesh'
-  
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\UI\UIElement.h(51,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Main.cpp')
-  
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\UI\UIElement.h(52,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Main.cpp')
-  
-  Engine.vcxproj -> C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\x64\Debug\Engine.exe
+﻿  Application.cpp
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Application.cpp(40,9): error C3861: 'toggleWindowBorder': identifier not found
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Application.cpp(183,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Main.cpp
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,13): warning C4099: 'Mesh': type name first seen using 'class' now seen using 'struct'
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): message : see declaration of 'Mesh'
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(20,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(20,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Text\TextRenderer.h(12,11): warning C4099: 'Mesh': type name first seen using 'struct' now seen using 'class'
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): message : see declaration of 'Mesh'
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\UI\UIElement.h(51,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\UI\UIElement.h(52,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Renderer.cpp
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,13): warning C4099: 'Mesh': type name first seen using 'class' now seen using 'struct'
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): message : see declaration of 'Mesh'
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Renderer\Renderer.cpp(63,53): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  TextRenderer.cpp
+  UIObject.h
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,13): warning C4099: 'Mesh': type name first seen using 'class' now seen using 'struct'
+E:\GameEngine\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): message : see declaration of 'Mesh'
+  Generating Code...

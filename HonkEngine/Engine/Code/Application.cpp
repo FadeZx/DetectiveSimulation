@@ -1,5 +1,12 @@
 #include "Application.h"
 
+Application* Application::s_instance = nullptr;
+
+Application& Application::Get() {
+    assert(s_instance != nullptr); // Ensure s_instance is not null
+    return *s_instance;
+}
+
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
@@ -8,6 +15,43 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
+}
+
+// Global variable to track the window mode
+bool isWindowBordered = true;
+
+void Application::toggleWindowBorder(GLFWwindow* window) {
+    // Toggle the window mode
+    isWindowBordered = !isWindowBordered;
+
+    // Store current window size and position
+    int width, height, xPos, yPos;
+    glfwGetWindowSize(window, &width, &height);
+    glfwGetWindowPos(window, &xPos, &yPos);
+
+    // Destroy the current window
+    glfwDestroyWindow(window);
+
+    // Set window hints for the new window
+    glfwWindowHint(GLFW_DECORATED, isWindowBordered ? GL_TRUE : GL_FALSE);
+
+    // Recreate the window
+    GLFWwindow* newWindow = glfwCreateWindow(width, height, "Your Window Title", NULL, NULL);
+    glfwSetWindowPos(newWindow, xPos, yPos);
+
+    // Make the new window current and reinitialize OpenGL context
+    glfwMakeContextCurrent(newWindow);
+    gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+
+    // TODO: Restore any other necessary context or settings
+
+    // Update the global window pointer
+    m_window = newWindow;
+
+    // Reapply the framebuffer size callback (and any other callbacks)
+    glfwSetFramebufferSizeCallback(newWindow, framebuffer_size_callback);
+
+    // TODO: You may need to reinitialize any OpenGL resources (textures, buffers, etc.)
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
@@ -19,20 +63,25 @@ void processInput(GLFWwindow* window)
 
     Camera& camera = Application::GetCamera();
 
-    if (glfwGetKey(window, GLFW_KEY_PAGE_UP) == GLFW_PRESS)
-    {
-        // Assuming you have a static GetCamera method in Application
-        camera.ZoomIn(0.01f);  // Zoom in by 0.1 units
+    // Toggle bordered/borderless on Alt+Enter
+    static bool togglePressedLastFrame = false;
+    bool alt = glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_ALT) == GLFW_PRESS;
+    bool enter = glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS;
+
+    if (alt && enter && !togglePressedLastFrame) {
+        toggleWindowBorder(window);
+        togglePressedLastFrame = true;
     }
-    if (glfwGetKey(window, GLFW_KEY_PAGE_DOWN) == GLFW_PRESS)
-    {
-        // Assuming you have a static GetCamera method in Application
-        camera.ZoomOut(0.01f);  // Zoom in by 0.1 units
+    else if (!enter) {
+        togglePressedLastFrame = false;
     }
 
 }
 
-Application* Application::s_instance = nullptr;
+
+
+
+
 
 Application::~Application()
 {
@@ -51,7 +100,6 @@ Application::~Application()
 Application::Application(int win_width, int win_height, const char* title)
     : baseTitle(title)
 {
-   
 
     std::cout << "Application Constructor\n";
 
@@ -67,8 +115,13 @@ Application::Application(int win_width, int win_height, const char* title)
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
+    glfwWindowHint(GLFW_DECORATED, GL_FALSE);
+
     // glfw window creation
     // --------------------
+    GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
+
     m_window = glfwCreateWindow(win_width,win_height,title, NULL, NULL);
     if (m_window == NULL)
     {
@@ -77,6 +130,7 @@ Application::Application(int win_width, int win_height, const char* title)
         
     }
     glfwMakeContextCurrent(m_window);
+    glfwSwapInterval(0);
     glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 
     // glad: load all OpenGL function pointers
@@ -96,13 +150,12 @@ Application::Application(int win_width, int win_height, const char* title)
 
 }
 
+
+
 void Application::Run()
 {
     
     std::cout << "Application Run\n";
-
-   
-  
 
     double lastFrameTime = glfwGetTime();
     double frameRateUpdateInterval = 1.0; // Update frame rate every 1 second
@@ -133,7 +186,6 @@ void Application::Run()
 
         }
             
-
         glGetError();
         glfwSwapBuffers(m_window);
         glfwPollEvents();
