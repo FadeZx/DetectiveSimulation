@@ -69,7 +69,9 @@ void processInput(GLFWwindow* window)
     bool enter = glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS;
 
     if (alt && enter && !togglePressedLastFrame) {
-        toggleWindowBorder(window);
+        //toggleWindowBorder(window);
+        isWindowBordered = !isWindowBordered;
+        std::cout<< "Toggle\n";
         togglePressedLastFrame = true;
     }
     else if (!enter) {
@@ -130,7 +132,7 @@ Application::Application(int win_width, int win_height, const char* title)
         
     }
     glfwMakeContextCurrent(m_window);
-    glfwSwapInterval(0);
+    glfwSwapInterval(isWindowBordered);
     glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 
     // glad: load all OpenGL function pointers
