@@ -24,6 +24,7 @@ class Application
 public:
 	Application(int width, int height, const char* title);
 
+
 	~Application();
 
 	void AddScene(const std::string& name, Scene* scene)
@@ -43,12 +44,10 @@ public:
 
 	void Run();
 
-	static Application& Get();
-	
+	static Application& Get() { return *s_instance; }
 
 	//void DrawTexture(unsigned int textureId, const glm::mat4& transform);
 
-	void toggleWindowBorder(GLFWwindow* window);
 
 	glm::vec2  CursorPos()
 	{
@@ -62,8 +61,8 @@ public:
 
 	bool IsMouseClick(int mouseButton)
 	{
-		return  glfwGetMouseButton(m_window,mouseButton) == GLFW_PRESS;
-		
+		return  glfwGetMouseButton(m_window, mouseButton) == GLFW_PRESS;
+
 	}
 
 	Scene* GetCurrentScene()
@@ -71,12 +70,12 @@ public:
 		return m_currentScene;
 	}
 
-
 	static Renderer& GetRenderer() { return s_instance->m_renderer; }
 	static Input& GetInput() { return s_instance->m_input; }
 	static Camera& GetCamera() { return s_instance->m_camera; }
-	
-	
+
+	void ToggleFullscreen(GLFWwindow* window);
+
 
 private:
 
@@ -89,6 +88,5 @@ private:
 	Input m_input;
 	Scene* m_currentScene = nullptr;
 	std::map<std::string, Scene*> m_sceneMap;
-
 
 };

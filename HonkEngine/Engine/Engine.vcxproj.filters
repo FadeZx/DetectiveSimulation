@@ -45,6 +45,9 @@
     <ClCompile Include="Code\UI\UIObject.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\Include\GLFW\glfw3.h">
@@ -128,6 +131,9 @@
     <ClInclude Include="Code\UI\UIScreenObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\text.vs" />
@@ -184,5 +190,8 @@
     <Media Include="Assets\Sounds\footstep.mp3" />
     <Media Include="Assets\Sounds\MembersOnly.mp3" />
     <Media Include="Assets\Sounds\Train_Ambience.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Assets\Dialogue\test.xml" />
   </ItemGroup>
 </Project>

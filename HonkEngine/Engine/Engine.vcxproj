@@ -138,6 +138,7 @@
     <ClCompile Include="Code\Main.cpp" />
     <ClCompile Include="Code\Renderer\Renderer.cpp" />
     <ClCompile Include="Code\Text\TextRenderer.cpp" />
+    <ClCompile Include="Code\tinyxml2.cpp" />
     <ClCompile Include="Code\UI\UIObject.h" />
     <ClCompile Include="External\Include\glad\glad.c" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="Code\Renderer\Shader.h" />
     <ClInclude Include="Code\Text\Text.h" />
     <ClInclude Include="Code\Text\TextRenderer.h" />
+    <ClInclude Include="Code\tinyxml2.h" />
     <ClInclude Include="Code\UI\UIButton.h" />
     <ClInclude Include="Code\UI\UIDraggable.h" />
     <ClInclude Include="Code\UI\UIElement.h" />
@@ -207,6 +209,9 @@
     <Media Include="Assets\Sounds\MembersOnly.mp3" />
     <Media Include="Assets\Sounds\ophelia.mp3" />
     <Media Include="Assets\Sounds\Train_Ambience.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Assets\Dialogue\test.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
