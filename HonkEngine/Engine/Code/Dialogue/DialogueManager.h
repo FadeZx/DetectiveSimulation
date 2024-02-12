@@ -1,6 +1,8 @@
 #pragma once
 
 #include "tinyxml2.h"
+#include "../GameObjects/GameObject.h"
+#include "../Text/Text.h" 
 #include <string>
 #include <vector>
 #include <memory>
@@ -11,9 +13,16 @@ struct Dialogue {
     std::string text;
 };
 
-class DialogueManager {
+class DialogueManager : public GameObject {
 public:
-    DialogueManager() : currentDialogueIndex(0) {}
+    DialogueManager(const std::string& name, const std::string& fontPath, const std::string& filePath)
+        : GameObject(name){
+        LoadDialogues(filePath);
+        if (!dialogues.empty()) {
+            // Initialize the Text object with the first dialogue
+            currentText = std::make_shared<Text>("DialogueText", dialogues[currentDialogueIndex].text, fontPath);
+        }
+    }
 
     void LoadDialogues(const std::string& filePath) {
         tinyxml2::XMLDocument doc;
@@ -28,30 +37,28 @@ public:
         }
     }
 
-    void DisplayCurrentDialogue() {
-        if (currentDialogueIndex < dialogues.size()) {
-            const auto& dialogue = dialogues[currentDialogueIndex];
-            // Assuming you have a method to display text. This is just a placeholder.
-            DisplayText(dialogue.text); // Implement this function to work with your text system
+    // Override Render method from GameObject
+    virtual void Render() override {
+        if (currentText) {
+            currentText->Render();
         }
     }
 
-    void NextDialogue() {
+    void PlayNextDialogue() {
         if (currentDialogueIndex < dialogues.size() - 1) {
             ++currentDialogueIndex;
+            // Update the content of the current Text object
+            currentText->SetContent(dialogues[currentDialogueIndex].text);
         }
         else {
-            // End of dialogues or loop back to the start
-            currentDialogueIndex = 0; // Or handle the end of dialogues as needed
+            // Optionally, handle the end of the dialogues
+            std::cout << "End of dialogues." << std::endl;
         }
     }
 
 private:
     std::vector<Dialogue> dialogues;
-    size_t currentDialogueIndex;
-
-    void DisplayText(const std::string& text) {
-        // Integrate with your existing text rendering system
-        std::cout << text << std::endl; // Placeholder for actual text rendering
-    }
+    std::shared_ptr<Text> currentText; // Single Text object for display
+    size_t currentDialogueIndex = 0;
+    std::string fontPath; // Path to the font used for dialogues
 };
