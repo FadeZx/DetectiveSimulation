@@ -35,6 +35,7 @@ public:
                 dialogues.push_back(dialogue);
             }
         }
+        std::cout << "Loaded " << dialogues.size() << " dialogues." << std::endl;
     }
 
     // Override Render method from GameObject
@@ -45,16 +46,22 @@ public:
     }
 
     void PlayNextDialogue() {
-        if (currentDialogueIndex < dialogues.size() - 1) {
-            ++currentDialogueIndex;
+        std::cout << "Loaded " << dialogues.size() << " dialogues." << std::endl;
+        if (currentDialogueIndex < dialogues.size()) {
+            // Move to the next dialogue
+            currentDialogueIndex++;
+
+            // Loop back to the first dialogue if we've reached the end
+            if (currentDialogueIndex >= dialogues.size()) {
+                currentDialogueIndex = 0;
+            }
+
             // Update the content of the current Text object
             currentText->SetContent(dialogues[currentDialogueIndex].text);
-        }
-        else {
-            // Optionally, handle the end of the dialogues
-            std::cout << "End of dialogues." << std::endl;
+            std::cout << "Dialogue ID: " << dialogues[currentDialogueIndex].id << " - Text: " << dialogues[currentDialogueIndex].text << std::endl;
         }
     }
+
 
 private:
     std::vector<Dialogue> dialogues;

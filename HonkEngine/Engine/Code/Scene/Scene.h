@@ -11,8 +11,10 @@ public:
 	{
 		for (auto& object : m_gameObjects)
 		{
-			object->Clear();
-			delete  object;
+			if (object) {
+				object->Clear();
+				delete object;
+			}
 		}
 	}
 
