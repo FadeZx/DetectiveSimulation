@@ -137,6 +137,7 @@
     <ClCompile Include="Code\Input\Input.cpp" />
     <ClCompile Include="Code\Main.cpp" />
     <ClCompile Include="Code\Renderer\Renderer.cpp" />
+    <ClCompile Include="Code\Text\FontManager.cpp" />
     <ClCompile Include="Code\Text\TextRenderer.cpp" />
     <ClCompile Include="Code\tinyxml2.cpp" />
     <ClCompile Include="Code\UI\UIObject.h" />
@@ -160,6 +161,8 @@
     <ClInclude Include="Code\GameObjects\RenderGameObject.h" />
     <ClInclude Include="Code\Scene\Scene.h" />
     <ClInclude Include="Code\Renderer\Shader.h" />
+    <ClInclude Include="Code\Text\Character.h" />
+    <ClInclude Include="Code\Text\FontManager.h" />
     <ClInclude Include="Code\Text\Text.h" />
     <ClInclude Include="Code\Text\TextRenderer.h" />
     <ClInclude Include="Code\tinyxml2.h" />

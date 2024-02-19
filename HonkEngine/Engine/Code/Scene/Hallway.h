@@ -39,7 +39,8 @@ public:
 
 		/*-------------------------------------------------------------💬CREATE TEXT💬------------------------------------------------------------------------------------------------------- */
 
-		Text* helloText = new Text("GameTitle", " Welcome To Ticking Tea Time", "Assets/Fonts/WD.ttf");
+		Text* helloText = new Text("GameTitle", " Welcome To Ticking Tea Time", "Assets/Fonts/EI.ttf");
+		Text* gt = new Text("gt", " TEstwawdadsa", "Assets/Fonts/EI.ttf");
 		Text* orderNoText = new Text("orderNo", "1", "Assets/Fonts/WD.ttf");
 
 		/*-------------------------------------------------------------💬CREATE UI💬------------------------------------------------------------------------------------------------------- */
@@ -51,7 +52,7 @@ public:
 
 		/*-------------------------------------------------------------➡️SET TRANSFORMATION➡️------------------------------------------------------------------------------------------------------- */
 
-		hallway->SetScale(glm::vec3(45.0f * 0.94f, 10.5f * 0.94f, 0.0f));
+		hallway->SetScale(glm::vec3(45.0f, 10.5f , 0.0f));
 		hallway->SetPosition(glm::vec3(0.0f, 0.24f, 0.0f));
 		hallwaylights->SetScale(glm::vec3(45.0f, 10.5f, 0.0f));
 		hallwaylights->SetPosition(glm::vec3(0.0f, -0.2f, 0.0f));
@@ -77,6 +78,7 @@ public:
 
 		//Texts
 		m_gameObjects.push_back(helloText);
+		m_gameObjects.push_back(gt);
 		m_gameObjects.push_back(orderNoText);
 	}
 

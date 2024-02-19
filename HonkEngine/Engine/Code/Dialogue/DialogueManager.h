@@ -24,6 +24,13 @@ public:
         }
     }
 
+    ~DialogueManager() {
+		if (currentText) {
+			currentText->Clear();
+		}
+	}
+
+
     void LoadDialogues(const std::string& filePath) {
         tinyxml2::XMLDocument doc;
         if (doc.LoadFile(filePath.c_str()) == tinyxml2::XML_SUCCESS) {
@@ -61,6 +68,7 @@ public:
             std::cout << "Dialogue ID: " << dialogues[currentDialogueIndex].id << " - Text: " << dialogues[currentDialogueIndex].text << std::endl;
         }
     }
+
 
 
 private:

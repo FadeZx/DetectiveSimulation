@@ -5,6 +5,7 @@ C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\En
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Input\Input.cpp;C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\Input.obj
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Main.cpp;C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\Main.obj
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Renderer\Renderer.cpp;C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\Renderer.obj
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Text\FontManager.cpp;C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\FontManager.obj
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Text\TextRenderer.cpp;C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\TextRenderer.obj
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\tinyxml2.cpp;C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\tinyxml2.obj
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\UI\UIObject.h;C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\UIObject.obj

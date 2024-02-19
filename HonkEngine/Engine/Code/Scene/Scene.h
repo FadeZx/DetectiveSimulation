@@ -12,8 +12,8 @@ public:
 		for (auto& object : m_gameObjects)
 		{
 			if (object) {
-				object->Clear();
-				delete object;
+			    object->Clear();
+				//delete object;
 			}
 		}
 	}

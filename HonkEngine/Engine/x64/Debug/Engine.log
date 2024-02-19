@@ -40,6 +40,7 @@ C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\En
   see declaration of 'Mesh'
   
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Renderer\Renderer.cpp(63,51): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  FontManager.cpp
   TextRenderer.cpp
   tinyxml2.cpp
   UIObject.h

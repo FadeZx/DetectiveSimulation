@@ -9,6 +9,9 @@ public:
 	GameObject(const std::string& name = "")
 		: m_name(name){}
 
+
+	virtual ~GameObject() = default;
+
 	virtual void Update(float dt,long frame){}
 
 	virtual void Render(){}

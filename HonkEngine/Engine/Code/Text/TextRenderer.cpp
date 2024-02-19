@@ -4,15 +4,7 @@
 #include <fstream>
 #include"../Application.h"
 
-/// Holds all state information relevant to a character as loaded using FreeType
-struct Character {
-    unsigned int TextureID; // ID handle of the glyph texture
-    glm::ivec2   Size;      // Size of glyph
-    glm::ivec2   Bearing;   // Offset from baseline to left/top of glyph
-    unsigned int Advance;   // Horizontal offset to advance to next glyph
-};
 
-std::map<GLchar, Character> Characters;
 
 TextRenderer::TextRenderer()
 {
@@ -186,6 +178,12 @@ void TextRenderer::RenderText(std::string text, float x, float y, float scale, g
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-
+void TextRenderer::CleanupCharacters()
+{
+    for (auto c : Characters) {
+        glDeleteTextures(1, &c.second.TextureID);
+    }
+    Characters.clear();
+}
 
 
