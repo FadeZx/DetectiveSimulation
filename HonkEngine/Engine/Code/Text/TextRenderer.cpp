@@ -72,6 +72,7 @@ void TextRenderer::Initialize(const std::string& fontPath)
             // generate texture
             unsigned int texture;
             glGenTextures(1, &texture);
+            //std::cout << "Generated texture ID for character " << c << ": " << texture << std::endl;
             glBindTexture(GL_TEXTURE_2D, texture);
             glTexImage2D(
                 GL_TEXTURE_2D,
@@ -117,8 +118,10 @@ void TextRenderer::Initialize(const std::string& fontPath)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
-    std::cout << "Text::Initialize() called with font path :" << fontPath << std::endl;
-
+    //std::cout << "Text::Initialize() called with font path :" << fontPath << std::endl;
+    for (const auto& pair : Characters) {
+        std::cout << "Character: " << pair.first << ", Texture ID: " << pair.second.TextureID << std::endl;
+    }
 }
 
 void TextRenderer::RenderText(std::string text, float x, float y, float scale, glm::vec3 color, int numChars)
@@ -141,6 +144,9 @@ void TextRenderer::RenderText(std::string text, float x, float y, float scale, g
         /* std::cout << "Character :" << *c << std::endl;
          std::cout << "Character Size :" << ch.Size.x << " "<< ch.Size.y << std::endl;*/
 
+
+
+
         float xpos = x + ch.Bearing.x * scale;
         float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
 
@@ -159,7 +165,9 @@ void TextRenderer::RenderText(std::string text, float x, float y, float scale, g
 
 
         // render glyph texture over quad
+        //std::cout << "Binding texture ID for rendering: " << ch.TextureID << " for char: " << *c << std::endl;
         glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+        //std::cout << "Binding texture ID for rendering: " << ch.TextureID << std::endl;
         // update content of VBO memory
         glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
@@ -176,6 +184,7 @@ void TextRenderer::RenderText(std::string text, float x, float y, float scale, g
     }
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
+
 }
 
 void TextRenderer::CleanupCharacters()
