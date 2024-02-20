@@ -5,7 +5,6 @@ C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.cpp;C:\Capt\DetectiveS
 C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Input\Input.cpp;C:\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\Input.obj
 C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Main.cpp;C:\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\Main.obj
 C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Renderer\Renderer.cpp;C:\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\Renderer.obj
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Text\FontManager.cpp;C:\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\FontManager.obj
 C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Text\TextRenderer.cpp;C:\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\TextRenderer.obj
 C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\tinyxml2.cpp;C:\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\tinyxml2.obj
 C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\UI\UIObject.h;C:\Capt\DetectiveSimulation\HonkEngine\Engine\x64\Debug\UIObject.obj

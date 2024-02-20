@@ -30,25 +30,25 @@ public:
 
 		/*--------------------------------------------------------------📦CREATE GAMEOBJECT📦------------------------------------------------------------------------------------------------------- */
 
-		GameObject* hallway = new RenderGameObject("Cabin", "Assets/Images/Environment_Corridor_Hallway.png");
-		GameObject* hallwaylights = new RenderGameObject("CabinLights", "Assets/Images/Environment_Corridor_Light.png");
+		auto hallway = std::make_unique<RenderGameObject>("Cabin", "Assets/Images/Environment_Corridor_Hallway.png");
+		auto hallwaylights = std::make_unique<RenderGameObject>("CabinLights", "Assets/Images/Environment_Corridor_Light.png");
 
 		/*-------------------------------------------------------------🎮CREATE PLAYER🎮------------------------------------------------------------------------------------------------------- */
 
-		Player* player = new Player("waiter", "Assets/Images/MainCharacter_WithTray_Walk.png", 2, 8);
+		auto player = std::make_unique<Player>("waiter", "Assets/Images/MainCharacter_WithTray_Walk.png", 2, 8);
 
 		/*-------------------------------------------------------------💬CREATE TEXT💬------------------------------------------------------------------------------------------------------- */
 
-		Text* helloText = new Text("GameTitle", " Welcome To Ticking Tea Time", "Assets/Fonts/WD.ttf");
-		Text* gt = new Text("gt", "Test Font EI", "Assets/Fonts/EI.ttf");
-		Text* orderNoText = new Text("orderNo", "1", "Assets/Fonts/WD.ttf");
+		auto helloText = std::make_unique<Text>("GameTitle", " Welcome To Ticking Tea Time", "Assets/Fonts/WD.ttf");
+		auto gt = std::make_unique<Text>("gt", "Test Font EI", "Assets/Fonts/EI.ttf");
+		auto orderNoText = std::make_unique<Text>("orderNo", "1", "Assets/Fonts/WD.ttf");
 
 		/*-------------------------------------------------------------💬CREATE UI💬------------------------------------------------------------------------------------------------------- */
-		UIElement* orderPaper = new UINormal("OrderPaper", "Assets/Images/OrderPaper.png", glm::vec3(-7.9f, 3.5f, 0.0f), glm::vec3(3.0f, 3.0f, 0.0f), true);
-		UIElement* timer = new UINormal("Timer", "Assets/Images/Timer.png", glm::vec3(7.9f, 3.5f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true);
-		UIElement* screenUI = new UINormal("ScreenUI", "Assets/Images/ScreenUI.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(16.0f * 1.19f, 9.0f * 1.19f, 0.0f), true);
-		UIElement* journalButton = new UIButton("JournalButton", "Assets/Images/JournalButton.png", glm::vec3(-8.4f, -4.1f, 0.0f), glm::vec3(2.8f, 2.8f, 0.0f), true);
-		UIElement* ticket = new UIDraggable("ticket", "Assets/Images/Journal_CaseSummary_Ticket_WithText.png", glm::vec3(6.0f, -4.0f, 0.0f), glm::vec3(2.0f, 1.0f, 0.0f), false);
+		auto orderPaper = std::make_unique<UINormal>("OrderPaper", "Assets/Images/OrderPaper.png", glm::vec3(-7.9f, 3.5f, 0.0f), glm::vec3(3.0f, 3.0f, 0.0f), true);
+		auto timer = std::make_unique<UINormal>("Timer", "Assets/Images/Timer.png", glm::vec3(7.9f, 3.5f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true);
+		auto screenUI = std::make_unique<UINormal>("ScreenUI", "Assets/Images/ScreenUI.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(16.0f * 1.19f, 9.0f * 1.19f, 0.0f), true);
+		auto journalButton = std::make_unique<UIButton>("JournalButton", "Assets/Images/JournalButton.png", glm::vec3(-8.4f, -4.1f, 0.0f), glm::vec3(2.8f, 2.8f, 0.0f), true);
+		auto ticket = std::make_unique<UIDraggable>("ticket", "Assets/Images/Journal_CaseSummary_Ticket_WithText.png", glm::vec3(6.0f, -4.0f, 0.0f), glm::vec3(2.0f, 1.0f, 0.0f), false);
 
 		/*-------------------------------------------------------------➡️SET TRANSFORMATION➡️------------------------------------------------------------------------------------------------------- */
 
@@ -65,21 +65,21 @@ public:
 
 		/*--------------------------------------------------------------✅PUSH BACK✅------------------------------------------------------------------------------------------------------- */
 		//Environment
-		m_gameObjects.push_back(hallway);
-		m_gameObjects.push_back(player);
-		m_gameObjects.push_back(hallwaylights);
+		m_gameObjects.push_back(std::move(hallway));
+		m_gameObjects.push_back(std::move(player));
+		m_gameObjects.push_back(std::move(hallwaylights));
 
 		//UIs
-		m_gameObjects.push_back(journalButton);
+		m_gameObjects.push_back(std::move(journalButton));
 		//m_gameObjects.push_back(timer);
 		//m_gameObjects.push_back(orderPaper);
-		m_gameObjects.push_back(screenUI);
-		m_gameObjects.push_back(ticket);
+		m_gameObjects.push_back(std::move(screenUI));
+		m_gameObjects.push_back(std::move(ticket));
 
 		//Texts
-		m_gameObjects.push_back(helloText);
-		m_gameObjects.push_back(gt);
-		m_gameObjects.push_back(orderNoText);
+		m_gameObjects.push_back(std::move(helloText));
+		m_gameObjects.push_back(std::move(gt));
+		m_gameObjects.push_back(std::move(orderNoText));
 	}
 
 	void Update(float dt, long frame) {

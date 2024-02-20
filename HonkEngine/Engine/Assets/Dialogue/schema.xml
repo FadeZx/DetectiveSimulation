@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialogues xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Dialogue id="code">
+	<Speaker name="name">
+		<line1>data</line1>
+		<line2>data</line2>
+		<line3>data</line3>
+	</Speaker>
+</Dialogue>
+<Dialogue id="code">
+	<Speaker name="name">
+		<line1>data</line1>
+		<line2>data</line2>
+		<line3>data</line3>
+	</Speaker>
+</Dialogue>
+</Dialogues>

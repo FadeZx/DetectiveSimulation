@@ -119,9 +119,6 @@ void TextRenderer::Initialize(const std::string& fontPath)
     glBindVertexArray(0);
 
     //std::cout << "Text::Initialize() called with font path :" << fontPath << std::endl;
-    for (const auto& pair : Characters) {
-        std::cout << "Character: " << pair.first << ", Texture ID: " << pair.second.TextureID << std::endl;
-    }
 }
 
 void TextRenderer::RenderText(std::string text, float x, float y, float scale, glm::vec3 color, int numChars)
@@ -189,10 +186,7 @@ void TextRenderer::RenderText(std::string text, float x, float y, float scale, g
 
 void TextRenderer::CleanupCharacters()
 {
-    for (auto c : Characters) {
-        glDeleteTextures(1, &c.second.TextureID);
-    }
-    Characters.clear();
+
 }
 
 

@@ -30,9 +30,7 @@ public:
     // No Clear method for now, as TextRenderer doesn't have one
     virtual void Clear() override 
     {
-        if (textRenderer) {
-            textRenderer->CleanupCharacters();
-        }
+      
     }
 
     void SetContent(const std::string& content)

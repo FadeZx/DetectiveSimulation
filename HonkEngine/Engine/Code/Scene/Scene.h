@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "../GameObjects/Gameobject.h"
 
 class Scene
@@ -9,13 +10,7 @@ class Scene
 public:
 	virtual ~Scene()
 	{
-		for (auto& object : m_gameObjects)
-		{
-			if (object) {
-			    object->Clear();
-				//delete object;
-			}
-		}
+		m_gameObjects.clear();
 	}
 
 	virtual void Update(float dt,long frame)
@@ -27,11 +22,9 @@ public:
 			
 
 		 
-		for (auto& object : m_toAddGameObjects)
-			m_gameObjects.push_back(object);
-
-		//std::cout << "GAME OBJECTS: " << m_gameObjects.size() << std::endl;
-
+		for (auto& object : m_toAddGameObjects) {
+			m_gameObjects.push_back(std::move(object));
+		}
 		m_toAddGameObjects.clear();
 	}
 
@@ -47,19 +40,20 @@ public:
 
 	void AddGameObject(GameObject* newGameObject)
 	{
-		m_toAddGameObjects.push_back(newGameObject);
+		m_toAddGameObjects.push_back(std::unique_ptr<GameObject>(newGameObject));
 	}
 
 	GameObject* GetGameObjectByName(const std::string& name) {
 		for (auto& object : m_gameObjects) {
 			if (object->GetName() == name) {
-				return object;
+				return object.get();
 			}
 		}
 		return nullptr; // Return nullptr if no object with the given name is found
 	}
 
 protected:
-	std::vector<GameObject*> m_gameObjects;
-	std::vector<GameObject*> m_toAddGameObjects;
+	std::vector<std::unique_ptr<GameObject>> m_gameObjects;
+	std::vector<std::unique_ptr<GameObject>> m_toAddGameObjects;
+
 };

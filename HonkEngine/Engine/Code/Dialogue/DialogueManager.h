@@ -15,6 +15,7 @@ struct Dialogue {
 
 class DialogueManager : public GameObject {
 public:
+
     DialogueManager(const std::string& name, const std::string& fontPath, const std::string& filePath)
         : GameObject(name){
         LoadDialogues(filePath);
@@ -23,13 +24,6 @@ public:
             currentText = std::make_shared<Text>("DialogueText", dialogues[currentDialogueIndex].text, fontPath);
         }
     }
-
-    ~DialogueManager() {
-		if (currentText) {
-			currentText->Clear();
-		}
-	}
-
 
     void LoadDialogues(const std::string& filePath) {
         tinyxml2::XMLDocument doc;
