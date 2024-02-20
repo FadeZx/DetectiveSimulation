@@ -19,10 +19,13 @@ public:
        UIElement* room = new UINormal("cabin1", "Assets/Images/passenger_room1.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(20.0f, 12.0f, 0.0f), true);
 
        //dialogue
-       dialogueManager = std::make_unique<DialogueManager>("DialogueManagerName", "Assets/Fonts/EI.ttf", "Assets/Dialogue/test.xml");
+       DialogueManager* dialogueManager = new DialogueManager("DialogueManagerName", "Assets/Fonts/EI.ttf", "Assets/Dialogue/test.xml");
 
-        //m_gameObjects.push_back(room); // Assuming m_gameObjects can store shared_ptr<GameObject>
-      m_gameObjects.push_back(dialogueManager.get());
+		//m_gameObjects.push_back(room); // Assuming m_gameObjects can store shared_ptr<GameObject>
+		m_gameObjects.push_back(room);
+		m_gameObjects.push_back(dialogueManager);
+        //dialogueManager = std::make_unique<DialogueManager>("DialogueManagerName", "Assets/Fonts/EI.ttf", "Assets/Dialogue/test.xml");
+        // m_gameObjects.push_back(dialogueManager.get());
 
     }
 
