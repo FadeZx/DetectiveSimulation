@@ -211,6 +211,8 @@
     <Media Include="Assets\Sounds\Train_Ambience.mp3" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="Assets\Dialogue\Dialogue_Martha_OrderPhase.xml" />
+    <Xml Include="Assets\Dialogue\schema.xml" />
     <Xml Include="Assets\Dialogue\test.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

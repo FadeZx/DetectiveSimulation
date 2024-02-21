@@ -16,16 +16,17 @@ public:
 
     Room1() {
 
-       UIElement* room = new UINormal("cabin1", "Assets/Images/passenger_room1.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(20.0f, 12.0f, 0.0f), true);
+       UIElement* room = new UINormal("cabin1", "Assets/Images/Martharoom.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(20.0f, 12.0f, 0.0f), true);
+       UIElement* martha = new UINormal("Martha", "Assets/Images/Martha.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(20.0f, 12.0f, 0.0f), true);
+       UIElement* lamp = new UINormal("Lamp", "Assets/Images/Martharoom_Lamp.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(20.0f, 12.0f, 0.0f), true);
+       dialogueManager = std::make_unique<DialogueManager>("DialogueManagerName", "Assets/Fonts/EI.ttf", "Assets/Dialogue/Dialogue_Martha_OrderPhase.xml");
 
-       //dialogue
-       DialogueManager* dialogueManager = new DialogueManager("DialogueManagerName", "Assets/Fonts/EI.ttf", "Assets/Dialogue/test.xml");
+        dialogueManager->SetDialoguePosition(-5.0f, -2.0f);
+        m_gameObjects.push_back(room);
+        m_gameObjects.push_back(martha);
+        //m_gameObjects.push_back(lamp);
 
-		//m_gameObjects.push_back(room); // Assuming m_gameObjects can store shared_ptr<GameObject>
-		m_gameObjects.push_back(room);
-		m_gameObjects.push_back(dialogueManager);
-        //dialogueManager = std::make_unique<DialogueManager>("DialogueManagerName", "Assets/Fonts/EI.ttf", "Assets/Dialogue/test.xml");
-        // m_gameObjects.push_back(dialogueManager.get());
+       
 
     }
 
@@ -33,14 +34,14 @@ public:
 
         Scene::Update(dt, frame); // Call the base class update
 
+        dialogueManager->Update(dt, frame);
+
         GameObject* dialogueText = GetGameObjectByName("Dialogue1");
         if (input.Get().GetKeyDown(GLFW_KEY_E)) {
-            std::cout << "E key pressed" << std::endl;
             Application::Get().SetScene("Hallway");
         }
 
         if (input.Get().GetKeyDown(GLFW_KEY_T)) {
-            std::cout << "T key pressed" << std::endl;
             dialogueManager->PlayNextDialogue();
            //alogueText
         }
@@ -49,6 +50,12 @@ public:
         // Use the UIElement for cabin interaction
         
         
+    }
+    void Render() override {
+        Scene::Render(); // Renders GameObjects
+
+        // Manually call DialogueManager's render function
+        dialogueManager->Render();
     }
 
 private:

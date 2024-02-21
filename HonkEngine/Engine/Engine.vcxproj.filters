@@ -193,5 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Assets\Dialogue\test.xml" />
+    <Xml Include="Assets\Dialogue\Dialogue_Martha_OrderPhase.xml" />
+    <Xml Include="Assets\Dialogue\schema.xml" />
   </ItemGroup>
 </Project>
