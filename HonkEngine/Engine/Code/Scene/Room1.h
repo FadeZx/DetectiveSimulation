@@ -17,16 +17,16 @@ public:
     Room1() {
 
        UIElement* room = new UINormal("cabin1", "Assets/Images/Martharoom.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(20.0f, 12.0f, 0.0f), true);
-       UIElement* martha = new UINormal("Martha", "Assets/Images/Martha.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(20.0f, 12.0f, 0.0f), true);
-       UIElement* lamp = new UINormal("Lamp", "Assets/Images/Martharoom_Lamp.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(20.0f, 12.0f, 0.0f), true);
+       UIElement* martha = new UINormal("Martha", "Assets/Images/Martha.png", glm::vec3(5.7f, -2.3f, 0.0f), glm::vec3(5.3f, 6.5f, 0.0f), true);
+       UIElement* lamp = new UINormal("Lamp", "Assets/Images/Martharoom_Lamp.png", glm::vec3(-0.9f, -0.2f, 0.0f), glm::vec3(1.8f, 2.0f, 0.0f), true);
+       UIElement* hat = new UINormal("Hat", "Assets/Images/Martharoom_hat.png", glm::vec3(-0.9f, -1.0f, 0.0f), glm::vec3(3.3f, 1.0f, 0.0f), true);
        dialogueManager = std::make_unique<DialogueManager>("DialogueManagerName", "Assets/Fonts/EI.ttf", "Assets/Dialogue/Dialogue_Martha_OrderPhase.xml");
 
-        dialogueManager->SetDialoguePosition(-5.0f, -2.0f);
+        dialogueManager->SetDialoguePosition(-5.5f,-3.0f);
         m_gameObjects.push_back(room);
         m_gameObjects.push_back(martha);
-        //m_gameObjects.push_back(lamp);
-
-       
+        m_gameObjects.push_back(lamp);
+        m_gameObjects.push_back(hat);
 
     }
 
