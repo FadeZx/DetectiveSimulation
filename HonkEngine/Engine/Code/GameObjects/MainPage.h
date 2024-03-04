@@ -8,7 +8,6 @@ public:
 
 	MainPage() :Page() {
 
-
 		// DRAGGABLE PAPERS
 
 		UIDraggable* CaseNews = new UIDraggable("CaseNews", "Assets/Images/Journal/CaseSummary_News.png", glm::vec3(-3.2f, 0.0f, 0.0f), glm::vec3(5.34f, 6.85f, 0.0f), true, glm::vec3(-3.2f, 0.0f, 0.0f));
