@@ -43,7 +43,6 @@ public:
 		/*-------------------------------------------------------------💬CREATE TEXT💬------------------------------------------------------------------------------------------------------- */
 
 		Text* helloText = new Text("GameTitle", " Welcome To Ticking Tea Time", "Assets/Fonts/WD.ttf");
-		Text* gt = new Text("gt", "Test Font EI", "Assets/Fonts/EI.ttf");
 		Text* orderNoText = new Text("orderNo", "1", "Assets/Fonts/WD.ttf");
 
 		/*-------------------------------------------------------------💬CREATE UI💬------------------------------------------------------------------------------------------------------- */
@@ -80,7 +79,6 @@ public:
 
 		//Texts
 		m_gameObjects.push_back(helloText);
-		m_gameObjects.push_back(gt);
 		m_gameObjects.push_back(orderNoText);
 
 		//Journal
@@ -88,6 +86,8 @@ public:
 		Journal->closeBook();
 
 
+		
+		
 	}
 
 	void Update(float dt, long frame) {

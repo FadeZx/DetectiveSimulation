@@ -2,9 +2,9 @@
 #pragma once
 
 #include "AnimateGameObject.h"
-#include "Engine.h"
+#include "../Engine.h"
 #include <glm/glm.hpp>
-#include "Application.h"
+#include "../Application.h"
 #include"../Scene/Scene.h"
 #include "../Input/Input.h"
 #include <iostream>
@@ -80,6 +80,10 @@ void Update(float dt, long frame) override
     else if (!isWalking && audioManager.IsSoundPlaying("Player_footsteps")) {
         audioManager.StopSound("Player_footsteps");
     }
+
+
+    glm::vec2 mosePos = Application::Get().MousetoWorld();
+
 }
 
 

@@ -51,10 +51,10 @@ class UIButton : public UIElement {
             Input& input = Application::GetInput();
             UIElement::Update(dt, frame);
             
-                
-                mousePos = Application::Get().CursorPos();
+                mousePosWorld = Application::Get().MousetoWorld();
 
-                if (IsClickable() && IsPointInside(mousePos.x, mousePos.y)) {
+
+                if (IsClickable() && IsPointInside(mousePosWorld.x, mousePosWorld.y)) {
 
                     //std::cout << " BUTTON UPDATE" << std::endl;
 
@@ -63,16 +63,14 @@ class UIButton : public UIElement {
                         OnClick();
 
                     }
-
                 }  
-
         }
-  
-
+ 
     private:
 
         bool isClickable;
         glm::vec2 mousePos;
+        glm::vec2 mousePosWorld;
         std::function<void()> onClickAction;
 
 
