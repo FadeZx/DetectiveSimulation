@@ -1,5 +1,7 @@
 #include "Input.h"
 
+#include <iostream>
+
 Input* Input::s_instance = nullptr;
 
 bool Input::mouseButtonStates[GLFW_MOUSE_BUTTON_LAST] = { false };
@@ -36,8 +38,11 @@ bool Input::GetKeyUp(int keyCode)
 
 bool Input::GetMouseButtonDown(int button)
 {
+    
+
     if (glfwGetMouseButton(m_window, button) == GLFW_PRESS && !mouseButtonStates[button])
     {
+        std::cout << "GET MOUSE BUTTON DOWN" << std::endl;
         mouseButtonStates[button] = true;
         return true;
     }

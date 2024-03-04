@@ -8,15 +8,11 @@
 class UIButton : public UIElement {
 
 	public:
-
-      
+  
         UIButton(const std::string& name, const std::string& texturePath, const glm::vec3 position, const glm::vec3 scale, bool isOnScreen)
             : UIElement(name, texturePath, position, scale, isOnScreen) {
 
-            //Additional properties specific to buttons
-
             isClickable = true;
-            //category = UIcategory;
 
         }
 
@@ -29,21 +25,13 @@ class UIButton : public UIElement {
         void OnClick(){
 
             if (onClickAction) {
+
+                std::cout << "CLICKEDDDD " << getButtonName() << std::endl; 
+
                 onClickAction();
             }
 
         }
-
-       /* void(*clickfunc)();
-
-        void BindOnClick(void(*newfunc)())
-        {
-            clickfunc = newfunc;
-        }
-
-        void OnClick() {
-            clickfunc();
-        }*/
 
      
         void Update(float dt, long frame) override {
@@ -53,17 +41,21 @@ class UIButton : public UIElement {
             
                 mousePosWorld = Application::Get().MousetoWorld();
 
+               
 
                 if (IsClickable() && IsPointInside(mousePosWorld.x, mousePosWorld.y)) {
 
-                    //std::cout << " BUTTON UPDATE" << std::endl;
+                    //std::cout << "MOUSE POS: " << mousePosWorld.x << "  " << mousePosWorld.y << getButtonName() << std::endl;
 
                     if (input.Get().GetMouseButtonDown(GLFW_MOUSE_BUTTON_1)) {
-
+                        
+                        std::cout << "MOUSE POS: " << mousePosWorld.x << "  " << mousePosWorld.y << std::endl;
+                          
                         OnClick();
 
                     }
-                }  
+                } 
+
         }
  
     private:

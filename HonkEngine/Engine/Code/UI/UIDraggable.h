@@ -19,9 +19,7 @@ public:
 
     void OnClick() {
 
-        //DRAG OBJECT HERE 
-
-        std::cout << "Draggable Clicked" << std::endl;
+        //std::cout << "Draggable Clicked" << std::endl;
         isDragging = true;
 
 

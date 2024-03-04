@@ -1,15 +1,16 @@
 #pragma once
 
-#include "GameObject.h"
-#include "RenderGameObject.h"
-#include "../Engine.h"
+#include "../GameObject.h"
+#include "../RenderGameObject.h"
+#include "../../Engine.h"
 #include <glm/glm.hpp>
-#include "../Input/Input.h"
+#include "../../Input/Input.h"
 #include "JournalData.h"
 #include <iostream>
-#include "../Application.h"
-#include"../Scene/Scene.h"
-#include "../Text/Text.h"
+#include "../../Application.h"
+#include "../../Scene/Scene.h"
+#include "../../Text/Text.h"
+#include <iostream>
 
 #include "MainPage.h"
 #include "CabinPage1.h"
@@ -20,7 +21,7 @@
 #include "FoodGuidePage.h"
 
 
-enum currentPage {MAIN, CABIN1, CABIN2, CABIN3, CABIN4, CABIN5, GUIDE1, GUIDE2};
+enum currentPage {MAIN, CABIN1, CABIN2, CABIN3, CABIN4, CABIN5, FOODGUIDE};
 
 //FIGURE OUT A DATA STRUCTURE TO STORE PAGE DATA
 
@@ -44,22 +45,18 @@ public:
 		UIButton* Tab6 = new UIButton("Tab6", "Assets/Images/Journal/Bookmark_P4.png", glm::vec3(6.55f, -1.85f, 0.0f), glm::vec3(2.13f, 0.91f, 0.0f), true);
 		UIButton* Tab7 = new UIButton("Tab6", "Assets/Images/Journal/Bookmark_TeaGuide.png", glm::vec3(6.49f, -2.8f, 0.0f), glm::vec3(2.13f, 0.91f, 0.0f), true);
 
-		//ADD FOOD GUIDE
-
 		Tab1->SetOnClickAction([this]() { setActiveTab1(); });
 		Tab2->SetOnClickAction([this]() { setActiveTab2(); });
 		Tab3->SetOnClickAction([this]() { setActiveTab3(); });
 		Tab4->SetOnClickAction([this]() { setActiveTab4(); });
 		Tab5->SetOnClickAction([this]() { setActiveTab5(); });
 		Tab6->SetOnClickAction([this]() { setActiveTab6(); });
+		Tab7->SetOnClickAction([this]() { setActiveTab7(); });
+
 
 		GameObject* BlankPage = new RenderGameObject("BlankPage", "Assets/Images/Journal/BlankPage.png");
 		BlankPage->SetScale(glm::vec3(12.68f, 7.45f, 1.0f));
 		BlankPage->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-
-		/*GameObject* JournalSleeve = new RenderGameObject("JounalSleeve", "Assets/Images/Journal/CaseSummary_Sleeve.png");
-		JournalSleeve->SetScale(glm::vec3(3.5f, 9.7f, 0.0f));
-		JournalSleeve->SetPosition(glm::vec3(-5.3f, 0.0f, 0.0f));*/
 
 		m_gameObjects.push_back(JournalCover);
 		m_gameObjects.push_back(Tab1);
@@ -69,7 +66,6 @@ public:
 		m_gameObjects.push_back(Tab5);
 		m_gameObjects.push_back(Tab6);
 		m_gameObjects.push_back(Tab7);
-		//m_gameObjects.push_back(JournalSleeve);
 		m_gameObjects.push_back(BlankPage);
 
 		Page* mainPage = new MainPage();
@@ -95,6 +91,8 @@ public:
 
 	void drawBook(){
 
+		openStatus = true;
+
 		for (auto& object : m_gameObjects) {
 
 			if (!object->getActiveStatus()) { //IF NOT ACTIVE SET AS ACTIVE
@@ -111,13 +109,16 @@ public:
 
 
 		}
+		
 
-		openStatus = true;
-
+		//std::cout << "OPEN BOOKK" << std::endl;
 	}
 
 	void closeBook() {
 
+		//make all gameobjects in book inactive
+
+		openStatus = false;
 		activePage = MAIN;
 
 		for (auto& object : m_gameObjects) {
@@ -130,16 +131,12 @@ public:
 
 		}
 
-		for (auto& object : allPages) {
-
+		for (auto& object : allPages) 
+		{
 			object->setActiveStatus(false);
-
-
 		}
 
-		openStatus = false;
-
-		//make all gameobjects in book inactive
+		//std::cout << "CLOSE BOOKK" << std::endl;
 
 	}
 
@@ -166,7 +163,10 @@ public:
 
 	virtual void Render() override
 	{
+		if (openStatus == false) {
+			return;
 
+		}
 		for (auto& object : m_gameObjects) {
 
 			if (object->getActiveStatus()) { //CHECK ACTIVE STATUS
@@ -183,6 +183,10 @@ public:
 
 	virtual void Update(float dt, long frame) override {
 
+		if (openStatus == false) {
+			return;
+		}
+
 		Input& input = Application::GetInput();
 
 		for (auto& object : m_gameObjects) {
@@ -196,6 +200,8 @@ public:
 		//BUTTON CLICKS OUTSIDE OF JOURNAL -> CLOSE BOOK
 
 		mousePos = Application::Get().CursorPos();
+
+
 
 		if (input.Get().GetMouseButtonDown(GLFW_MOUSE_BUTTON_1)) {
 			if (!clickOutOfJournal(mousePos)) { 
@@ -216,7 +222,7 @@ public:
 	void setActiveTab4() { if (activePage != CABIN3) { activePage = CABIN3; } };
 	void setActiveTab5() { if (activePage != CABIN4) { activePage = CABIN4; } };
 	void setActiveTab6() { if (activePage != CABIN5) { activePage = CABIN5; } };
-
+	void setActiveTab7() { if (activePage != CABIN5) { activePage = FOODGUIDE; } }
 
 
 protected:
@@ -226,7 +232,7 @@ protected:
 
 	currentPage activePage = MAIN;
 
-	bool openStatus = true; //true - open, false - closed
+	bool openStatus = false; //true - open, false - closed
 
 	glm::vec2 mousePos;
 

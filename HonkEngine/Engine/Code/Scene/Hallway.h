@@ -12,7 +12,7 @@
 #include "../UI/UIDraggable.h"
 #include "../UI/UINormal.h"
 #include "../UI/UIElement.h"
-#include "../GameObjects/Book.h"
+#include "../GameObjects/Journal/Book.h"
 
 class Hallway : public Scene
 {

@@ -1,14 +1,14 @@
 #pragma once
 
-#include "GameObject.h"
-#include "../Engine.h"
-#include "../Input/Input.h"
+#include "../../GameObjects/GameObject.h"
+#include "../../Engine.h"
+#include "../../Input/Input.h"
 #include <iostream>
-#include "../Application.h"
+#include "../../Application.h"
 
-#include "../Text/Text.h"
-#include "../UI/UIButton.h"
-#include "../UI/UIDraggable.h"
+#include "../../Text/Text.h"
+#include "../../UI/UIButton.h"
+#include "../../UI/UIDraggable.h"
 
 #include "JournalData.h"
 
@@ -17,7 +17,7 @@ class Page: public GameObject{
 
 public:
 
-	JournalData* journalDataObj;
+	//JournalData* JournalDataObj;
 
 	Page() : GameObject("page") {
 
@@ -43,12 +43,20 @@ public:
 
 	virtual void Update(float dt, long frame) override {
 
-		for (auto& object : m_gameObjects) {
+		//for (auto& object : m_gameObjects) {
+		//	if (object->getActiveStatus()) { //CHECK ACTIVE STATUS
 
-			if (object->getActiveStatus()) { //CHECK ACTIVE STATUS
+		//		object->Update(dt, frame);
 
+		//	}
+
+		//}
+
+		for (auto it = m_gameObjects.rbegin(); it != m_gameObjects.rend(); ++it) {
+
+			GameObject* object = *it;
+			if (object->getActiveStatus()) { // CHECK ACTIVE STATUS
 				object->Update(dt, frame);
-
 			}
 
 		}
