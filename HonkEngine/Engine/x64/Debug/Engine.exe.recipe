@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< Updated upstream
       <FullPath>C:\Capt\DetectiveSimulation\HonkEngine\x64\Debug\Engine.exe</FullPath>
+=======
+      <FullPath>C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\x64\Debug\Engine.exe</FullPath>
+>>>>>>> Stashed changes
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
