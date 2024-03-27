@@ -54,9 +54,10 @@ void Update(float dt, long frame) override
     {
         Application::Get().SetScene("Room1");
     }
-    if (input.Get().GetKeyDown(GLFW_KEY_J))
+
+    if (input.Get().GetKeyDown(GLFW_KEY_K))
     {
-        Application::Get().SetScene("Journal Room");
+        Application::Get().SetScene("Kitchen");
     }
 
 

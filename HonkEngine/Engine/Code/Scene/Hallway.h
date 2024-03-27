@@ -11,16 +11,15 @@
 #include "../UI/UIButton.h"
 #include "../UI/UIDraggable.h"
 #include "../UI/UINormal.h"
-#include "../UI/UIElement.h"
-#include "../GameObjects/Book.h"
 #include "../UI/UIButtonEmpty.h"
 
-void printEmpty() {
+//#include "../UI/UIElement.h"
+#include "../GameObjects/Journal/Book.h"
 
-	Application::Get().SetScene("Room1");
 
-	std::cout << "CLICK EMPTY BUTTONNNNNN" << std::endl;
-}
+//void printEmpty() {
+//	std::cout << "CLICK EMPTY BUTTONNNNNN" << std::endl;
+//}
 
 class Hallway : public Scene
 {

@@ -9,7 +9,7 @@ class UIButton : public UIElement {
 
 	public:
         
-        UIButton(const std::string& name, const std::string& texturePath, const glm::vec3 position, const glm::vec3 scale, bool isOnScreen, bool containText, const std::string& fontPath)
+        UIButton(const std::string& name, const std::string& texturePath, const glm::vec3 position, const glm::vec3 scale, bool isOnScreen, bool containText, const std::string& fontPath = "")
             : UIElement(name, texturePath, position, scale, isOnScreen) {
 
             isClickable = true;

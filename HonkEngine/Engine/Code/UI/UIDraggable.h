@@ -5,7 +5,7 @@
 class UIDraggable : public UIElement {
 
 public:
-    UIDraggable(const std::string& name, const std::string& texturePath, const glm::vec3 position, const glm::vec3 scale,bool isOnScreen, glm::vec3 snapToPos)
+    /*UIDraggable(const std::string& name, const std::string& texturePath, const glm::vec3 position, const glm::vec3 scale, bool isOnScreen, glm::vec3 snapToPos)
         : UIElement(name, texturePath, position, scale,isOnScreen) {
 
         //category = UIcategory;
@@ -13,6 +13,14 @@ public:
         originalPosition = position;
         snapToPosition = snapToPos;
         
+    }*/
+
+    UIDraggable(const std::string& name, const std::string& texturePath, const glm::vec3 position, const glm::vec3 scale, bool isOnScreen)
+        : UIElement(name, texturePath, position, scale, isOnScreen) {
+
+        //category = UIcategory;
+        isDragging = false;
+        originalPosition = position;
 
     }
 
@@ -27,23 +35,28 @@ public:
 
     }
 
-    void withinRange(glm::vec3 uiPos) {
+    bool withinRage(glm::vec3 objectPosition, glm::vec3 targetPosition) {
 
-        float distance = glm::distance(uiPos, snapToPosition);
-
-        if (distance <= snapThreshold) {
-
-            m_position = snapToPosition;
-
-        }
-        else {
-
-            m_position = originalPosition;
-
-        }
-
+        float distance = glm::distance(objectPosition, targetPosition);
+        return distance <= snapThreshold;
 
     }
+
+    /*void snapUIPosition(glm::vec3 uiPos) {
+
+        if (withinRage(uiPos, snapToPosition)) {
+            m_position = snapToPosition;
+        }
+        else {
+            m_position = originalPosition;
+        }
+
+    }*/
+
+    void snapBack() {
+        m_position = originalPosition;
+    }
+
  
     void Update(float dt, long frame) override {
 
@@ -53,15 +66,6 @@ public:
 
         //mousePos = Application::Get().CursorPos();
         mouseWorldPos = Application::Get().MousetoWorld();
-
-        if (input.Get().GetMouseButtonUp(GLFW_MOUSE_BUTTON_1)) {
-
-            isDragging = false;
-            //std::cout << "DRAGGABLE RELEASED" << std::endl;
-
-            withinRange(m_position);
-
-        }
 
         if (IsClickable()) {
 
@@ -77,6 +81,7 @@ public:
                     dragOffset = glm::vec2(m_position.x, m_position.y) - mouseWorldPos; // Offset between mouse and object position
 
                 }
+
             }
         }
 
@@ -85,6 +90,19 @@ public:
             // Continue drag - Update object position
             glm::vec2 mouseDelta = mouseWorldPos - dragStartPos; // Use the already converted mouseWorldPos
             m_position = glm::vec3(dragStartPos, 0.0f) + glm::vec3(mouseDelta, 0.0f) + glm::vec3(dragOffset, 0.0f);
+
+
+            //Mouse click released
+            if (input.Get().GetMouseButtonUp(GLFW_MOUSE_BUTTON_1)) {
+
+                isDragging = false;
+                std::cout << "DRAGGABLE RELEASED" << std::endl;
+
+                //snapUIPosition(m_position);
+                snapBack();
+
+            }
+
         }
 
     }
@@ -93,12 +111,13 @@ private:
 
     glm::vec2 mousePos;
     glm::vec2 mouseWorldPos;
+
     glm::vec2 dragStartPos;
     bool isDragging;
     glm::vec2 dragOffset; // Offset between
 
     //snap to position variables
-    glm::vec3 originalPosition; //instantiation position
+    glm::vec3 originalPosition; //position at instantiation
     glm::vec3 snapToPosition;
     float snapThreshold = 8.0f;
 
