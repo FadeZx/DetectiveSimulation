@@ -123,8 +123,6 @@ public:
     //void setActiveStatus(bool status) override { active = status; }
 
 
-
-
 private:
     glm::vec3 buttonPosition;
     glm::vec3 buttonScale;

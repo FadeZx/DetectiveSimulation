@@ -5,15 +5,6 @@
 class UIDraggable : public UIElement {
 
 public:
-    /*UIDraggable(const std::string& name, const std::string& texturePath, const glm::vec3 position, const glm::vec3 scale, bool isOnScreen, glm::vec3 snapToPos)
-        : UIElement(name, texturePath, position, scale,isOnScreen) {
-
-        //category = UIcategory;
-        isDragging = false;
-        originalPosition = position;
-        snapToPosition = snapToPos;
-
-    }*/
 
     UIDraggable(const std::string& name, const std::string& texturePath, const glm::vec3 position, const glm::vec3 scale, bool isOnScreen)
         : UIElement(name, texturePath, position, scale, isOnScreen) {
@@ -60,6 +51,25 @@ public:
 
     }
 
+    void setDragBounds(const glm::vec2& TopLeft, const glm::vec2& BottomRight) {
+
+        minBound = TopLeft;
+        maxBound = BottomRight;
+
+    }
+
+    void setDragBoundsByObject(const glm::vec3& position, const glm::vec3& scale) {
+
+        // Calculate the top left and bottom right corners of the object based on its position and scale
+        glm::vec2 objectTopLeft = glm::vec2(position.x - scale.x / 2.0f, position.y - scale.y / 2.0f);
+        glm::vec2 objectBottomRight = glm::vec2(position.x + scale.x / 2.0f, position.y + scale.y / 2.0f);
+
+        // Set the drag bounds using the calculated corners
+        setDragBounds(objectTopLeft, objectBottomRight);
+
+    }
+
+   
     /*void snapUIPosition(glm::vec3 uiPos) {
 
         if (withinRage(uiPos, snapToPosition, snapThreshold)) {
@@ -75,6 +85,30 @@ public:
         m_position = originalPosition;
     }
 
+    bool isMouseWithinDragBounds(const glm::vec2& mousePosition) {
+
+        return (mousePosition.x >= minBound.x && mousePosition.x <= maxBound.x &&
+            mousePosition.y >= minBound.y && mousePosition.y <= maxBound.y);
+
+    }
+
+    bool isObjectWithinDragBounds() {  
+
+
+        //bounds offset
+        float offset = 0.4f;
+
+        // Calculate the bounds of the sprite based on its position and scale
+        float leftEdge = m_position.x - (m_scale.x / 2.0f) - offset;
+        float rightEdge = m_position.x + (m_scale.x / 2.0f) + offset;
+        float topEdge = m_position.y - (m_scale.y / 2.0f) - offset;
+        float bottomEdge = m_position.y + (m_scale.y / 2.0f) + offset;
+
+        // Check if any part of the sprite is within the bounds
+        return (leftEdge > minBound.x && rightEdge <= maxBound.x &&
+            topEdge >= minBound.y && bottomEdge <= maxBound.y);
+
+    }
 
     void Update(float dt, long frame) override {
 
@@ -103,12 +137,14 @@ public:
             }
         }
 
-
         if (isDragging) {
-            // Continue drag - Update object position
-            glm::vec2 mouseDelta = mouseWorldPos - dragStartPos; // Use the already converted mouseWorldPos
-            m_position = glm::vec3(dragStartPos, 0.0f) + glm::vec3(mouseDelta, 0.0f) + glm::vec3(dragOffset, 0.0f);
 
+            if (isObjectWithinDragBounds() /*|| isMouseWithinDragBounds(mouseWorldPos)*/) {
+                
+                 glm::vec2 mouseDelta = mouseWorldPos - dragStartPos;
+                 m_position = glm::vec3(dragStartPos, 0.0f) + glm::vec3(mouseDelta, 0.0f) + glm::vec3(dragOffset, 0.0f);
+
+            }
 
             //Mouse click released
             if (input.Get().GetMouseButtonUp(GLFW_MOUSE_BUTTON_1)) {
@@ -142,5 +178,9 @@ private:
     float snapThreshold = 8.0f;
 
     std::function<void()> onReleaseAction;
+
+    glm::vec2 minBound = glm::vec2(-4.0f, -3.0f); //top - left corner
+    glm::vec2 maxBound = glm::vec2(4.0f, 3.0f); //bottom - right corner
+
 
 };
