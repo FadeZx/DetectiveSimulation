@@ -7,7 +7,7 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include "../GameObjects/OrderData.h"
+#include "../OrderSystem/OrderData.h"
 
 using namespace std;
 
@@ -53,15 +53,12 @@ public:
         if (currentDialogueButton) {
             currentDialogueButton->Clear();
         }
-
-        // Free memory allocated for tempOrderData in each Dialogue
         for (auto& dialogue : dialogues) {
-            if (dialogue.tempOrderData) {
-                delete dialogue.tempOrderData;
-                dialogue.tempOrderData = nullptr;
-            }
+            delete dialogue.tempOrderData;
+            dialogue.tempOrderData = nullptr; // Ensure pointer is set to nullptr after deletion
         }
     }
+
 
 
 
@@ -343,26 +340,30 @@ public:
 
     void SetOrderDataForCurrentDialogue() {
         const Dialogue& currentDialogue = dialogues[currentDialogueIndex];
-        OrderData& orderData = OrderData::GetInstance();
+        if (!currentDialogue.tempOrderData) {
+            std::cerr << "Error: tempOrderData is null for dialogue index " << currentDialogueIndex << std::endl;
+            return;
+        }
 
-        // Set the order data using the temporary structure
+        OrderData& orderData = OrderData::GetInstance();
         if (!currentDialogue.tempOrderData->roomNumber.empty()) {
             orderData.SetRoomNumber(currentDialogue.tempOrderData->roomNumber);
-            std::cout << "Room Number: " << currentDialogue.tempOrderData->roomNumber << std::endl;
+            std::cout << "Room Number set to: " << currentDialogue.tempOrderData->roomNumber << std::endl;
         }
         if (!currentDialogue.tempOrderData->teaOrder.empty()) {
             orderData.SetTeaOrder(currentDialogue.tempOrderData->teaOrder);
-            std::cout << "Tea Order: " << currentDialogue.tempOrderData->teaOrder << std::endl;
+            std::cout << "Tea Order set to: " << currentDialogue.tempOrderData->teaOrder << std::endl;
         }
         if (!currentDialogue.tempOrderData->sandwichOrder.empty()) {
             orderData.SetSandwichOrder(currentDialogue.tempOrderData->sandwichOrder);
-            std::cout << "Sandwich Order: " << currentDialogue.tempOrderData->sandwichOrder << std::endl;
+            std::cout << "Sandwich Order set to: " << currentDialogue.tempOrderData->sandwichOrder << std::endl;
         }
         if (!currentDialogue.tempOrderData->pastryOrder.empty()) {
             orderData.SetPastryOrder(currentDialogue.tempOrderData->pastryOrder);
-            std::cout << "Pastry Order: " << currentDialogue.tempOrderData->pastryOrder << std::endl;
+            std::cout << "Pastry Order set to: " << currentDialogue.tempOrderData->pastryOrder << std::endl;
         }
     }
+
 
 
 

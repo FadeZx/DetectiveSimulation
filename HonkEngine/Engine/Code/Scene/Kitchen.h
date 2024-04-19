@@ -10,6 +10,8 @@
 #include "../UI/UIButtonEmpty.h"
 
 #include "KitchenData.h"
+#include "../OrderSystem/OrderUIManager.h"
+#include "../OrderSystem/OrderData.h"
 
 class Kitchen : public Scene {
 
@@ -25,7 +27,7 @@ public:
 		/*audioManager.LoadSound("kitchenAmbience", "Assets/Sounds/Ambience_Kitchen.mp3", 0.2f);
 		audioManager.PlaySound("kitchenAmbience", true);*/
 
-		/*--------------------------------------------------------------CREATE GAMEOBJECT------------------------------------------------------------------------------------------------------- */
+		/*--------------------------------------------------------------CREATE UI------------------------------------------------------------------------------------------------------- */
 
 		GameObject* KitchenBackground = new UIObject("KitchenBackground", "Assets/Images/Kitchen/Kitchen_Background.png",true);
 		KitchenBackground->SetScale(glm::vec3(19.2f, 10.8f, 0.0f));
@@ -33,10 +35,15 @@ public:
 
 		UIElement* orderPaper = new UINormal("OrderPaper", "Assets/Images/OrderPaper.png", glm::vec3(-7.65f, 4.0f, 0.0f), glm::vec3(3.55f, 2.54f, 0.0f), true);
 		
-		/*--------------------------------------------------------------CREATE GAMEOBJECT------------------------------------------------------------------------------------------------------- */
 
-		Text* orderNoText = new Text("orderNo", "1", "Assets/Fonts/mvboli.ttf", true);
-		m_gameObjects.push_back(orderNoText);
+		/*--------------------------------------------------------------CREATE TEXT------------------------------------------------------------------------------------------------------- */
+
+		Text* kitchenOrderNoText = new Text("orderNo", "", "Assets/Fonts/mvboli.ttf", true);
+		Text* kitchenTeaOrderText = new Text("TeaOrder", "", "Assets/Fonts/mvboli.ttf", true);
+		Text* kitchenSandwichOrderText = new Text("sandwichOrder", "", "Assets/Fonts/mvboli.ttf", true);
+		Text* kitchenPastryOrderText = new Text("PastryOrder", "", "Assets/Fonts/mvboli.ttf", true);
+		
+
 
 		/*--------------------------------------------------------------CREATE BUTTONS------------------------------------------------------------------------------------------------------- */
 

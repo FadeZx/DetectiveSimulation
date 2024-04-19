@@ -16,15 +16,23 @@
 #include "../UI/UIButtonEmpty.h"
 #include "../GameObjects/Door.h"
 #include "../GameObjects/DoorsManager.h"
-#include "../GameObjects/OrderData.h"
+#include "../OrderSystem/OrderUIManager.h"
+#include "../OrderSystem/OrderData.h"
+#include "../OrderSystem/IOrderDataObserver.h"
 
-class Hallway : public Scene
+class Hallway : public Scene, public IOrderDataObserver
 {
+	Text* orderNoText;
+	Text* teaOrderText;
+	Text* sandwichOrderText;
+	Text* pastryOrderText;
+
 
 private:
 	std::unique_ptr<TextRenderer> textRenderer;
 	AudioManager& audioManager;
 	Book* Journal;
+	OrderUIManager* uiManager;
 	
 public:
 	Hallway() :audioManager(AudioManager::GetInstance())
@@ -51,14 +59,14 @@ public:
 		/*-------------------------------------------------------------💬CREATE TEXT💬------------------------------------------------------------------------------------------------------- */
 
 		Text* helloText = new Text("GameTitle", " Welcome To Ticking Tea Time", "Assets/Fonts/WD.ttf",true);
+		
 		Text* orderNoText = new Text("orderNo", "", "Assets/Fonts/mvboli.ttf",true);
 		Text* teaOrderText = new Text("TeaOrder", "", "Assets/Fonts/mvboli.ttf", true);
 		Text* sandwichOrderText = new Text("sandwichOrder", "", "Assets/Fonts/mvboli.ttf", true);
 		Text* pastryOrderText = new Text("PastryOrder", "", "Assets/Fonts/mvboli.ttf", true);
 
 		//OrderData to manager Order Text
-		OrderData& orderData = OrderData::GetInstance();
-		orderData.Initialize(orderNoText, teaOrderText, sandwichOrderText, pastryOrderText);
+		OrderData::GetInstance().RegisterObserver(this);
 
 		/*-------------------------------------------------------------💬CREATE UI💬------------------------------------------------------------------------------------------------------- */
 		UIElement* orderPaper = new UINormal("OrderPaper", "Assets/Images/OrderPaper.png", glm::vec3(-7.65f, 4.0f, 0.0f), glm::vec3(3.55f, 2.54f, 0.0f), true);
@@ -125,6 +133,19 @@ public:
 
 	}
 
+	~Hallway() {
+		OrderData::GetInstance().UnregisterObserver(this);
+		delete uiManager;
+	}
+
+	void OnOrderDataChanged() override {
+		// Update text based on the changes in OrderData
+		orderNoText->SetContent(OrderData::GetInstance().GetRoomNumber());
+		teaOrderText->SetContent(OrderData::GetInstance().GetTeaOrder());
+		sandwichOrderText->SetContent(OrderData::GetInstance().GetSandwichOrder());
+		pastryOrderText->SetContent(OrderData::GetInstance().GetPastryOrder());
+	}
+
 	void Update(float dt, long frame) {
 		Scene::Update(dt, frame); // Call the base class update
 
@@ -158,6 +179,8 @@ public:
 		}
 
 	}
+
+	
 
 };
 
