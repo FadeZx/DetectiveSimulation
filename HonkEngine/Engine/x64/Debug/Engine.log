@@ -1,68 +1,27 @@
-﻿  Application.cpp
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(78,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Application.cpp')
+﻿  Main.cpp
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(78,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Code/Main.cpp')
   
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(79,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Application.cpp')
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(79,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Code/Main.cpp')
   
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.cpp(161,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Engine.cpp
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(78,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Engine.cpp')
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(79,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Engine.cpp')
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): warning C4099: 'Mesh': type name first seen using 'class' now seen using 'struct'
-  (compiling source file 'Code/Engine.cpp')
-  C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8):
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): warning C4099: 'Mesh': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'Code/Main.cpp')
+  C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8):
   see declaration of 'Mesh'
   
-  Main.cpp
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(78,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Text\TextRenderer.h(12,7): warning C4099: 'Mesh': type name first seen using 'struct' now seen using 'class'
   (compiling source file 'Code/Main.cpp')
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(79,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Main.cpp')
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): warning C4099: 'Mesh': type name first seen using 'class' now seen using 'struct'
-  (compiling source file 'Code/Main.cpp')
-  C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8):
+  C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8):
   see declaration of 'Mesh'
   
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Text\TextRenderer.h(12,7): warning C4099: 'Mesh': type name first seen using 'struct' now seen using 'class'
-  (compiling source file 'Code/Main.cpp')
-  C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8):
-  see declaration of 'Mesh'
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(23,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(23,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(23,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(23,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Dialogue\Dialoguemanager.h(162,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Dialogue\Dialoguemanager.h(163,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
-  Renderer.cpp
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(78,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Renderer/Renderer.cpp')
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(79,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Renderer/Renderer.cpp')
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8): warning C4099: 'Mesh': type name first seen using 'class' now seen using 'struct'
-  (compiling source file 'Code/Renderer/Renderer.cpp')
-  C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Engine.h(24,8):
-  see declaration of 'Mesh'
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Renderer\Renderer.cpp(63,51): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-  TextRenderer.cpp
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(78,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Text/TextRenderer.cpp')
-  
-C:\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Application.h(79,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'Code/Text/TextRenderer.cpp')
-  
-  Generating Code...
-  Engine.vcxproj -> C:\Capt\DetectiveSimulation\HonkEngine\x64\Debug\Engine.exe
+  Engine.vcxproj -> C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\x64\Debug\Engine.exe
