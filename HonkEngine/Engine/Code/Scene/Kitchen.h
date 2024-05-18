@@ -368,7 +368,7 @@ public:
 
 	void OnEnter() override {
 		Scene::OnEnter();  // Call base class if there's relevant logic
-		audioManager.PlaySound("hallwayMusic", true);
+		audioManager.ResumeSound("HallwayMusic");
 		audioManager.PlaySound("kitchenAmbience", true);
 		audioManager.PlaySound("slideDoor");
 	}
