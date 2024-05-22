@@ -59,7 +59,7 @@ public:
 
 		Text* O_Clue2 = new Text("O_Clue2", "Opera singer, travelling between East and West", "Assets/Fonts/ESA-m.ttf");
 		O_Clue2->SetPosition(glm::vec3(0.9f, 2.2f, 0.0f));
-		O_Clue2->SetColor(glm::vec3(0.5, 0, 0));
+		O_Clue2->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		O_Clue2->SetScale(0.54f);
 
 		Text* O_Clue3 = new Text("O_Clue3", "High cult missionary", "Assets/Fonts/ESA-m.ttf");
@@ -69,7 +69,7 @@ public:
 
 		Text* O_Clue4 = new Text("O_Clue4", "The cult obsessively dedicated to Westside", "Assets/Fonts/ESA-smb.ttf");
 		O_Clue4->SetPosition(glm::vec3(0.88f, 1.27f, 0.0f));
-		O_Clue4->SetColor(glm::vec3(0.5, 0, 0));
+		O_Clue4->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		O_Clue4->SetScale(0.58f);
 
 		ClueData* cabin4_clue1 = new ClueData();

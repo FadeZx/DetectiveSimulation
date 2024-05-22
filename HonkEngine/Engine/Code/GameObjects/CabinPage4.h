@@ -57,9 +57,9 @@ public:
 		A_Clue1->SetColor(glm::vec3(0, 0, 0));
 		A_Clue1->SetScale(0.56f);
 
-		Text* A_Clue2 = new Text("A_Clue2", "Expert in explosive", "Assets/Fonts/ESA-smb.ttf");
+		Text* A_Clue2 = new Text("A_Clue2", "Seems to acknowledge the type of bomb", "Assets/Fonts/ESA-smb.ttf");
 		A_Clue2->SetPosition(glm::vec3(0.9f, 2.2f, 0.0f));
-		A_Clue2->SetColor(glm::vec3(0.5, 0, 0));
+		A_Clue2->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		A_Clue2->SetScale(0.64f);
 
 		Text* A_Clue3 = new Text("A_Clue3", "Messy attire", "Assets/Fonts/ESA-smb.ttf");
@@ -74,7 +74,7 @@ public:
 
 		Text* A_Clue5 = new Text("A_Clue5", "Carrying a strange gadget with his luggage", "Assets/Fonts/ESA-smb.ttf");
 		A_Clue5->SetPosition(glm::vec3(0.88f, 1.27f, 0.0f));
-		A_Clue5->SetColor(glm::vec3(0, 0, 0));
+		A_Clue5->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		A_Clue5->SetScale(0.6f);
 
 		ClueData* cabin3_clue1 = new ClueData();
@@ -97,6 +97,8 @@ public:
 		ClueData* cabin3_clue5 = new ClueData();
 		cabin3_clue5->showClue = false;
 		cabin3_clue5->clueObject = A_Clue5;
+		cabin3_clue2->isEvidence = true;
+
 
 
 		textClues.push_back(cabin3_clue1);
@@ -130,12 +132,12 @@ public:
 
 		Text* A_LA2_1 = new Text("A_LA2_1", "Deliver a product", "Assets/Fonts/ESA-smb.ttf");
 		A_LA2_1->SetPosition(glm::vec3(3.4f, -0.47, 0.0f));
-		A_LA2_1->SetColor(glm::vec3(0.5, 0, 0));
+		A_LA2_1->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		A_LA2_1->SetScale(0.62f);
 
 		Text* A_LA2_2 = new Text("A_LA2_2", "to Westside client", "Assets/Fonts/ESA-smb.ttf");
 		A_LA2_2->SetPosition(glm::vec3(3.4f, -0.8f, 0.0f));
-		A_LA2_2->SetColor(glm::vec3(0.5, 0, 0));
+		A_LA2_2->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		A_LA2_2->SetScale(0.62f);
 
 		ClueData* cabin3_clue6 = new ClueData();

@@ -76,6 +76,9 @@ private:
 public:
 	Hallway() :audioManager(AudioManager::GetInstance())
 	{
+		JournalData::GetInstance()->ActivateClue(CABIN21, 0);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 1);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 5);
 
 		/*--------------------------------------------------------------🔊LOAD AUDDIO🔊------------------------------------------------------------------------------------------------------- */
 		audioManager.LoadSound("hallwayMusic", "Assets/Sounds/Music/BGmusic_Corridor_NoTimer.mp3", Music, 0.1f);
@@ -235,14 +238,15 @@ public:
 		bellCabin4->SetScale(glm::vec3(1.6f * 1.2f, 1.6f * 1.2f, 0.0f)); bellCabin4->SetPosition(glm::vec3(10.44f, 1.49f, 0.0f));
 
 		
-		orderNoText->SetPosition(glm::vec3(-8.8f, 4.5f, 0.0f));			orderNoText->SetColor(glm::vec3(0.5, 0, 0));
-		teaOrderText->SetPosition(glm::vec3(-7.2f, 4.6f, 0.0f));		teaOrderText->SetScale(0.65f);
+		orderNoText->SetPosition(glm::vec3(-8.8f, 4.5f, 0.0f));			orderNoText->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
+		teaOrderText->SetPosition(glm::vec3(-7.2f, 4.65f, 0.0f));		teaOrderText->SetScale(0.65f);
 		sandwichOrderText->SetPosition(glm::vec3(-7.63f, 3.95f, 0.0f));	sandwichOrderText->SetScale(0.55f);
 		pastryOrderText->SetPosition(glm::vec3(-7.63f, 3.32f, 0.0f));	pastryOrderText->SetScale(0.55f);
 
 		timerText->SetPosition(glm::vec3(6.8f, 4.22f, 0.0f));
 		timerText->SetColor(glm::vec3(0.78039, 0.72549, 0.44314));
 		timerText->SetScale(1.45f);
+
 
 		/*--------------------------------------------------------------✅PUSH BACK✅------------------------------------------------------------------------------------------------------- */
 		//Environment
@@ -424,7 +428,7 @@ public:
 
 							// Check if the room state is Prepare and if the current door matches the game state room
 							if (currentRoomState == RoomState::Prepare && door->GetName() == gameStateNameToDoorName(currentGameState) ) {
-								instructionText->SetContent("A set of meal is required before serving.");
+								instructionText->SetContent("A meal is required before serving.");
 							}
 							else {
 								instructionText->SetContent("Locked. Permission required.");

@@ -26,12 +26,14 @@ public:
 	Kitchen() :audioManager(AudioManager::GetInstance()) {
 
 		/*--------------------------------------------------------------LOAD AUDDIO------------------------------------------------------------------------------------------------------- */
+		
+		audioManager.LoadSound("slideDoor", "Assets/Sounds/SFX_SlideDoor.mp3", SFX, 1.0f);
 		audioManager.LoadSound("kitchenAmbience", "Assets/Sounds/Ambience/Ambience_Kitchen.mp3", SFX, 0.5f);
 
-		audioManager.LoadSound("plateSound1", "Assets/Sounds/Kitchen/SFX_MealSelect1.mp3", SFX, 1.0f);
-		audioManager.LoadSound("plateSound2", "Assets/Sounds/Kitchen/SFX_MealSelect2.mp3", SFX, 1.0f);
-		audioManager.LoadSound("plateSound3", "Assets/Sounds/Kitchen/SFX_MealSelect3.mp3", SFX, 1.0f);
-		audioManager.LoadSound("plateSound4", "Assets/Sounds/Kitchen/SFX_MealSelect4.mp3", SFX, 1.0f);
+		audioManager.LoadSound("plateSound1", "Assets/Sounds/Kitchen/SFX_MealSelect1.mp3", SFX, 1.2f);
+		audioManager.LoadSound("plateSound2", "Assets/Sounds/Kitchen/SFX_MealSelect2.mp3", SFX, 1.2f);
+		audioManager.LoadSound("plateSound3", "Assets/Sounds/Kitchen/SFX_MealSelect3.mp3", SFX, 1.2f);
+		audioManager.LoadSound("plateSound4", "Assets/Sounds/Kitchen/SFX_MealSelect4.mp3", SFX, 1.2f);
 
 		audioManager.LoadSound("servingBellRing", "Assets/Sounds/Kitchen/SFX_ServingBell.mp3", SFX, 0.8f);
 
@@ -102,7 +104,7 @@ public:
 
 
 		orderNoText->SetPosition(glm::vec3(-8.8f, 4.5f, 0.0f));			orderNoText->SetColor(glm::vec3(0.5, 0, 0));
-		teaOrderText->SetPosition(glm::vec3(-7.2f, 4.6f, 0.0f));		teaOrderText->SetScale(0.65f);
+		teaOrderText->SetPosition(glm::vec3(-7.2f, 4.65f, 0.0f));		teaOrderText->SetScale(0.65f);
 		sandwichOrderText->SetPosition(glm::vec3(-7.63f, 3.95f, 0.0f));	sandwichOrderText->SetScale(0.55f);
 		pastryOrderText->SetPosition(glm::vec3(-7.63f, 3.32f, 0.0f));	pastryOrderText->SetScale(0.55f);
 
@@ -150,10 +152,11 @@ public:
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
 		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
 
-		UIButton* ResetButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(-3.5f, 4.18f, 0.0f), glm::vec3(3.5f, 1.0f, 0.0f), true, true, "Assets/Fonts/mvboli.ttf");
+		UIButton* ResetButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(-2.0f, 4.75f, 0.0f), glm::vec3(3.78f * 0.8f, 1.06f * 0.8f, 0.0f), true, true, "Assets/Fonts/Jibril.ttf");
 		ResetButton->SetHoverTexture("Assets/Images/Kitchen/Button_ResetMeal_Highlight.png");
 		ResetButton->SetButtonText("Reset");
-		ResetButton->SetTextPosition(glm::vec3(-3.5f, 4.0f, 0.0f));
+		ResetButton->SetTextSize(0.5f);
+		ResetButton->SetTextPosition(glm::vec3(-2.0f, 4.65f, 0.0f));
 		ResetButton->SetOnClickAction([this]() { clearPlate(); });
 
 

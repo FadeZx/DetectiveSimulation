@@ -54,7 +54,7 @@ public:
 		// CLUES	[E = Evelyn, C = Clue]
 		Text* E_Clue1 = new Text("E_Clue1", "Moving to Westside to stay with her mother", "Assets/Fonts/ESA-smb.ttf");
 		E_Clue1->SetPosition(glm::vec3(0.87f, 2.65f, 0.0f));
-		E_Clue1->SetColor(glm::vec3(0.5, 0, 0));
+		E_Clue1->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		E_Clue1->SetScale(0.55f);
 
 		Text* E_Clue2 = new Text("E_Clue2", "Seems very close with her mother", "Assets/Fonts/ESA-m.ttf");
@@ -103,7 +103,7 @@ public:
 
 		Text* E_LA2 = new Text("E_LA2", "After visiting National Day Event with her brother", "Assets/Fonts/ESA-smb.ttf");
 		E_LA2->SetPosition(glm::vec3(1.05f, -0.8f, 0.0f));
-		E_LA2->SetColor(glm::vec3(0.5, 0, 0));
+		E_LA2->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		E_LA2->SetScale(0.48f);
 
 		ClueData* cabin22_clue5 = new ClueData();

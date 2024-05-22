@@ -70,7 +70,7 @@ public:
 
 		Text* M_C4 = new Text("M_C4", "Westside pen-pal friend", "Assets/Fonts/ESA-m.ttf");
 		M_C4->SetPosition(glm::vec3(0.9f, 1.27f, 0.0f));
-		M_C4->SetColor(glm::vec3(0.5, 0, 0));
+		M_C4->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		M_C4->SetScale(0.65f);
 
 		ClueData* cabin1_clue1 = new ClueData();
@@ -100,7 +100,7 @@ public:
 		// LAST ACTIVITY 1
 		Text* M_LA1 = new Text("M_LA1", "Exchange letters with someone on Westside", "Assets/Fonts/ESA-smb.ttf");
 		M_LA1->SetPosition(glm::vec3(0.85f, -0.4f, 0.0f));
-		M_LA1->SetColor(glm::vec3(0.5, 0, 0));
+		M_LA1->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		M_LA1->SetScale(0.6f);
 
 		// LAST ACTIVITY 2

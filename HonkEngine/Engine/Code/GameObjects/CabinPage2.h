@@ -54,7 +54,7 @@ public:
 		// CLUES	[N = Nathaniel, C = Clue]
 		Text* N_Clue1 = new Text("N_Clue1", "Moving to Westside to stay with his mother", "Assets/Fonts/ESA-smb.ttf");
 		N_Clue1->SetPosition(glm::vec3(0.87f, 2.65f, 0.0f));
-		N_Clue1->SetColor(glm::vec3(0.5, 0, 0));
+		N_Clue1->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		N_Clue1->SetScale(0.55f);
 
 		Text* N_Clue2 = new Text("N_Clue2", "Not very close with his sister as seemed", "Assets/Fonts/ESA-m.ttf");
@@ -103,7 +103,7 @@ public:
 
 		Text* N_LA2 = new Text("N_LA2", "After visiting National Day Event with his sister", "Assets/Fonts/ESA-smb.ttf");
 		N_LA2->SetPosition(glm::vec3(1.15f, -0.8f, 0.0f));
-		N_LA2->SetColor(glm::vec3(0.5, 0, 0));
+		N_LA2->SetColor(glm::vec3(0.58f, 0.04f, 0.0f));
 		N_LA2->SetScale(0.5f);
 
 		ClueData* cabin21_clue5 = new ClueData();
