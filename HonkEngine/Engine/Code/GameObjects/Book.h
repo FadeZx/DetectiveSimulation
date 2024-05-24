@@ -103,8 +103,8 @@ public:
 		allPages.push_back(cabinPage5);
 		allPages.push_back(foodGuide);
 
-		draggableClues.push_back(Cabin3Newspaper);
-		draggableClues.push_back(Cabin4Pamphlet);
+		//draggableClues.push_back(Cabin3Newspaper);
+		//draggableClues.push_back(Cabin4Pamphlet);
 
 	}
 

@@ -143,12 +143,12 @@ public:
 		// Inside the Hallway constructor
 	
 		//activate clue in journal
-		/*JournalData::GetInstance()->ActivateClue(CABIN1, 0);
-		JournalData::GetInstance()->ActivateClue(CABIN1, 1);*/
+		//JournalData::GetInstance()->ActivateClue(CABIN1, 0);
+		//JournalData::GetInstance()->ActivateClue(CABIN1, 1);
 
-		//test draggable clues
-		/*JournalData::GetInstance()->ActivateClue(CABIN3, 10); 
-		JournalData::GetInstance()->ActivateClue(CABIN4, 7);*/
+		////test draggable clues
+		//JournalData::GetInstance()->ActivateClue(CABIN3, 10); 
+		//JournalData::GetInstance()->ActivateClue(CABIN4, 7);
 
 
 
