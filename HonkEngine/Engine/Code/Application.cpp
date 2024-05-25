@@ -16,7 +16,6 @@ void Application::ToggleFullscreen(GLFWwindow* window) {
     static int windowedPosY = 50;   // Default position y
 
     if (!glfwGetWindowMonitor(window)) { // If currently windowed
-        isFullscreen = true;
         GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
         const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
 
@@ -29,8 +28,6 @@ void Application::ToggleFullscreen(GLFWwindow* window) {
     }
     else { // If currently fullscreen
         // Switch back to windowed mode
-
-        isFullscreen = false;
         glfwSetWindowMonitor(window, NULL, windowedPosX, windowedPosY, windowedWidth, windowedHeight, 0);
 
         // Ensure the window decoration and size are restored properly
@@ -45,8 +42,8 @@ void Application::ToggleFullscreen(GLFWwindow* window) {
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow* window)
 {
-    //if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-       //Application::Get().exitGame();
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+       Application::Get().exitGame();
         //glfwSetWindowShouldClose(window, true);
 
     static bool fsTogglePressedLastFrame = true;

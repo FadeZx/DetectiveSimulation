@@ -13,8 +13,6 @@
 #include "KitchenData.h"
 #include "../GameStateManager.h"
 
-#include "../PopupWidget/PauseMenu.h"
-
 class Kitchen : public Scene {
 
 public:
@@ -378,7 +376,6 @@ public:
 		m_gameObjects.push_back(journalButton);
 		m_gameObjects.push_back(Journal);
 
-		m_gameObjects.push_back(&pauseMenu);
 		m_gameObjects.push_back(transitionObject);
 
 		//set all plate gameobjects as inactive
@@ -427,9 +424,6 @@ public:
 			}
 		}
 
-		if (input.Get().GetKeyDown(GLFW_KEY_ESCAPE)) {
-			pauseMenu.Show();
-		}
 		
 		updateServeButton();
 		UpdateOrderDisplay();
@@ -842,6 +836,4 @@ private:
 
 	UIElement* transitionObject;
 	std::unique_ptr<TransitionEffects> transitionEffects;
-
-	PauseMenu pauseMenu;
 };

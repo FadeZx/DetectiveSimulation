@@ -16,7 +16,6 @@
 #include <memory>
 #include "../GameObjects/CharacterData.h"
 #include "../Effects/TransitionEffects.h"
-#include "../PopupWidget/PauseMenu.h"
 
 using namespace std;
 
@@ -40,8 +39,6 @@ private:
     UIButton* caneInspect;
     UIElement* letter;
     UIButton* letterInspect;
-
-    PauseMenu pauseMenu;
 
 public:
     Room1() :audioManager(AudioManager::GetInstance()) {
@@ -220,9 +217,6 @@ public:
         m_gameObjects.push_back(marthaIcon);
         m_gameObjects.push_back(waiterIcon);
         m_gameObjects.push_back(instructionText);
-
-        m_gameObjects.push_back(&pauseMenu);
-
         m_gameObjects.push_back(transitionObject);
 
         //add Parallax Effects
@@ -671,10 +665,6 @@ public:
         if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
             
             dialogueManager->PlayNextDialogue();
-        }
-
-        if (input.Get().GetKeyDown(GLFW_KEY_ESCAPE)) {
-            pauseMenu.Show();
         }
     }
 

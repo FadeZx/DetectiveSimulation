@@ -75,7 +75,6 @@
     <ClInclude Include="Code\Effects\ShakingEffect.h" />
     <ClInclude Include="Code\Scene\EndScene.h" />
     <ClInclude Include="Code\Scene\JournalEntry.h" />
-<<<<<<< HEAD
     <ClInclude Include="Code\Effects\TransitionEffects.h" />
     <ClInclude Include="Code\Scene\OpenScene.h" />
     <ClInclude Include="Code\PopupWidget\ExitInterface.h" />
@@ -84,13 +83,6 @@
     <ClInclude Include="Code\PopupWidget\OptionsInterface.h" />
     <ClInclude Include="Code\PopupWidget\OptionsTwoInterface.h" />
     <ClInclude Include="Code\PopupWidget\PauseInterface.h" />
-=======
-    <ClInclude Include="Code\PopupWidget\ExitMenu.h" />
-    <ClInclude Include="Code\PopupWidget\Interface.h" />
-    <ClInclude Include="Code\PopupWidget\OptionsMenu.h" />
-    <ClInclude Include="Code\PopupWidget\PauseMenu.h" />
-    <ClInclude Include="Code\UI\UISlider.h" />
->>>>>>> origin/RedoInterface-Aisha
   </ItemGroup>
   <ItemGroup>
     <Library Include="External\Library\freetype.lib" />

@@ -5,11 +5,9 @@
 #include "../GameObjects/AnimateGameObject.h"
 #include "../Text/Text.h"
 #include "../UI/UIButton.h"
-
-#include "../PopupWidget/OptionsMenu.h"
-#include "../PopupWidget/ExitMenu.h"
-#include "../PopupWidget/PauseMenu.h"
-
+#include "../PopupWidget/InterfaceManager.h"
+#include "../PopupWidget/OptionsInterface.h"
+#include "../PopupWidget/ExitInterface.h"
 #include "../Application.h"
 
 class MainMenu : public Scene {
@@ -31,21 +29,12 @@ public:
         PlayButton->SetTextPosition(glm::vec3(-6.9f, -0.2f, 0.0f));
         PlayButton->SetOnClickAction([this]() { clickPlay(); });
 
-<<<<<<< HEAD
         OptionsButton = new UIButton("OptionsButton", "Assets/Images/MainMenu/MainMenu_Button_Setting.png", glm::vec3(-6.9f, -1.3f, 0.0f), glm::vec3(3.78f, 1.06f, 0.0f), true, true, "Assets/Fonts/Jibril.ttf");
         OptionsButton->SetHoverTexture("Assets/Images/MainMenu/MainMenu_Button_Setting_Hover.png");
         OptionsButton->SetButtonText("Options");
         OptionsButton->SetTextSize(0.7);
         OptionsButton->SetTextPosition(glm::vec3(-6.9f, -1.42f, 0.0f));
         OptionsButton->SetOnClickAction([this]() { clickOptions(); });
-=======
-		OptionsButton = new UIButton("OptionsButton", "Assets/Images/MainMenu/MainMenu_Button_Setting.png", glm::vec3(-6.9f, -1.3f, 0.0f), glm::vec3(3.78f, 1.06f, 0.0f), true, true, "Assets/Fonts/Jibril.ttf");
-		OptionsButton->SetHoverTexture("Assets/Images/MainMenu/MainMenu_Button_Setting_Hover.png");
-		OptionsButton->SetButtonText("Options");
-		OptionsButton->SetTextSize(0.7);
-		OptionsButton->SetTextPosition(glm::vec3(-6.9f, -1.42f, 0.0f));
-		OptionsButton->SetOnClickAction([this]() { clickOptions(); });
->>>>>>> origin/RedoInterface-Aisha
 
         QuitButton = new UIButton("QuitButton", "Assets/Images/MainMenu/MainMenu_Button_Play.png", glm::vec3(-6.9f, -2.5f, 0.0f), glm::vec3(3.78f, 1.06f, 0.0f), true, true, "Assets/Fonts/Jibril.ttf");
         QuitButton->SetHoverTexture("Assets/Images/MainMenu/MainMenu_Button_Exit_Hover.png");
@@ -68,12 +57,13 @@ public:
         m_gameObjects.push_back(QuitButton);
         m_gameObjects.push_back(clickToBegin);
 
-		m_gameObjects.push_back(transitionObject);
+        //INTERFACES IN MAIN MENU
 
-		m_gameObjects.push_back(&optionsMenu);
-		m_gameObjects.push_back(&exitMenu);
+        OptionsInterface* optionsInterface = new OptionsInterface();
+        Interface_Manager.AddInterface(OPTIONS, optionsInterface);
 
-		setMainMenuState();
+        ExitInterface* exitInterface = new ExitInterface();
+        Interface_Manager.AddInterface(EXIT, exitInterface);
 
         m_gameObjects.push_back(optionsInterface);
         m_gameObjects.push_back(exitInterface);
@@ -144,7 +134,6 @@ private:
     UIElement* transitionObject;
     std::unique_ptr<TransitionEffects> transitionEffects;
 
-<<<<<<< HEAD
     InterfaceManager& Interface_Manager = InterfaceManager::getInstance();
 
     //BUTTON FUNCTIONS
@@ -166,41 +155,6 @@ private:
             //Interface_Manager.ActivateInterface(OPTIONS);
         }
     }
-=======
-	void clickOptions() { 
-		AudioManager::GetInstance().PlaySound("buttonClick");
-;		optionsMenu.Show();
-		//ACTIVATE OPTIONS MENU
-	}
-
-	void clickExit() { 
-		AudioManager::GetInstance().PlaySound("buttonClick");
-
-		exitMenu.Show();
-
-		/*transitionEffects->FadeOut(3.0f, [this]() {
-			Application::Get().exitGame();
-		});*/
-
-		//ACTIVATE EXIT MENU
-	
-	}
-
-
-	bool startOfGame = true;
-
-	UIButton* PlayButton;
-	UIButton* OptionsButton; 
-	UIButton* QuitButton;
-
-	Text* clickToBegin;
-
-	UIElement* transitionObject;
-	std::unique_ptr<TransitionEffects> transitionEffects;
-
-	OptionsMenu optionsMenu;
-	ExitMenu exitMenu;
->>>>>>> origin/RedoInterface-Aisha
 
     void clickExit() {
         if (!transitioning) {
