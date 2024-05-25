@@ -12,6 +12,8 @@
 
 #include "../Application.h"
 
+#include "../PopupWidget/PauseMenu.h"
+
 
 class JournalEntry : public Scene {
 
@@ -45,13 +47,21 @@ public:
 		m_gameObjects.push_back(EntrySceneBackground);
 
 		m_gameObjects.push_back(instructionText);
-		
+		m_gameObjects.push_back(&pauseMenu);
+
+		m_gameObjects.push_back(transitionObject);
 
 	}
 
 	void Update(float dt, long frame) {
 		Scene::Update(dt, frame);
 		transitionEffects->Update(dt);
+
+		Input& input = Application::GetInput();
+
+		if (input.Get().GetKeyDown(GLFW_KEY_ESCAPE)) {
+			pauseMenu.Show();
+		}
 
 	}
 	void OnEnter() override {
@@ -96,8 +106,11 @@ private:
 	UIElement* transitionObject;
 	std::unique_ptr<TransitionEffects> transitionEffects;
 	AudioManager& audioManager;
+
 	Book* Journal;
 	Text* instructionText;
 	UIButton* CloseCaseButton;
+
+	PauseMenu pauseMenu;
 
 };

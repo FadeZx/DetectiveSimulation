@@ -24,10 +24,9 @@
 #include "../GameObjects/Bell.h"
 #include "../GameStateManager.h"
 #include "KitchenData.h"
-#include "../PopupWidget/PauseInterface.h"
-#include "../PopupWidget/OptionsTwoInterface.h"
-#include "../PopupWidget/InterfaceManager.h"
+
 #include "../Effects/TransitionEffects.h"
+#include "../PopupWidget/PauseMenu.h"
 
 //set each cbin time before order (in milliseconds) // Remove . to use the correct number
 #define ORDER_DURATION1 60.000 
@@ -80,6 +79,8 @@ private:
 	bool firstEntry = true;
 	bool inDoorCollision = false;
 	bool entering = false;
+
+	PauseMenu pauseMenu;
 	
 public:
 	Hallway() :audioManager(AudioManager::GetInstance())
@@ -159,7 +160,7 @@ public:
 		bellManager.AddBell(bellCabin1,room1Door);
 		bellManager.AddBell(bellCabin2,room2Door);
 		bellManager.AddBell(bellCabin3,room3Door);
-		bellManager.AddBell(bellCabin4,room4Door);
+		bellManager.AddBell(bellCabin4, room4Door);
 
 
 		Journal = new Book();
@@ -305,17 +306,25 @@ public:
 		//Journal
 		m_gameObjects.push_back(Journal);
 
-		PauseInterface* pauseInterface = new PauseInterface();
-		InterfaceManager::getInstance().AddInterface(PAUSE, pauseInterface);
-
-		OptionsTwoInterface* optionsTwoInterface = new OptionsTwoInterface();
-		InterfaceManager::getInstance().AddInterface(OPTIONSTWO, optionsTwoInterface);
-
-		m_gameObjects.push_back(pauseInterface);
-		m_gameObjects.push_back(optionsTwoInterface);
+		m_gameObjects.push_back(&pauseMenu);
 
 		//Transition
 		m_gameObjects.push_back(transitionObject);
+
+		//JournalData::GetInstance()->ActivateClue(CABIN1, 0);
+		//JournalData::GetInstance()->ActivateClue(CABIN1, 1);
+		//JournalData::GetInstance()->ActivateClue(CABIN1, 2);
+		//JournalData::GetInstance()->ActivateClue(CABIN1, 3);
+		//JournalData::GetInstance()->ActivateClue(CABIN1, 4);
+		//JournalData::GetInstance()->ActivateClue(CABIN1, 6);
+
+		//JournalData::GetInstance()->ActivateClue(CABIN21, 0);
+		//JournalData::GetInstance()->ActivateClue(CABIN21, 5);
+		//JournalData::GetInstance()->ActivateClue(CABIN21, 6);
+
+		//// Draggable paper clues test
+		//JournalData::GetInstance()->ActivateClue(CABIN3, 10);
+		//JournalData::GetInstance()->ActivateClue(CABIN4, 7);
 		
 
 	}
@@ -340,11 +349,9 @@ public:
 		// Stop any previous timers to avoid overlapping actions
 		//Application::Get().ClearAllTimers();
 
-		
-			
+				
 			transitionEffects->FadeIn(2.0f, [this]() {});
-		
-
+	
 		
 			if (currentGameState == GameState::ROOM1_STATE && currentRoomState == RoomState::Order) {
 				Application::Get().SetTimer(ORDER_DURATION1, [this]() {
@@ -382,21 +389,6 @@ public:
 
 		entering = false;
 
-		JournalData::GetInstance()->ActivateClue(CABIN1, 0);
-		JournalData::GetInstance()->ActivateClue(CABIN1, 1);
-		JournalData::GetInstance()->ActivateClue(CABIN1, 2);
-		JournalData::GetInstance()->ActivateClue(CABIN1, 3);
-		JournalData::GetInstance()->ActivateClue(CABIN1, 4);
-		JournalData::GetInstance()->ActivateClue(CABIN1, 6);
-
-		JournalData::GetInstance()->ActivateClue(CABIN21, 0);
-		JournalData::GetInstance()->ActivateClue(CABIN21, 5);
-		JournalData::GetInstance()->ActivateClue(CABIN21, 6);
-
-		// Draggable paper clues test
-		JournalData::GetInstance()->ActivateClue(CABIN3, 10);
-		JournalData::GetInstance()->ActivateClue(CABIN4, 7);
-
 	}
 
 
@@ -431,48 +423,51 @@ public:
 			bool isNearDoor = doorManager.CheckDoorCollisions(playerPos, player->GetScale(),
 				[this, &bellManager](Door* door) {  // Capture bellManager by reference
 					Input& input = Application::GetInput();
-					if (door) {
-						if (door->getPermission()) {
-							instructionText->SetContent("Press [E] to enter");
-							
-							if (input.Get().GetKeyDown(GLFW_KEY_E) && !entering)
-							{
-								if (door->GetName() == "KitchenDoor")
-								{
-									player->StopMovement();
-									transitionEffects->FadeOut(1.0f, [this]() { player->ResumeMovement(); Application::Get().SetScene("Kitchen"); });
-									entering = true;
-								}
-								else
-								{
-									player->StopMovement();
-									bellManager.StopAllRinging();
+			if (door) {
+				if (door->getPermission()) {
+					instructionText->SetContent("Press [E] to enter");
 
-									audioManager.PlaySound("knockDoor");
-									Application::Get().SetTimer(1000, [this]() { transitionEffects->FadeOut(1.0f, [this]() {}); }, false);
-								    
-									audioManager.PauseSound("hallwayMusic");
-									Application::Get().SetTimer(3000, [this, door]() {Application::Get().SetScene(door->GetSceneName()); player->ResumeMovement(); }, false);
-									entering = true;
-								}
-							}
+					if (input.Get().GetKeyDown(GLFW_KEY_E) && !entering)
+					{
+						if (door->GetName() == "KitchenDoor")
+						{
+							transitionEffects->FadeOut(1.0f, [this]() {Application::Get().SetScene("Kitchen"); });
+							entering = true;
 						}
-						else {
-							GameState currentGameState = gameStateManager.getGameState();
-							RoomState currentRoomState = gameStateManager.getRoomState();
-
-							// Check if the room state is Prepare and if the current door matches the game state room
-							if (currentRoomState == RoomState::Prepare && door->GetName() == gameStateNameToDoorName(currentGameState) ) {
-								instructionText->SetContent("Meal is required before serving.");
-							}
-							else {
-								instructionText->SetContent("Locked. Permission required.");
-							}
+						else
+						{
+							audioManager.PauseSound("hallwayMusic");
+							bellManager.StopAllRinging();
+							audioManager.PlaySound("knockDoor");
+							player->StopMovement();
+							transitionEffects->FadeOut(1.0f, [this]() {});
+							Application::Get().SetTimer(2000, [this, door]() {Application::Get().SetScene(door->GetSceneName()); player->ResumeMovement(); }, false);
+							entering = true;
 						}
 					}
+				}
+				else {
+					GameState currentGameState = gameStateManager.getGameState();
+					RoomState currentRoomState = gameStateManager.getRoomState();
+
+					// Check if the room state is Prepare and if the current door matches the game state room
+					if (currentRoomState == RoomState::Prepare && door->GetName() == gameStateNameToDoorName(currentGameState)) {
+						instructionText->SetContent("Meal is required before serving.");
+					}
+					else {
+						instructionText->SetContent("Locked. Permission required.");
+					}
+				}
+			}
 				});
 
 			instructionText->setActiveStatus(isNearDoor);
+		}
+
+		Input& input = Application::GetInput();
+
+		if (input.Get().GetKeyDown(GLFW_KEY_ESCAPE)){
+			pauseMenu.Show();
 		}
 
 	}

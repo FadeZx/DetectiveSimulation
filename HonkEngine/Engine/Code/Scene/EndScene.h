@@ -142,6 +142,7 @@ public:
 			gameStateManager.Reset();
 
 		}
+
 	}
 
 
