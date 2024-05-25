@@ -4,9 +4,8 @@
 // ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
-    // make sure the viewport matches the new window dimensions; note that width and 
-    // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
+    Application::GetCamera().Init(width, height); // Reinitialize the camera with the new dimensions
 }
 
 void Application::ToggleFullscreen(GLFWwindow* window) {
@@ -26,17 +25,19 @@ void Application::ToggleFullscreen(GLFWwindow* window) {
 
         // Switch to fullscreen
         glfwSetWindowMonitor(window, primaryMonitor, 0, 0, mode->width, mode->height, mode->refreshRate);
+        windowWidth = mode->width;
+        windowHeight = mode->height;
     }
     else { // If currently fullscreen
         // Switch back to windowed mode
-
         isFullscreen = false;
         glfwSetWindowMonitor(window, NULL, windowedPosX, windowedPosY, windowedWidth, windowedHeight, 0);
-
-        // Ensure the window decoration and size are restored properly
-        glfwSetWindowSize(window, windowedWidth, windowedHeight);
-        glfwSetWindowPos(window, windowedPosX, windowedPosY);
+        windowWidth = windowedWidth;
+        windowHeight = windowedHeight;
     }
+
+    // Ensure the camera is updated with the new dimensions
+    GetCamera().Init(windowWidth, windowHeight);
 }
 
 
@@ -155,10 +156,8 @@ void Application::processTimers() {
 
 
 Application::Application(int win_width, int win_height, const char* title)
-    : baseTitle(title)
+    : baseTitle(title), windowWidth(win_width), windowHeight(win_height)
 {
-
-
     std::cout << "Application Constructor\n";
 
     s_instance = this;
@@ -175,17 +174,12 @@ Application::Application(int win_width, int win_height, const char* title)
 
     // glfw window creation
     // --------------------
-
-    GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
-    const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
-
-    m_window = glfwCreateWindow(mode->width, mode->height, title, primaryMonitor, NULL);
+    m_window = glfwCreateWindow(windowWidth, windowHeight, title, NULL, NULL);
     if (m_window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return;
-
     }
     glfwMakeContextCurrent(m_window);
 
@@ -204,11 +198,10 @@ Application::Application(int win_width, int win_height, const char* title)
     //Initialize(SCR_WIDTH, SCR_HEIGHT);
 
     m_input.Initialize(m_window);
-    m_renderer.Initialize(win_width, win_height);
-    m_camera.Init(win_width, win_height);
-
-
+    m_renderer.Initialize(windowWidth, windowHeight);
+    m_camera.Init(windowWidth, windowHeight);
 }
+
 
 void Application::Run() {
     std::cout << "Application Run\n";
@@ -230,6 +223,7 @@ void Application::Run() {
         // Scene management
         if (m_currentScene) {
             m_currentScene->Update(deltaTime, frameCount);
+            m_camera.UpdateProjectionMatrix();
             m_currentScene->Render();
         }
 

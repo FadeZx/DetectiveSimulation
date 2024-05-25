@@ -224,6 +224,9 @@ private:
 	std::map<std::string, Scene*> m_sceneMap;
 	double deltaTime = 0.0;
 
+	int windowWidth;
+	int windowHeight;
+
 	GLFWcursor* normalCursor = nullptr;
 	GLFWcursor* clickedCursor = nullptr;
 

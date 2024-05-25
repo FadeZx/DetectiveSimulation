@@ -29,6 +29,7 @@ public:
     float GetPosY() const;
     float GetZoom() const;
 
+    void UpdateProjectionMatrix();
 
 private:
 
@@ -51,7 +52,7 @@ private:
     glm::mat4 m_viewMatrix;
     
 
-    void UpdateProjectionMatrix();
+    
     void UpdateViewMatrix();
 };
 
