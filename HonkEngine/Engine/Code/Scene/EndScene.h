@@ -20,13 +20,13 @@ public:
 		audioManager.LoadSound("EndSceneBGMusic", "Assets/Sounds//Music/BGmusic_Cutscene.mp3",Music, 1.0f);
 		audioManager.LoadSound("NewspaperSlam", "Assets/Sounds/SFX_EndingNewspaperSlam.mp3",SFX, 1.5f);
 
-		GameObject* EndingSceneBackground = new UIObject("EndingSceneBackground", "Assets/Images/Ending/EndingSelect_Background.png", true);
+		GameObject* EndingSceneBackground = new UIObject("EndingSceneBackground", "Assets/Images/Ending/Ending_Background.png", true);
 		EndingSceneBackground->SetScale(glm::vec3(19.2f, 10.8f, 0.0f));
 		EndingSceneBackground->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 		MissingPoster = new UIObject("MissingPoster", "Assets/Images/Ending/MissingPoster_Rotate.png", true);
 		MissingPoster->SetScale(glm::vec3(8.82f, 9.58f, 0.0f));
-		MissingPoster->SetPosition(glm::vec3(-4.5f, -2.8f, 0.0f));
+		MissingPoster->SetPosition(glm::vec3(-4.5f, -2.2f, 0.0f));
 
 		Ending1 = new UIObject("Ending1", "Assets/Images/Ending/Ending1_Rotate.png", true);
 		Ending1->SetScale(glm::vec3(13.15f, 8.56f, 0.0f));
