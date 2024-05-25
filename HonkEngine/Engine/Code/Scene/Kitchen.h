@@ -22,7 +22,7 @@ public:
 	UIButtonEmpty* teaDropArea = new UIButtonEmpty("teaDropArea", glm::vec3(-3.4f, -0.5f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true, false, "");
 	UIButtonEmpty* sandwichDropArea = new UIButtonEmpty("sandwichDropArea", glm::vec3(-6.35f, -0.6f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true, false, "");
 	UIButtonEmpty* dessertDropArea = new UIButtonEmpty("dessertDropArea", glm::vec3(-4.85f, 1.57f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true, false, "");
-	UIButtonEmpty* optionalDropArea = new UIButtonEmpty("optionalDropArea", glm::vec3(-4.5f, -0.4f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true, false, "");
+	UIButtonEmpty* optionalDropArea = new UIButtonEmpty("optionalDropArea", glm::vec3(-4.6f, -0.87f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true, false, "");
 
 	Kitchen() :audioManager(AudioManager::GetInstance()) {
 
@@ -81,12 +81,12 @@ public:
 
 		OptionalArrow = new UIObject("OptionalArrow", "Assets/Images/Kitchen/Kitchen_Arrow_Tea.png", true);
 		OptionalArrow->SetScale(glm::vec3(1.58f / 2, 1.35f / 2, 0.0f));
-		OptionalArrow->SetPosition(glm::vec3(-3.6f, 0.0f, 0.0f));
+		OptionalArrow->SetPosition(glm::vec3(-3.6f, 0.2f, 0.0f));
 		OptionalArrow->setActiveStatus(false);
 
 		DessertArrow = new UIObject("DessertArrow", "Assets/Images/Kitchen/Kitchen_Arrow_Pastry.png", true);
 		DessertArrow->SetScale(glm::vec3(1.74f/2, 1.63f/2, 0.0f));
-		DessertArrow->SetPosition(glm::vec3(-3.7f, 2.5f, 0.0f));
+		DessertArrow->SetPosition(glm::vec3(-3.6f, 2.4f, 0.0f));
 		DessertArrow->setActiveStatus(false);
 
 		orderPaper = new UINormal("OrderPaper", "Assets/Images/UI/OrderPaper.png", glm::vec3(-7.72f, 4.1f, 0.0f), glm::vec3(3.55f, 2.54f, 0.0f), true);
@@ -280,6 +280,13 @@ public:
 		/*--------------------------------------------------------------PUSH BACK------------------------------------------------------------------------------------------------------- */
 
 		m_gameObjects.push_back(KitchenBackground);
+
+		// Signs
+		m_gameObjects.push_back(TeaSign);
+		m_gameObjects.push_back(OptionalSign);
+		m_gameObjects.push_back(SandwichSign);
+		m_gameObjects.push_back(PastrySign);
+
 		m_gameObjects.push_back(ServeBellButton);
 		m_gameObjects.push_back(ServeBellGrey);
 		m_gameObjects.push_back(orderPaper);
@@ -357,11 +364,7 @@ public:
 
 		m_gameObjects.push_back(Milk);
 
-		// Signs
-		m_gameObjects.push_back(TeaSign);
-		m_gameObjects.push_back(OptionalSign);
-		m_gameObjects.push_back(SandwichSign);
-		m_gameObjects.push_back(PastrySign);
+
 
 		//visual clues
 		m_gameObjects.push_back(SandwichArrow);
@@ -711,7 +714,7 @@ public:
 
 		OptionalArrow->setActiveStatus(false);
 
-		if (Milk->withinRage(dessertDropArea->GetOnscreenPosition(), snapThreshold)) {
+		if (Milk->withinRage(optionalDropArea->GetOnscreenPosition(), snapThreshold)) {
 			Kitchen_Data->setOptional(MILK);
 			updateOptionalObjects();
 			audioManager.PlaySound("plateSound1");
