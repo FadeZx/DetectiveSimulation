@@ -117,7 +117,6 @@ public:
 		audioManager.PlaySound("menuMusic", true);
 		transitioning = true;
 		transitionEffects->FadeIn(3.0f, [this]() {
-			std::cout << "Fade in complete" << std::endl;
 			transitioning = false;
 			});
 	}

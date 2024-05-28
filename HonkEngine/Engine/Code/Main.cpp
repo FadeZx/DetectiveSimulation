@@ -1,9 +1,9 @@
 #define WIN_WIDTH  1920
 #define WIN_HEIGHT 1080
-#define NAME    "Ticking Tea Pang Cha"
-
+#define NAME    "Ticking Tea Time"
 
 #include <windows.h>
+#include <tchar.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -24,45 +24,37 @@
 #include "Scene/OpenScene.h"
 #include <iostream>
 
-
-
-
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
-
-
-int main()
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-
     HANDLE hMutex = CreateMutex(NULL, TRUE, L"Global\\TickingTeaTime");
 
     if (hMutex == NULL || GetLastError() == ERROR_ALREADY_EXISTS) {
-        std::cerr << "Another instance of the application is already running." << std::endl;
-        return 1; 
+        MessageBox(NULL, _T("Another instance of the application is already running."), _T("Error"), MB_OK | MB_ICONERROR);
+        return 1;
     }
 
     Application game(WIN_WIDTH, WIN_HEIGHT, NAME);
 
-    //Add scene
+    // Add scene
     game.AddScene("LoadScene", new LoadScene());
-    //Set start scene
-
+    // Set start scene
     game.AddScene("Hallway", new Hallway());
     game.AddScene("Room1", new Room1());
     game.AddScene("Room2", new Room2());
     game.AddScene("Room3", new Room3());
     game.AddScene("Room4", new Room4());
     game.AddScene("Kitchen", new Kitchen());
-    game.AddScene("MainMenu", new MainMenu()); 
+    game.AddScene("MainMenu", new MainMenu());
     game.AddScene("OpenScene", new OpenScene());
     game.AddScene("JournalEntry", new JournalEntry());
     game.AddScene("EndScene", new EndScene());
     game.SetScene("LoadScene");
 
-    //Run game
+    // Run game
     game.Run();
-
 
     if (hMutex) {
         ReleaseMutex(hMutex);
@@ -70,6 +62,4 @@ int main()
     }
 
     return 0;
-
-
 }
