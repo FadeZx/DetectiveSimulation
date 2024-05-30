@@ -262,7 +262,7 @@ public:
     void OnEnter() override {
 
         transitionEffects->FadeIn(1.0f, [this]() {});
-
+        //dialogueManager->DisplayChoices();
         audioManager.PlaySound("cabinMusic", true);
         if (gameStateManager.getRoomState() == RoomState::Prepare && KitchenData::GetInstance()->checkCompletePlate())
         {
