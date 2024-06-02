@@ -256,23 +256,19 @@ public:
 
 
     void DisplayChoices() {
-        choiceMade = false;
-        std::cout << "Displaying choices for dialogue " << dialogues[currentDialogueIndex].id << std::endl;
-
         if (IsCurrentDialogueQuestion()) {
-            std::cout << "It's a question dialogue." << std::endl;
+            choiceMade = false;
+            std::cout << "Displaying choices for dialogue " << dialogues[currentDialogueIndex].id << std::endl;
             for (size_t i = 0; i < choiceButtons.size() && i < dialogues[currentDialogueIndex].choices.size(); ++i) {
-                std::cout << "Choice " << i << ": " << dialogues[currentDialogueIndex].choices[i].text << std::endl;
                 choiceButtons[i]->SetButtonText(dialogues[currentDialogueIndex].choices[i].text);
-                choiceButtons[i]->setActiveStatus(true); // Set the button to active
-                std::cout << "Setting choice button " << i << " to active." << std::endl;
+                choiceButtons[i]->setActiveStatus(true);
             }
         }
         else {
-            std::cout << "It's not a question dialogue." << std::endl;
+            HideChoices();
         }
     }
-
+    
     void HideChoices() {
         //std::cout << "Hiding choices for dialogue " << dialogues[currentDialogueIndex].id << std::endl;
         for (size_t i = 0; i < choiceButtons.size(); ++i) {
@@ -380,6 +376,9 @@ public:
             // Display choices if the current dialogue is a question
             if (IsCurrentDialogueQuestion()) {
                 DisplayChoices();
+            }
+            else {
+                HideChoices();
             }
         }
         else {
@@ -512,7 +511,9 @@ public:
 
     void Reset() {
         currentDialogueIndex = 0;
-        // Reset other state variables if needed...
+        currentLineIndex = 0;
+        choiceMade = false;
+        HideChoices(); 
     }
 
 

@@ -4,6 +4,7 @@
 #include <map>
 #include "Application.h"
 #include "GameObjects/BellManager.h"
+#include "Dialogue/DialogueManager.h"
 #include "Audio/AudioManager.h"
 #include "GameObjects/DoorManager.h"
 #include "GameObjects/Timer.h"
@@ -56,6 +57,7 @@ private:
     bool transitioning = false;
 
     std::map<std::pair<GameState, RoomState>, std::function<void()>> stateActions;
+    unique_ptr<DialogueManager> dialogueManager;
 
     GameStateManager() {
         // ROOM1
@@ -221,8 +223,9 @@ public:
         currentGameState = state;
         //ExecuteStateAction();
     }
-
+        
     void Reset() {
+        dialogueManager.reset();
 		currentGameState = INITIAL_ROOM;
 		currentRoomState = RoomState::Order;
         std::cout << "Resetting game state to initial state." << std::endl;

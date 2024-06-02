@@ -260,7 +260,7 @@ public:
     }
 
     void OnEnter() override {
-
+        dialogueManager->Reset();
         transitionEffects->FadeIn(1.0f, [this]() {});
         //dialogueManager->DisplayChoices();
         audioManager.PlaySound("cabinMusic", true);
