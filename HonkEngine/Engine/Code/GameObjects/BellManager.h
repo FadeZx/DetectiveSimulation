@@ -60,6 +60,24 @@ public:
         }
     }
 
+    void PauseAllRinging() {
+        for (auto* bell : bells) {
+            if (bell->isBellRinging()) {
+                bell->stopRinging(); // Stops the ringing but retains the state to resume
+                bell->setPaused(true); // You might need to add this state tracking in the Bell class
+            }
+        }
+    }
+
+    void ResumeAllRinging() {
+        for (auto* bell : bells) {
+            if (bell->wasPaused()) { // Check if the bell was paused
+                bell->startRinging();
+                bell->setPaused(false);
+            }
+        }
+    }
+
 private:
     std::vector<Bell*> bells;
     std::vector<Door*> linkedDoors;

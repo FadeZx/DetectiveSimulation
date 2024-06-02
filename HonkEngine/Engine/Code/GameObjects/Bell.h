@@ -65,6 +65,14 @@ public:
         }
     }
 
+    void setPaused(bool value) {
+        paused = value;
+    }
+
+    bool wasPaused() const {
+        return paused;
+    }
+
     bool isBellRinging() const {
         return isRinging;
     }
@@ -73,7 +81,6 @@ public:
     {
 		return m_name;
 	} 
-
 
 private:
     void onRingComplete() {
@@ -90,6 +97,7 @@ private:
         }
     }
 
+    bool paused = false;
     std::string m_name;
     Animator m_animator;
     bool animating;

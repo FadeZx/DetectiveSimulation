@@ -63,10 +63,9 @@ public:
         if (!optionsMenu->IsVisible() && !exitConfirmation->IsVisible()) {
             isVisible = true;
             setActiveStatus(true);
-
             Timer& timer = Timer::GetInstance();
-
             timer.pause();
+            BellManager::GetInstance().PauseAllRinging();  // Pause all ringing bells
         }
 
     }
@@ -82,6 +81,7 @@ public:
         Timer& timer = Timer::GetInstance();
         timer.resume();
         AudioManager::GetInstance().PlaySound("buttonClick2");
+        BellManager::GetInstance().ResumeAllRinging();  // Resume all previously ringing bells
         shouldReopenPauseMenu = false;
 
     }
