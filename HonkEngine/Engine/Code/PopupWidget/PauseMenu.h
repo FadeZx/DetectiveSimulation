@@ -3,11 +3,12 @@
 #include "Interface.h"
 #include "OptionsMenu.h"
 #include "ExitMenu.h"
+#include "BackToMainMenu.h"
 #include "../GameObjects/Timer.h"
 
 class PauseMenu : public Interface {
 public:
-    PauseMenu() : Interface("PauseMenu"), shouldReopenPauseMenu(false), optionsMenu(new OptionsMenu()), exitConfirmation(new ExitMenu()) {
+    PauseMenu() : Interface("PauseMenu"), shouldReopenPauseMenu(false), optionsMenu(new OptionsMenu()), exitConfirmation(new ExitMenu()), menuConfirmation(new BackToMenu()){
         UIButton* GreyBackground = new UIButton("GreyBackground2", "Assets/Images/Journal/BlackAlpha.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(19.2f, 10.8f, 0.0f), true, false, "");
         GreyBackground->SetOnClickAction([this]() { EmptyFunction(); });
 
@@ -39,9 +40,7 @@ public:
         MainMenuButton->SetButtonText("Main Menu");
         MainMenuButton->SetTextSize(0.55);
         MainMenuButton->SetTextPosition(glm::vec3(-0.05f, -0.97f, 0.0f));
-        MainMenuButton->SetOnClickAction([this]() { Application::Get().SetScene("MainMenu");
-        AudioManager::GetInstance().StopSound("hallwayMusic"); 
-        AudioManager::GetInstance().StopSound("trainAmbience"); });
+        MainMenuButton->SetOnClickAction([this]() { ShowMenuConfirmation(); });
 
         UIButton* ExitGameButton = new UIButton("MainMenuButton", "Assets/Images/MainMenu/MainMenu_Button_Play.png", glm::vec3(-0.1f, -1.8f, 0.0f), glm::vec3(3.15f * 0.9f, 0.88f * 0.9f, 0.0f), true, true, "Assets/Fonts/OverpassMono-SemiBold.ttf");
         ExitGameButton->SetHoverTexture("Assets/Images/MainMenu/MainMenu_Button_Start_Hover.png");
@@ -62,7 +61,7 @@ public:
 
     virtual void Show() override {
 
-        if (!optionsMenu->IsVisible() && !exitConfirmation->IsVisible()) {
+        if (!optionsMenu->IsVisible() && !exitConfirmation->IsVisible() && !menuConfirmation->IsVisible()) {
             isVisible = true;
             setActiveStatus(true);
 
@@ -106,6 +105,17 @@ public:
         }
     }
 
+    void ShowMenuConfirmation() {
+        menuConfirmation->Show();
+        if (IsVisible()) {
+            shouldReopenPauseMenu = true;
+            AudioManager::GetInstance().PlaySound("buttonClick2");
+            Hide();
+        }
+    }
+
+
+
     virtual void Render() override {
         Interface::Render();
         // Render other popups if needed
@@ -114,6 +124,9 @@ public:
         }
         if (exitConfirmation->IsVisible()) {
             exitConfirmation->Render();
+        }
+        if (menuConfirmation->IsVisible()) {
+            menuConfirmation->Render();
         }
     }
 
@@ -126,9 +139,12 @@ public:
         if (exitConfirmation->IsVisible()) {
             exitConfirmation->Update(dt, frame);
         }
+        if (menuConfirmation->IsVisible()) {
+            menuConfirmation->Update(dt, frame);
+        }
 
         // Reopen the pause menu if needed
-        if (!optionsMenu->IsVisible() && !exitConfirmation->IsVisible() && shouldReopenPauseMenu) {
+        if (!optionsMenu->IsVisible() && !exitConfirmation->IsVisible() && !menuConfirmation->IsVisible() && shouldReopenPauseMenu) {
             Show();
             shouldReopenPauseMenu = false;
         }
@@ -137,6 +153,7 @@ public:
 private:
     std::unique_ptr<OptionsMenu> optionsMenu;
     std::unique_ptr<ExitMenu> exitConfirmation;
+    std::unique_ptr<BackToMenu> menuConfirmation;
     bool shouldReopenPauseMenu;
     bool isPaused;
 };
