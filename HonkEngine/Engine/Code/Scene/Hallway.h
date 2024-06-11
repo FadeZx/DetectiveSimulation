@@ -364,13 +364,7 @@ public:
 		transitionEffects->FadeIn(2.0f, [this]() {});
 
 
-		if (currentGameState == GameState::ROOM1_STATE && currentRoomState == RoomState::Order) {
-			Application::Get().SetTimer(ORDER_DURATION1, [this]() {
-				bellCabin1->startRinging();
-				room1Door->setPermission(true);
-				}, false);
-		}
-		else if ((currentGameState == GameState::ROOM2_STATE || currentGameState == GameState::ROOM3_STATE || currentGameState == GameState::ROOM4_STATE) && currentRoomState == RoomState::Order) {
+		if ((currentGameState == GameState::ROOM1_STATE || currentGameState == GameState::ROOM2_STATE || currentGameState == GameState::ROOM3_STATE || currentGameState == GameState::ROOM4_STATE) && currentRoomState == RoomState::Order) {
 			ReadyButton->setActiveStatus(true);
 	    }
 		else if (currentGameState == GameState::END_STATE && currentRoomState == RoomState::End) {
@@ -488,8 +482,14 @@ public:
 		GameState currentGameState = gameStateManager.getGameState();
 		RoomState currentRoomState = gameStateManager.getRoomState();
 		ReadyButton->setActiveStatus(false); 
-
-		if (currentGameState == GameState::ROOM2_STATE) {
+		if (currentGameState == GameState::ROOM1_STATE)
+		{
+			Application::Get().SetTimer(ORDER_DURATION1, [this]() {
+				bellCabin1->startRinging();
+				room1Door->setPermission(true);
+				}, false);
+		}
+		else if (currentGameState == GameState::ROOM2_STATE) {
 			Application::Get().SetTimer(ORDER_DURATION2, [this]() {
 				bellCabin2->startRinging();
 				room2Door->setPermission(true);
