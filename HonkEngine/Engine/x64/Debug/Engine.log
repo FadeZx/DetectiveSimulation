@@ -73,10 +73,10 @@ C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Po
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(47,37): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(356,33): warning C4244: 'argument': conversion from 'double' to '__int64', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(368,32): warning C4244: 'argument': conversion from 'double' to '__int64', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(406,26): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(402,26): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Room3.h(53,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data

@@ -30,9 +30,9 @@
 
 //set each cbin time before order (in milliseconds) // Remove . to use the correct number
 #define ORDER_DURATION1 30.000 
-#define ORDER_DURATION2 40000 //for room 2
-#define ORDER_DURATION3 50000  //for room 3
-#define ORDER_DURATION4 50000
+#define ORDER_DURATION2 40.000 //for room 2
+#define ORDER_DURATION3 50.000  //for room 3
+#define ORDER_DURATION4 50.000
 
 #define PLAYER_SPEED 5.75f
 
@@ -63,6 +63,8 @@ private:
 	Text* timerText;
     UIElement* timerUI;
 	Text* instructionText;
+
+	UIButton* ReadyButton;
 
 	Door* room1Door;
 	Door* room2Door;
@@ -235,6 +237,15 @@ public:
 		 journalArrow->SetScale(glm::vec3(1.58f * 0.9f, 1.35f * 0.9f, 0.0f));
 		 journalArrow->SetPosition(glm::vec3(-5.9f, -3.2f, 0.0f));
 
+
+		 ReadyButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(-1.75f, 4.75f, 0.0f), glm::vec3(3.19f * 0.8f, 0.92f * 0.8f, 0.0f), true, true, "Assets/Fonts/jibril.ttf");
+		 ReadyButton->SetHoverTexture("Assets/Images/Kitchen/Button_ResetMeal_Highlight.png");
+		 ReadyButton->SetButtonText("Ready for next order");
+		 ReadyButton->SetTextSize(0.52f);
+		 ReadyButton->SetTextPosition(glm::vec3(-1.75f, 4.65f, 0.0f));
+		 ReadyButton->SetOnClickAction([this]() { StartOrderTime(); });
+		 ReadyButton->setActiveStatus(false);
+
 		//TO TEST DRAW EMPTY UI
 		/*GameObject* box = new RenderGameObject("textbox", "Assets/Images/Square_Border.png");
 		box->SetScale(glm::vec3(2.8f, 5.7f, 0.0f));
@@ -300,6 +311,7 @@ public:
 		m_gameObjects.push_back(journalArrow);
 		m_gameObjects.push_back(timerUI);
 		m_gameObjects.push_back(orderPaper);
+		m_gameObjects.push_back(ReadyButton);
 
 		
 		//UITexts
@@ -326,10 +338,10 @@ public:
 	void OnEnter() override {
 		//Scene::OnEnter();
 
-		if(!audioManager.IsSoundPlaying("hallwayMusic"))
-		audioManager.PlaySound("hallwayMusic", true);
-	    if (!audioManager.IsSoundPlaying("trainAmbience"))
-		audioManager.PlaySound("trainAmbience", true);
+		if (!audioManager.IsSoundPlaying("hallwayMusic"))
+			audioManager.PlaySound("hallwayMusic", true);
+		if (!audioManager.IsSoundPlaying("trainAmbience"))
+			audioManager.PlaySound("trainAmbience", true);
 
 		if (firstEntry) {
 			journalArrow->setActiveStatus(true);
@@ -348,34 +360,20 @@ public:
 		// Stop any previous timers to avoid overlapping actions
 		//Application::Get().ClearAllTimers();
 
-				
-			transitionEffects->FadeIn(2.0f, [this]() {});
-	
-		
-			if (currentGameState == GameState::ROOM1_STATE && currentRoomState == RoomState::Order) {
-				Application::Get().SetTimer(ORDER_DURATION1, [this]() {
-					bellCabin1->startRinging();
-					room1Door->setPermission(true);
-					}, false);
-			}
-			else if (currentGameState == GameState::ROOM3_STATE && currentRoomState == RoomState::Order) {
-				Application::Get().SetTimer(ORDER_DURATION3, [this]() {
-					bellCabin3->startRinging();
-					room3Door->setPermission(true);
-					}, false);
-			}
-			else if (currentGameState == GameState::ROOM2_STATE && currentRoomState == RoomState::Order) {
-				Application::Get().SetTimer(ORDER_DURATION2, [this]() {
-					bellCabin2->startRinging();
-					room2Door->setPermission(true);
-					}, false);
-			}
-			else if (currentGameState == GameState::ROOM4_STATE && currentRoomState == RoomState::Order) {
-				Application::Get().SetTimer(ORDER_DURATION4, [this]() {
-					bellCabin4->startRinging();
-					room4Door->setPermission(true);
-					}, false);
-			}else if (currentGameState == GameState::END_STATE && currentRoomState == RoomState::End) {
+
+		transitionEffects->FadeIn(2.0f, [this]() {});
+
+
+		if (currentGameState == GameState::ROOM1_STATE && currentRoomState == RoomState::Order) {
+			Application::Get().SetTimer(ORDER_DURATION1, [this]() {
+				bellCabin1->startRinging();
+				room1Door->setPermission(true);
+				}, false);
+		}
+		else if ((currentGameState == GameState::ROOM2_STATE || currentGameState == GameState::ROOM3_STATE || currentGameState == GameState::ROOM4_STATE) && currentRoomState == RoomState::Order) {
+			ReadyButton->setActiveStatus(true);
+	    }
+		else if (currentGameState == GameState::END_STATE && currentRoomState == RoomState::End) {
 				player->StopMovement();
 				transitionEffects->FadeOut(3.0f, [this]() {
 					std::cout << "Fade Out complete" << std::endl;
@@ -384,9 +382,7 @@ public:
 					player->ResumeMovement();
 					Application::Get().SetScene("JournalEntry");
 				});
-		}
-		
-
+		 }
 		entering = false;
 
 	}
@@ -486,7 +482,32 @@ public:
 		}
 	}
 
-	
+	void StartOrderTime() {
+
+		audioManager.PlaySound("bellRing", false);
+		GameState currentGameState = gameStateManager.getGameState();
+		RoomState currentRoomState = gameStateManager.getRoomState();
+		ReadyButton->setActiveStatus(false); 
+
+		if (currentGameState == GameState::ROOM2_STATE) {
+			Application::Get().SetTimer(ORDER_DURATION2, [this]() {
+				bellCabin2->startRinging();
+				room2Door->setPermission(true);
+				}, false);
+		}
+		else if (currentGameState == GameState::ROOM3_STATE) {
+			Application::Get().SetTimer(ORDER_DURATION3, [this]() {
+				bellCabin3->startRinging();
+				room3Door->setPermission(true);
+				}, false);
+		}
+		else if (currentGameState == GameState::ROOM4_STATE) {
+			Application::Get().SetTimer(ORDER_DURATION4, [this]() {
+				bellCabin4->startRinging();
+				room4Door->setPermission(true);
+				}, false);
+		}
+	}
 
 
 	void OnExit() override {
