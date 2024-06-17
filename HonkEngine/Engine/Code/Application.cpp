@@ -2,12 +2,20 @@
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    // make sure the viewport matches the new window dimensions; note that width and 
-    // height will be significantly larger than specified on retina displays.
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    // Update viewport to match new dimensions
     glViewport(0, 0, width, height);
+
+    // Update camera's aspect ratio
+    Application::GetCamera().SetWindowSize(width, height);
+
+    // Update game objects
+    Scene* currentScene = Application::Get().GetCurrentScene();
+    if (currentScene) {
+        currentScene->HandleResize(width, height);
+    }
 }
+
 
 void Application::ToggleFullscreen(GLFWwindow* window) {
     static int windowedWidth = 1920;  // Desired windowed mode width
@@ -36,6 +44,18 @@ void Application::ToggleFullscreen(GLFWwindow* window) {
         // Ensure the window decoration and size are restored properly
         glfwSetWindowSize(window, windowedWidth, windowedHeight);
         glfwSetWindowPos(window, windowedPosX, windowedPosY);
+    }
+
+    if (isFullscreen) {
+        // Update size and trigger resizing operations
+        Application::GetCamera().SetWindowSize(windowedWidth, windowedHeight);
+        Scene* currentScene = Application::Get().GetCurrentScene();
+        if (currentScene) {
+            currentScene->HandleResize(windowedWidth, windowedHeight);
+        }
+    }
+    else {
+        // Similarly handle when going to fullscreen
     }
 }
 
@@ -157,7 +177,8 @@ void Application::processTimers() {
 Application::Application(int win_width, int win_height, const char* title)
     : baseTitle(title)
 {
-
+    originalWindowWidth = win_width;
+    originalWindowHeight = win_height;
 
     std::cout << "Application Constructor\n";
 

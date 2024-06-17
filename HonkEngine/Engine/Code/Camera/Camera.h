@@ -10,6 +10,7 @@ public:
 
     ~Camera();
 
+    void SetWindowSize(int width, int height);
     glm::mat4 GetProjectionMatrix() const;
     glm::mat4 GetViewMatrix() const;
     glm::mat4 GetMVP(glm::mat4 ModelMatrix) const;

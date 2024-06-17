@@ -25,26 +25,23 @@ void Camera::Init(int width, int height) {
 
 Camera::~Camera() {}
 
-void Camera::UpdateProjectionMatrix() {
-
-    float Scale = 200.0f;
-    m_projectionMatrix = glm::ortho(-(m_windowWidth / Scale) * m_camZoom, (m_windowWidth / Scale) * m_camZoom,
-        -(m_windowHeight / Scale) * m_camZoom, (m_windowHeight / Scale) * m_camZoom,
-        NEAR_PLANE, FAR_PLANE);
-
-    //m_projectionMatrix = glm::ortho(-80.0f, 80.0f, -60.0f, 60.0f, -1.0f, 100.0f);
-
-    //std::cout << "Window Width: " << m_windowWidth << ", Window Height: " << m_windowHeight << std::endl;
-    //std::cout << "Zoom Level: " << m_camZoom << std::endl;
-    //std::cout << "Near Plane: " << NEAR_PLANE << ", Far Plane: " << FAR_PLANE << std::endl;
-    // Manually print the projection matrix
-    //for (int i = 0; i < 4; ++i) {
-    //    for (int j = 0; j < 4; ++j) {
-    //        std::cout << m_projectionMatrix[i][j] << ' ';
-    //    }
-    //    std::cout << std::endl;
-    //}
+void Camera::SetWindowSize(int width, int height) {
+    m_windowWidth = width;
+    m_windowHeight = height;
+    UpdateProjectionMatrix(); // Update projection matrix on size change
 }
+
+void Camera::UpdateProjectionMatrix() {
+    float aspectRatio = static_cast<float>(m_windowWidth) / static_cast<float>(m_windowHeight);
+    float Scale = 200.0f; // Adjust based on your game's specific needs
+    float halfWidth = (m_windowWidth / Scale) * m_camZoom;
+    float halfHeight = (m_windowHeight / Scale) * m_camZoom;
+    m_projectionMatrix = glm::ortho(-halfWidth, halfWidth, -halfHeight, halfHeight, NEAR_PLANE, FAR_PLANE);
+}
+
+
+
+
 
 void Camera::UpdateViewMatrix() {
     m_viewMatrix = glm::lookAt(m_camPos, m_camPos + m_camDir, m_camUp);

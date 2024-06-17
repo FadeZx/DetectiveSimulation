@@ -97,15 +97,15 @@ public:
 
 	}
 
-	bool IsPointInside(float x, float y) const
-	{
+	bool IsPointInside(float x, float y) const {
 		float minX = m_transformedPosition.x - (m_scale.x / 2.0f);
 		float maxX = m_transformedPosition.x + (m_scale.x / 2.0f);
 		float minY = m_transformedPosition.y - (m_scale.y / 2.0f);
 		float maxY = m_transformedPosition.y + (m_scale.y / 2.0f);
 
-		return ((x >= minX && x <= maxX) && (y >= minY && y <= maxY));
+		return (x >= minX && x <= maxX && y >= minY && y <= maxY);
 	}
+
 
 	virtual void Render() override
 	{

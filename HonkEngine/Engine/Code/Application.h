@@ -105,6 +105,10 @@ public:
 		return "";
 	}
 
+	Scene* GetCurrentScene() const {
+		return m_currentScene;
+	}
+
 	static glm::vec2 MousetoWorld() {
 		Camera& camera = Application::GetCamera();
 		float zoom = camera.GetZoom() - 0.155f;
@@ -228,5 +232,8 @@ private:
 	GLFWcursor* clickedCursor = nullptr;
 
 	bool isFullscreen = true;
+
+	int originalWindowWidth;
+ 	int originalWindowHeight;
 
 };

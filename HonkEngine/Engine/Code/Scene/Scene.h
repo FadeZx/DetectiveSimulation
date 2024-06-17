@@ -52,6 +52,14 @@ public:
 		}
 	}
 
+	void HandleResize(int width, int height) {
+		for (auto& gameObject : m_gameObjects) {
+			// Here you would update each game object's size or position
+			// For example, if you have such methods on GameObject:
+			gameObject->Resize(width, height);
+		}
+	}
+
 	virtual void OnEnter() {
 		// This will be overridden in derived classes to handle scene entry logic
 	}
