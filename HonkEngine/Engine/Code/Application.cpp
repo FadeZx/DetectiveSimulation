@@ -2,38 +2,35 @@
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-    // make sure the viewport matches the new window dimensions; note that width and 
-    // height will be significantly larger than specified on retina displays.
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
 void Application::ToggleFullscreen(GLFWwindow* window) {
-    static int windowedWidth = 1920;  // Desired windowed mode width
-    static int windowedHeight = 1080; // Desired windowed mode height
-    static int windowedPosX = 0;   // Default position x
-    static int windowedPosY = 50;   // Default position y
+    static int windowedWidth = 1920;  // Initially desired windowed mode width
+    static int windowedHeight = 1080; // Initially desired windowed mode height
+    static int windowedPosX = 100;    // Default position x when not fullscreen
+    static int windowedPosY = 100;    // Default position y when not fullscreen
 
     if (!glfwGetWindowMonitor(window)) { // If currently windowed
+        // Switching to fullscreen
         isFullscreen = true;
         GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
         const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
 
-        // Store windowed mode position and size
+        // Store current windowed mode position and size
         glfwGetWindowPos(window, &windowedPosX, &windowedPosY);
         glfwGetWindowSize(window, &windowedWidth, &windowedHeight);
 
-        // Switch to fullscreen
+        // Switch to fullscreen at the monitor's resolution
         glfwSetWindowMonitor(window, primaryMonitor, 0, 0, mode->width, mode->height, mode->refreshRate);
     }
     else { // If currently fullscreen
-        // Switch back to windowed mode
-
+        // Switching back to windowed mode
         isFullscreen = false;
-        glfwSetWindowMonitor(window, NULL, windowedPosX, windowedPosY, windowedWidth, windowedHeight, 0);
 
-        // Ensure the window decoration and size are restored properly
+        // Set window size to previous windowed dimensions and position
+        glfwSetWindowMonitor(window, NULL, windowedPosX, windowedPosY, windowedWidth, windowedHeight, 0);
         glfwSetWindowSize(window, windowedWidth, windowedHeight);
         glfwSetWindowPos(window, windowedPosX, windowedPosY);
     }
@@ -175,7 +172,7 @@ Application::Application(int win_width, int win_height, const char* title)
 
     // glfw window creation
     // --------------------
-
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
     GLFWmonitor* primaryMonitor = glfwGetPrimaryMonitor();
     const GLFWvidmode* mode = glfwGetVideoMode(primaryMonitor);
 
