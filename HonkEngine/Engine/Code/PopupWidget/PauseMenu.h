@@ -66,6 +66,7 @@ public:
             Timer& timer = Timer::GetInstance();
             timer.pause();
             BellManager::GetInstance().PauseAllRinging();  // Pause all ringing bells
+            AudioManager::GetInstance().PlaySound("SFX_PageSwitch");
         }
 
     }
@@ -100,6 +101,7 @@ public:
         Application::Get().SetScene("MainMenu");
         AudioManager::GetInstance().StopSound("hallwayMusic");
         AudioManager::GetInstance().StopSound("trainAmbience");
+        AudioManager::GetInstance().StopSound("cabinMusic");
         Hide();
     }
 

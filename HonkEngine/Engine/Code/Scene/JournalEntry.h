@@ -22,7 +22,7 @@ public:
 	JournalEntry() :audioManager(AudioManager::GetInstance()) {
 
 		audioManager.LoadSound("cabinMusic", "Assets/Sounds/Music/BGmusic_Cabin.mp3", Music, 4.0f);
-		audioManager.LoadSound("CaseCloseStamp", "Assets/Sounds/SFX_CaseCloseStamp.mp3", SFX, 1.0f);
+		audioManager.LoadSound("CaseCloseStamp", "Assets/Sounds/SFX_CaseCloseStamp.mp3", SFX, 2.0f);
 
 		GameObject* EntrySceneBackground = new UIObject("EntrySceneBackground", "Assets/Images/Ending/EndingSelect_Background.png", true);
 		EntrySceneBackground->SetScale(glm::vec3(19.2f, 10.8f, 0.0f));
@@ -36,8 +36,8 @@ public:
 		transitionObject = new UINormal("Transition", "Assets/Images/black.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(25.0f, 20.0f, 0.0f), true);
 		transitionEffects = std::make_unique<TransitionEffects>(transitionObject);
 
-		instructionText = new Text("instruction", "Submit your Final Case Summary", "Assets/Fonts/mvboli.ttf", true);
-		instructionText->SetScale(0.6f);
+		instructionText = new Text("instruction", "Submit your final Case Summary", "Assets/Fonts/mvboli.ttf", true);
+		instructionText->SetScale(0.65f);
 		instructionText->SetPosition(glm::vec3(0.0f, 4.4f, 0.0f));
 		instructionText->SetColor(glm::vec3(1, 1, 1));
 
@@ -77,7 +77,7 @@ public:
 		Journal->drawBook();
 		m_gameObjects.push_back(CloseCaseButton);
 		m_gameObjects.push_back(transitionObject);
-		audioManager.PlaySound("cabinMusic", true);
+		AudioManager::GetInstance().PlaySound("OpenSceneBGMusic", true);
 		//JournalData::GetInstance()->SetBookState(true); //Lock book	
 
 
@@ -100,7 +100,7 @@ public:
 	}
 
 	void OnExit() override {
-		audioManager.StopSound("cabinMusic");
+		//audioManager.StopSound("cabinMusic");
 	}
 
 

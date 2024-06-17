@@ -157,11 +157,11 @@ public:
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
 		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
 
-		UIButton* ResetButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(-1.75f, 4.75f, 0.0f), glm::vec3(3.19f * 0.8f, 0.92f * 0.8f, 0.0f), true, true, "Assets/Fonts/jibril.ttf");
+		UIButton* ResetButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(-1.75f, 4.75f, 0.0f), glm::vec3(3.19f * 0.8f, 0.92f * 0.8f, 0.0f), true, true, "Assets/Fonts/OverpassMono-SemiBold.ttf");
 		ResetButton->SetHoverTexture("Assets/Images/Kitchen/Button_ResetMeal_Highlight.png");
 		ResetButton->SetButtonText("Reset");
-		ResetButton->SetTextSize(0.52f);
-		ResetButton->SetTextPosition(glm::vec3(-1.75f, 4.65f, 0.0f));
+		ResetButton->SetTextSize(0.54f);
+		ResetButton->SetTextPosition(glm::vec3(-1.7f, 4.67f, 0.0f));
 		ResetButton->SetOnClickAction([this]() { clearPlate(); });
 
 
@@ -389,8 +389,7 @@ public:
 		//audioManager.PlaySound("hallwayMusic", true);
 		transitionEffects->FadeIn(1.0f, [this]() {});
 		audioManager.PlaySound("kitchenAmbience", true);
-		audioManager.PlaySound("slideDoor");
-
+		AudioManager::GetInstance().PlaySound("doorSlide");
 		if (GameStateManager::GetInstance().getRoomState() != RoomState::Prepare)
 		{
 			clearPlate();
@@ -769,7 +768,7 @@ public:
 	void OnExit() override {
 		Scene::OnExit();  // Call base class if there's relevant logic
 		//audioManager.PauseSound("hallwayMusic");
-		audioManager.PlaySound("slideDoor");
+		AudioManager::GetInstance().PlaySound("doorSlide");
 		audioManager.StopSound("kitchenAmbience");
 	}
 

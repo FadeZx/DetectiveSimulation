@@ -29,8 +29,8 @@
 #include "../PopupWidget/PauseMenu.h"
 
 //set each cbin time before order (in milliseconds) // Remove . to use the correct number
-#define ORDER_DURATION1 30.000 
-#define ORDER_DURATION2 40.000 //for room 2
+#define ORDER_DURATION1 50.000 
+#define ORDER_DURATION2 50.000 //for room 2
 #define ORDER_DURATION3 50.000  //for room 3
 #define ORDER_DURATION4 50.000
 
@@ -108,7 +108,7 @@ public:
 		audioManager.LoadSound("bellRing", "Assets/Sounds/SFX_CallingBell.mp3",SFX ,0.25f);
 		audioManager.LoadSound("buttonClick", "Assets/Sounds/SFX_DialogueChoice.mp3", SFX, 0.45f);
 		audioManager.LoadSound("dialoguePlay", "Assets/Sounds/SFX_DialoguePlay.mp3", SFX, 0.45f);
-		audioManager.LoadSound("doorSlide", "Assets/Sounds/SFX_SlideDoor.mp3", SFX, 0.7f);
+		audioManager.LoadSound("doorSlide", "Assets/Sounds/SFX_SlideDoor.mp3", SFX, 6.0f);
 
 		/*--------------------------------------------------------------📦CREATE GAMEOBJECT📦------------------------------------------------------------------------------------------------------- */
 		/*-------------------------------------------------------------🌲CREATE ENVIRONMENT🌲------------------------------------------------------------------------------------------------------- */
@@ -238,11 +238,11 @@ public:
 		 journalArrow->SetPosition(glm::vec3(-5.9f, -3.2f, 0.0f));
 
 
-		 ReadyButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(-1.75f, 4.75f, 0.0f), glm::vec3(3.19f * 0.8f, 0.92f * 0.8f, 0.0f), true, true, "Assets/Fonts/jibril.ttf");
+		 ReadyButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(7.5f, 4.6f, 0.0f), glm::vec3(3.19f * 1.1, 0.92f * 1.1, 0.0f), true, true, "Assets/Fonts/OverpassMono-SemiBold.ttf");
 		 ReadyButton->SetHoverTexture("Assets/Images/Kitchen/Button_ResetMeal_Highlight.png");
-		 ReadyButton->SetButtonText("Ready for next order");
-		 ReadyButton->SetTextSize(0.52f);
-		 ReadyButton->SetTextPosition(glm::vec3(-1.75f, 4.65f, 0.0f));
+		 ReadyButton->SetButtonText("Open for next order");
+		 ReadyButton->SetTextSize(0.48f);
+		 ReadyButton->SetTextPosition(glm::vec3(7.55f, 4.55f, 0.0f));
 		 ReadyButton->SetOnClickAction([this]() { StartOrderTime(); });
 		 ReadyButton->setActiveStatus(false);
 
@@ -514,7 +514,6 @@ public:
 		//Scene::OnExit(); 
 		//audioManager.PauseSound("hallwayMusic");
 		audioManager.StopSound("Player_footsteps");
-		audioManager.PlaySound("doorSlide");
 		
 	}
 

@@ -52,7 +52,7 @@ public:
 
 		// RIGHT PAGE
 		// CLUES	[E = Evelyn, C = Clue]
-		Text* E_Clue1 = new Text("E_Clue1", "Moving to Westside withb only one small luggage", "Assets/Fonts/ESA-smb.ttf");
+		Text* E_Clue1 = new Text("E_Clue1", "Moving to Westside with only one small luggage", "Assets/Fonts/ESA-smb.ttf");
 		E_Clue1->SetPosition(glm::vec3(0.87f, 2.65f, 0.0f));
 		E_Clue1->SetColor(glm::vec3(0.58, 0.04, 0.00));
 		E_Clue1->SetScale(0.55f);
@@ -94,7 +94,7 @@ public:
 		E_LA1->SetColor(glm::vec3(0, 0, 0));
 		E_LA1->SetScale(0.58f);
 
-		Text* E_LA2 = new Text("E_LA2", "Met his brother at National Day Event", "Assets/Fonts/ESA-smb.ttf");
+		Text* E_LA2 = new Text("E_LA2", "Visiting National Day Event with Nathaniel afterward", "Assets/Fonts/ESA-smb.ttf");
 		E_LA2->SetPosition(glm::vec3(1.05f, -0.8f, 0.0f));
 		E_LA2->SetColor(glm::vec3(0.58, 0.04, 0.00));
 		E_LA2->SetScale(0.48f);

@@ -11,7 +11,7 @@
 
 #include "../GameObjects/JournalData.h"
 
-#define CONTINUE_TIME 5000
+#define CONTINUE_TIME 10000
 class EndScene : public Scene {
 
 public:
@@ -19,8 +19,7 @@ public:
 	EndScene() :audioManager(AudioManager::GetInstance())
 	{
 
-		audioManager.LoadSound("EndSceneBGMusic", "Assets/Sounds//Music/BGmusic_EndingCutscene.mp3",Music, 1.0f);
-		audioManager.LoadSound("NewspaperSlam", "Assets/Sounds/SFX_EndingNewspaperSlam.mp3",SFX, 1.0f);
+		audioManager.LoadSound("NewspaperSlam", "Assets/Sounds/SFX_EndingNewspaperSlam.mp3", SFX, 4.0f);
 
 		GameObject* EndingSceneBackground = new UIObject("EndingSceneBackground", "Assets/Images/Ending/Ending_Background.png", true);
 		EndingSceneBackground->SetScale(glm::vec3(19.2f, 10.8f, 0.0f));
@@ -32,27 +31,27 @@ public:
 
 		Ending1 = new UIObject("Ending1", "Assets/Images/Ending/Ending1_Rotate.png", true);
 		Ending1->SetScale(glm::vec3(12.85f, 8.85f, 0.0f));
-		Ending1->SetPosition(glm::vec3(0.5f, 0.0f, 0.0f));
+		Ending1->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 		Ending2 = new UIObject("Ending2", "Assets/Images/Ending/Ending2_Rotate.png", true);
 		Ending2->SetScale(glm::vec3(12.85f, 8.85f, 0.0f));
-		Ending2->SetPosition(glm::vec3(0.5f, 0.0f, 0.0f));
+		Ending2->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 		Ending3 = new UIObject("Ending3", "Assets/Images/Ending/Ending3_Rotate.png", true);
 		Ending3->SetScale(glm::vec3(12.85f, 8.85f, 0.0f));
-		Ending3->SetPosition(glm::vec3(0.5f, 0.0f, 0.0f));
+		Ending3->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 		Ending4 = new UIObject("Ending4", "Assets/Images/Ending/Ending4_Rotate.png", true);
 		Ending4->SetScale(glm::vec3(12.85f, 8.85f, 0.0f));
-		Ending4->SetPosition(glm::vec3(0.5f, 0.0f, 0.0f));
+		Ending4->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 		Ending5 = new UIObject("Ending5", "Assets/Images/Ending/Ending5_Rotate.png", true);
 		Ending5->SetScale(glm::vec3(12.85f, 8.56f, 0.0f));
-		Ending5->SetPosition(glm::vec3(0.5f, 0.0f, 0.0f));
+		Ending5->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 		Ending6 = new UIObject("Ending6", "Assets/Images/Ending/Ending6_Rotate.png", true);
 		Ending6->SetScale(glm::vec3(12.85f, 8.56f, 0.0f));
-		Ending6->SetPosition(glm::vec3(0.5f, 0.0f, 0.0f));
+		Ending6->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
 		Endings[END1] = Ending1;
 		Endings[END2] = Ending2;
@@ -61,11 +60,11 @@ public:
 		Endings[END5] = Ending5;
 		Endings[END6] = Ending6;
 
-		ContinueButton = new UIButton("ContinueButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(3.75f, 4.75f, 0.0f), glm::vec3(3.19f * 0.8f, 0.92f * 0.8f, 0.0f), true, true, "Assets/Fonts/jibril.ttf");
+		ContinueButton = new UIButton("ContinueButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(7.5f, 4.6f, 0.0f), glm::vec3(3.19f, 0.92f, 0.0f), true, true, "Assets/Fonts/OverpassMono-SemiBold.ttf");
 		ContinueButton->SetHoverTexture("Assets/Images/Kitchen/Button_ResetMeal_Highlight.png");
 		ContinueButton->SetButtonText("Continue");
 		ContinueButton->SetTextSize(0.52f);
-		ContinueButton->SetTextPosition(glm::vec3(3.75f, 4.70f, 0.0f));
+		ContinueButton->SetTextPosition(glm::vec3(7.55f, 4.52f, 0.0f));
 		ContinueButton->SetOnClickAction([this]() { 
 			Application::Get().SetScene("MainMenu");
 			ContinueButton->setActiveStatus(false);
@@ -89,7 +88,7 @@ public:
 	void OnEnter() override {
 
 		audioManager.PlaySound("NewspaperSlam");
-		audioManager.PlaySound("EndSceneBGMusic", true);
+
 		final_ending = journal_data->checkMainPageEntry();
 
 		std::cout << "ENDING " << final_ending + 1 << std::endl;
@@ -106,7 +105,7 @@ public:
 
 	void OnExit() override {
 
-		audioManager.StopSound("EndSceneBGMusic");
+		audioManager.StopSound("OpenSceneBGMusic");
 
 	}
 

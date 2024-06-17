@@ -276,7 +276,7 @@ public:
     void OnEnter() override {
 
         transitionEffects->FadeIn(1.0f, [this]() {});
-
+        AudioManager::GetInstance().PlaySound("doorSlide");
         audioManager.PlaySound("cabinMusic", true);
         if (gameStateManager.getRoomState() == RoomState::Prepare && KitchenData::GetInstance()->checkCompletePlate())
         {
@@ -734,7 +734,7 @@ public:
     }
 
     void OnExit() override {
-        audioManager.PlaySound("slideDoor");
+        AudioManager::GetInstance().PlaySound("doorSlide");
         audioManager.PauseSound("cabinMusic");
         BellManager::GetInstance().StopAllRinging();
         shakingEffect->StopShaking();
