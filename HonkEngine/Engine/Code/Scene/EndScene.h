@@ -4,12 +4,14 @@
 
 #include "../GameObjects/RenderGameObject.h"
 #include"../GameObjects/AnimateGameObject.h"	
+#include "../UI/UIButton.h"
 #include "../Text/Text.h"
 
 #include "../Application.h"
 
 #include "../GameObjects/JournalData.h"
 
+#define CONTINUE_TIME 5000
 class EndScene : public Scene {
 
 public:
@@ -59,8 +61,22 @@ public:
 		Endings[END5] = Ending5;
 		Endings[END6] = Ending6;
 
+		ContinueButton = new UIButton("ContinueButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(3.75f, 4.75f, 0.0f), glm::vec3(3.19f * 0.8f, 0.92f * 0.8f, 0.0f), true, true, "Assets/Fonts/jibril.ttf");
+		ContinueButton->SetHoverTexture("Assets/Images/Kitchen/Button_ResetMeal_Highlight.png");
+		ContinueButton->SetButtonText("Continue");
+		ContinueButton->SetTextSize(0.52f);
+		ContinueButton->SetTextPosition(glm::vec3(3.75f, 4.70f, 0.0f));
+		ContinueButton->SetOnClickAction([this]() { 
+			Application::Get().SetScene("MainMenu");
+			ContinueButton->setActiveStatus(false);
+			gameStateManager.Reset();
+			journal_data->ResetJournalData();	
+			});
+		ContinueButton->setActiveStatus(false);
+
 		m_gameObjects.push_back(EndingSceneBackground);
 		m_gameObjects.push_back(MissingPoster);
+		m_gameObjects.push_back(ContinueButton);
 		m_gameObjects.push_back(Ending1);
 		m_gameObjects.push_back(Ending2);
 		m_gameObjects.push_back(Ending3);
@@ -77,6 +93,10 @@ public:
 		final_ending = journal_data->checkMainPageEntry();
 
 		std::cout << "ENDING " << final_ending + 1 << std::endl;
+
+		Application::Get().SetTimer(CONTINUE_TIME, [this]() {
+			ContinueButton->setActiveStatus(true);
+			}, false);
 
 		SetFinalScene(final_ending);
 		currentTime = 0.0f;
@@ -130,20 +150,6 @@ public:
 
 		Input& input = Application::GetInput();
 
-		if (input.Get().GetKey(GLFW_KEY_SPACE))
-		{
-			Application::Get().SetScene("MainMenu");
-			gameStateManager.Reset();
-			journal_data->ResetJournalData();	
-		}
-
-		if (input.Get().GetMouseButtonDown(GLFW_MOUSE_BUTTON_1))
-		{
-			Application::Get().SetScene("MainMenu");
-			gameStateManager.Reset();
-			journal_data->ResetJournalData();
-		}
-
 	}
 
 
@@ -168,6 +174,9 @@ private:
 	GameObject* Endings[6];
 
 	GameObject* ChosenEndingPoster;
+
+
+	UIButton* ContinueButton;
 
 	float zoomInDuration = 0.5f;  // Duration for zoom in effect in seconds
 	float currentTime = 0.0f;     // Current time elapsed
