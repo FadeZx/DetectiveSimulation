@@ -94,7 +94,7 @@ C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Sc
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Kitchen.h(170,13): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Kitchen.h(409,26): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Kitchen.h(408,26): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\MainMenu.h(34,27): warning C4305: 'argument': truncation from 'double' to 'float'

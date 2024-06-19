@@ -593,6 +593,7 @@ public:
             caneInspect->setActiveStatus(false);
             letterInspect->setActiveStatus(false);  
             ObjectsparallaxManager->DisableParallaxEffect();
+            dialogueManager->SetDialogueVisibility(true);
         }
         else
         {
@@ -600,6 +601,7 @@ public:
             caneInspect->setActiveStatus(!isCaneInspected);
 			letterInspect->setActiveStatus(!isLetterInspected);
 			ObjectsparallaxManager->EnableParallaxEffect();
+			dialogueManager->SetDialogueVisibility(false);
         }
      
     }

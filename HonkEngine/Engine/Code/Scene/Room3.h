@@ -628,6 +628,7 @@ public:
             newspaperInspect->setActiveStatus(false);
             messyClothesInspect->setActiveStatus(false);
             ObjectsparallaxManager->DisableParallaxEffect();
+            dialogueManager->SetDialogueVisibility(true);
         }
         else
         {
@@ -636,6 +637,7 @@ public:
             newspaperInspect->setActiveStatus(!isNewspaperInspected);
             messyClothesInspect->setActiveStatus(!isMessyClothesInspected);
             ObjectsparallaxManager->EnableParallaxEffect();
+            dialogueManager->SetDialogueVisibility(false);
         }
 
     }

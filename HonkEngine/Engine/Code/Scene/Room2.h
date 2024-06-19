@@ -673,6 +673,7 @@ public:
             medicineFrontInspect->setActiveStatus(false);  
             hatInspect->setActiveStatus(false);
             ObjectsparallaxManager->DisableParallaxEffect();
+            dialogueManager->SetDialogueVisibility(true);
         }
         else
         {
@@ -681,6 +682,7 @@ public:
             medicineFrontInspect->setActiveStatus(!isMedicineInspected);
             hatInspect->setActiveStatus(!isHatInspected);
 			ObjectsparallaxManager->EnableParallaxEffect();
+            dialogueManager->SetDialogueVisibility(false);
         }
      
     }

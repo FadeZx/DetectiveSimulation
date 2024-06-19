@@ -421,6 +421,24 @@ public:
     }
 
 
+    void SetDialogueVisibility(bool isVisible) {
+        isDialogueVisible = isVisible; // Update the visibility status
+
+        if (currentDialogueButton) {
+            currentDialogueButton->setActiveStatus(isVisible);
+        }
+
+        if (isVisible && IsCurrentDialogueQuestion()) {
+            DisplayChoices();
+        }
+        else {
+            HideChoices();
+        }
+
+        UpdateSpeakerIcon(); // Update speaker icons based on the new visibility state
+    }
+
+
 
     void PlayNextDialogueSet(const string& nextSetKey) {
         if (IsDialogueFinished(nextSetKey)) {
@@ -509,19 +527,15 @@ public:
         }
     }
 
-    void Reset() {
-        currentDialogueIndex = 0;
-        currentLineIndex = 0;
-        choiceMade = false;
-        HideChoices(); 
-    }
-
-
-
-private:
-
-
     void UpdateSpeakerIcon() {
+        if (!isDialogueVisible) {
+            // If the dialogue is not visible, ensure all icons are deactivated
+            for (auto& pair : speakerIcons) {
+                pair.second->setActiveStatus(false);
+            }
+            return; // Exit the function early if the dialogue is not visible
+        }
+
         string speakerCode = GetSpeakerCodeFromId(dialogues[currentDialogueIndex].id);
 
         // Deactivate all speaker icons first
@@ -534,6 +548,21 @@ private:
             speakerIcons[speakerCode]->setActiveStatus(true);
         }
     }
+
+
+    void Reset() {
+        currentDialogueIndex = 0;
+        currentLineIndex = 0;
+        choiceMade = false;
+        HideChoices(); 
+    }
+
+
+
+private:
+
+
+   
 
     void UpdateSpeakerSprite() {
         if (dialogues.empty() || currentDialogueIndex >= dialogues.size()) return; // Safeguard against empty dialogues or invalid index
@@ -586,6 +615,7 @@ private:
 
 
 
+    bool isDialogueVisible = true;
     UIElement* lastActiveSpeakerSprite = nullptr; // Pointer to the last active speaker sprite
     map<string, vector<Dialogue>> dialogueSets;
     string defaultSpriteName;

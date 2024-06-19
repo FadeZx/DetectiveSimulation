@@ -576,6 +576,7 @@ public:
 
     void ManageInspectionState()
     {
+        
         // Check if both objects have been inspected
         if (!isPosterInspected || !isDaggerInspected) {
             InspectPosterDialogue();
@@ -600,6 +601,7 @@ public:
             posterInspect->setActiveStatus(false);
             daggerInspect->setActiveStatus(false);
             ObjectsparallaxManager->DisableParallaxEffect();
+            dialogueManager->SetDialogueVisibility(true);      
         }
         else
         {
@@ -607,6 +609,7 @@ public:
             posterInspect->setActiveStatus(!isPosterInspected);
             daggerInspect->setActiveStatus(!isDaggerInspected);
             ObjectsparallaxManager->EnableParallaxEffect();
+            dialogueManager->SetDialogueVisibility(false);
         }
 
     }
@@ -630,6 +633,7 @@ public:
         if (!inspectDaggerDialogueSet && inspectingObject == "Dagger") {
             dialogueManager->SetDialogueSet(inspectDaggerDialogueKey);
             inspectDaggerDialogueSet = true;
+
         }
         if (inspectDaggerDialogueSet && dialogueManager->IsDialogueFinished(inspectDaggerDialogueKey)) {
             std::cout << "Dagger Inspection Completed" << std::endl;
