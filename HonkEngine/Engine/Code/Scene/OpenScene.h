@@ -25,6 +25,8 @@ private:
     bool isFadingOut = false;
     float transitionProgress = 0.0f;
     const float transitionDuration = 0.5f;
+    UIButton* skipButton;
+    int interactionCount = 0;
 
 public:
 
@@ -86,6 +88,13 @@ public:
         OpenScene13->SetScale(glm::vec3(19.2f, 10.8f, 0.0f));
         scenes.push_back(static_cast<UIObject*>(OpenScene13));
 
+        skipButton = new UIButton("SkpButton", "Assets/Images/MainMenu/MainMenu_Button_Play.png", glm::vec3(7.0f, -5.0f, 0.0f), glm::vec3(1.08f, 1.00f, 0.0f), true, true, "Assets/Fonts/Jibril.ttf");
+        skipButton->SetHoverTexture("Assets/Images/MainMenu/MainMenu_Button_Start_Hover.png");
+        skipButton->SetButtonText("");
+        skipButton->SetOnClickAction([this]() { TransitionOut(); });
+        skipButton->setActiveStatus(false);
+
+
         OpenScene1->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
         OpenScene2->SetPosition(glm::vec3(0.0f, 10.8f, 0.0f));
         OpenScene3->SetPosition(glm::vec3(0.0f, 21.6f, 0.0f));
@@ -144,6 +153,7 @@ public:
         m_gameObjects.push_back(OpenScene13);
         m_gameObjects.push_back(dialogueBox);
         m_gameObjects.push_back(instructionText);
+        m_gameObjects.push_back(skipButton);
         m_gameObjects.push_back(transitionObject);
     }
 
@@ -151,10 +161,13 @@ public:
         audioManager.PlaySound("OpenSceneBGMusic", true);
         ResetScene(); // Reset the scene state on entry
         transitionEffects->FadeIn(2.0f);
+        interactionCount = 0;
+        skipButton->setActiveStatus(false);
     }
 
     void OnExit() override {
         audioManager.StopSound("OpenSceneBGMusic");
+
     }
 
     void Update(float dt, long frame) override {
@@ -180,6 +193,16 @@ public:
         }
         else if (!isFadingOut) { // Prevent actions during fade-out
             if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
+                interactionCount++;
+
+                if (interactionCount >= 3) {
+                    skipButton->setActiveStatus(true);
+                }
+
+                if (instructionText->getActiveStatus()) {
+                    instructionText->setActiveStatus(false);
+                }
+
                 if (instructionText->getActiveStatus())
                 {
                    instructionText->setActiveStatus(false);
@@ -189,8 +212,7 @@ public:
                         StartSceneTransition(currentSceneIndex + 1);
                     }
                     else {
-                        isFadingOut = true; // Set flag to true during fade-out
-                        transitionEffects->FadeOut(2.0f, [this]() { Application::Get().SetScene("Hallway"); });
+                        TransitionOut();
                     }
                 }
                 else {
@@ -200,6 +222,12 @@ public:
         }
 
         dialogueManager->Update(dt, frame);
+    }
+
+    void TransitionOut()
+    {
+        isFadingOut = true;
+        transitionEffects->FadeOut(2.0f, [this]() { Application::Get().SetScene("Hallway"); });
     }
 
     void Render() override {
@@ -220,6 +248,9 @@ public:
 
         // Reset dialogue manager state
         dialogueManager->Reset();  // Ensure this method resets the state of the dialogue manager
+        // Existing reset logic
+        interactionCount = 0; // Reset the interaction count
+        skipButton->setActiveStatus(false); // Ensure skip button is hidden on scene reset
     }
 
 private:
@@ -237,5 +268,6 @@ private:
         scenes[nextSceneIndex]->setActiveStatus(true);
         currentSceneIndex = nextSceneIndex;
         audioManager.PlaySound("ProjectorSFX");
+
     }
 };

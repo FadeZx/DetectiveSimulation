@@ -31,7 +31,7 @@ private:
     GameStateManager& gameStateManager = GameStateManager::GetInstance();
     Door* door = DoorManager::GetInstance().GetDoorByName("Room1Door");
     Door* kichenDoor = DoorManager::GetInstance().GetDoorByName("KitchenDoor");
-   
+
     UIElement* transitionObject;
     std::unique_ptr<TransitionEffects> transitionEffects;
 
@@ -42,15 +42,17 @@ private:
     UIButton* letterInspect;
 
     PauseMenu pauseMenu;
+    float instructionTimer = 8.0f;
+    bool instructionVisible = true;
 
 public:
     Room1() :audioManager(AudioManager::GetInstance()) {
 
         timer = &Timer::GetInstance();
 
-        audioManager.LoadSound("cabinMusic", "Assets/Sounds/Music/BGmusic_Cabin.mp3",Music,5.0f);
-        audioManager.LoadSound("knockDoor", "Assets/Sounds/SFX_KnockDoor.mp3",SFX, 2.0f);
-      
+        audioManager.LoadSound("cabinMusic", "Assets/Sounds/Music/BGmusic_Cabin.mp3", Music, 5.0f);
+        audioManager.LoadSound("knockDoor", "Assets/Sounds/SFX_KnockDoor.mp3", SFX, 2.0f);
+
 
 
         GameObject* background1a = new RenderGameObject("BG1", "Assets/Images/BG/Cabin_Background_01.png");
@@ -383,7 +385,7 @@ public:
         case AVERAGE:
             dialogueManager->LoadDialogues("Score_Average", "Assets/Dialogue/Martha/MealResult/Martha_MealResult_Average.xml");
             scoreDialogueKey = "Score_Average";
-            cout << "Score Average" << endl;    
+            cout << "Score Average" << endl;
             break;
         case INFORMATIVE:
             dialogueManager->LoadDialogues("Score_Informative", "Assets/Dialogue/Martha/MealResult/Martha_MealResult_Informative.xml");
@@ -454,6 +456,7 @@ public:
         transitionEffects->Update(dt);
 
         UpdateDialogueProgress();
+        HandleInstructionVisibility(dt);
         HandleKeyInputs();
     }
 
@@ -473,7 +476,7 @@ public:
             SetInstruction("Select a choice to continue");
         }
         else {
-            SetInstruction("Press [Space] or [Mouse] to continue");
+            SetInstruction("Press [Space] or  [Mouse] to continue");
         }
 
         switch (gameStateManager.getRoomState()) {
@@ -496,18 +499,19 @@ public:
             ManageInspectionState();
             break;
         case RoomState::InspectionEnd:
-		    ManageInspectionEndState();
-			
-			break;
+            ManageInspectionEndState();
+
+            break;
         }
     }
 
     void ManageOrderState() {
         if (dialogueManager->IsDialogueFinished("Order")) {
             SetInstruction("Press [E] to leave");
-            if (input.Get().GetKeyDown(GLFW_KEY_E)  &&!pauseMenu.IsVisible()) {
+            ShowInstruction();
+            if (input.Get().GetKeyDown(GLFW_KEY_E) && !pauseMenu.IsVisible()) {
                 transitionEffects->FadeOut(1.0f, [this]() { gameStateManager.SetRoomState(Prepare); });
-                
+
             }
         }
     }
@@ -560,23 +564,24 @@ public:
             PromptForNextDialogue(inspectStartDialogueKey, inspectStartDialogueSet);
         }
         else if (inspectStartDialogueSet && dialogueManager->IsDialogueFinished(inspectStartDialogueKey)) {
-           gameStateManager.SetRoomState(RoomState::Inspection);
+            gameStateManager.SetRoomState(RoomState::Inspection);
+            ShowInstruction();
         }
 
-      
+
     }
 
     void ManageInspectionState()
     {
         // Check if both objects have been inspected
         if (!isCaneInspected || !isLetterInspected) {
-            
+
             InspectCaneDialogue();
             InspectLetterDialogue();
             NormalObjectToggle();
             SetInspectionObject();
         }
-       
+
     }
 
 
@@ -589,27 +594,27 @@ public:
 
         if (inspectingObject != "")
         {
-            SetInstruction("Press [Space] or [Mouse] to continue");
+            SetInstruction("Press [Space] or  [Mouse] to continue");
             caneInspect->setActiveStatus(false);
-            letterInspect->setActiveStatus(false);  
+            letterInspect->setActiveStatus(false);
             ObjectsparallaxManager->DisableParallaxEffect();
             dialogueManager->SetDialogueVisibility(true);
         }
         else
         {
-            SetInstruction("Select an object to inspect");
+            SetInstruction("Inspect an object  to start conversation");
             caneInspect->setActiveStatus(!isCaneInspected);
-			letterInspect->setActiveStatus(!isLetterInspected);
-			ObjectsparallaxManager->EnableParallaxEffect();
-			dialogueManager->SetDialogueVisibility(false);
+            letterInspect->setActiveStatus(!isLetterInspected);
+            ObjectsparallaxManager->EnableParallaxEffect();
+            dialogueManager->SetDialogueVisibility(false);
         }
-     
+
     }
 
     void InspectCaneDialogue() {
         if (!inspectCaneDialogueSet && inspectingObject == "Cane") {
-          dialogueManager->SetDialogueSet(inspectCaneDialogueKey);
-          inspectCaneDialogueSet = true;
+            dialogueManager->SetDialogueSet(inspectCaneDialogueKey);
+            inspectCaneDialogueSet = true;
         }
         if (inspectCaneDialogueSet && dialogueManager->IsDialogueFinished(inspectCaneDialogueKey)) {
             std::cout << "Cane Inspection Completed" << std::endl;
@@ -622,42 +627,42 @@ public:
     }
 
     void InspectLetterDialogue() {
-        if(!inspectLetterDialogueSet && inspectingObject == "Letter") {
-			dialogueManager->SetDialogueSet(inspectLetterDialogueKey);
-			inspectLetterDialogueSet = true;
-		}
-        if(inspectLetterDialogueSet && dialogueManager->IsDialogueFinished(inspectLetterDialogueKey)) {
+        if (!inspectLetterDialogueSet && inspectingObject == "Letter") {
+            dialogueManager->SetDialogueSet(inspectLetterDialogueKey);
+            inspectLetterDialogueSet = true;
+        }
+        if (inspectLetterDialogueSet && dialogueManager->IsDialogueFinished(inspectLetterDialogueKey)) {
             std::cout << "Letter Inspection Completed" << std::endl;
-			inspectLetterDialogueSet = false; // Reset the flag
-			inspectingObject = ""; // Correct the assignment
-			isLetterInspected = true; // Mark the letter as inspected
-			CheckForEndDialogue();
-		}
-  
+            inspectLetterDialogueSet = false; // Reset the flag
+            inspectingObject = ""; // Correct the assignment
+            isLetterInspected = true; // Mark the letter as inspected
+            CheckForEndDialogue();
+        }
+
     }
 
     void CheckForEndDialogue() {
         if (isCaneInspected && isLetterInspected && !inspectEndDialogueSet) {
             std::cout << "Both items inspected, moving to final dialogue." << std::endl;
             gameStateManager.SetRoomState(RoomState::InspectionEnd);
-            
-            
+
+
         }
     }
 
     void ManageInspectionEndState() {
-		if (!inspectEndDialogueSet) {
+        if (!inspectEndDialogueSet) {
             ObjectsparallaxManager->DisableParallaxEffect();
-			PromptForNextDialogue(inspectEndDialogueKey, inspectEndDialogueSet);
-		}
-		else if (inspectEndDialogueSet && dialogueManager->IsDialogueFinished(inspectEndDialogueKey)) {
-			gameStateManager.SetRoomState(RoomState::End);
+            PromptForNextDialogue(inspectEndDialogueKey, inspectEndDialogueSet);
+        }
+        else if (inspectEndDialogueSet && dialogueManager->IsDialogueFinished(inspectEndDialogueKey)) {
+            gameStateManager.SetRoomState(RoomState::End);
             Application::Get().SetTimer(2000, [this]() { transitionEffects->FadeOut(1.0f, [this]() {}); }, false);
-		}
-	}
-  
+        }
+    }
+
     void PromptForNextDialogue(const string& nextKey, bool& flag) {
-        SetInstruction("Press [Space] or [Mouse] to continue");
+        SetInstruction("Press [Space] or  [Mouse] to continue");
         if ((!flag && (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0))) && !pauseMenu.IsVisible()) {
             dialogueManager->SetDialogueSet(nextKey);
             flag = true;
@@ -669,15 +674,41 @@ public:
         instructionText->SetContent(message);
     }
 
+    void HandleInstructionVisibility(float dt) {
+        if (!instructionVisible) {
+            if (instructionTimer > 0) {
+                instructionTimer -= dt;
+            }
+            else {
+                ShowInstruction();
+                instructionVisible = true;
+                instructionTimer = 8.0f; // Reset timer
+            }
+        }
+    }
+
     void HandleKeyInputs() {
-        if ((input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0) ) && !pauseMenu.IsVisible()) {
-            
-            dialogueManager->PlayNextDialogue();
+        if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
+            if (!pauseMenu.IsVisible()) {
+                dialogueManager->PlayNextDialogue();
+                HideInstruction();
+            }
         }
 
         if (input.Get().GetKeyDown(GLFW_KEY_ESCAPE)) {
             pauseMenu.Show();
         }
+    }
+
+    void ShowInstruction() {
+        instructionText->setActiveStatus(true);
+        instructionVisible = true;
+    }
+
+    void HideInstruction() {
+        instructionText->setActiveStatus(false);
+        instructionVisible = false;
+        instructionTimer = 8.0f; // Start timer to show instruction again after 8 seconds of no user input
     }
 
     void Render() override {
@@ -727,8 +758,6 @@ private:
 
     bool isCaneInspected = false;
     bool isLetterInspected = false;
-
-
 
     string inspectingObject;
 

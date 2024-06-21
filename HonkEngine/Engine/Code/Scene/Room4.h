@@ -42,6 +42,8 @@ private:
     UIButton* bagInspect;
 
     PauseMenu pauseMenu;
+    float instructionTimer = 8.0f;
+    bool instructionVisible = true;
 
 public:
     Room4() :audioManager(AudioManager::GetInstance()) {
@@ -462,6 +464,7 @@ public:
         transitionEffects->Update(dt);
 
         UpdateDialogueProgress();
+        HandleInstructionVisibility(dt);
         HandleKeyInputs();
     }
 
@@ -481,7 +484,7 @@ public:
             SetInstruction("Select a choice to continue");
         }
         else {
-            SetInstruction("Press [Space] or [Mouse] to continue");
+            SetInstruction("Press [Space] or  [Mouse] to continue");
         }
 
         switch (gameStateManager.getRoomState()) {
@@ -513,6 +516,7 @@ public:
     void ManageOrderState() {
         if (dialogueManager->IsDialogueFinished("Order")) {
             SetInstruction("Press [E] to leave");
+            ShowInstruction();
             if (input.Get().GetKeyDown(GLFW_KEY_E) && !pauseMenu.IsVisible()) {
                 transitionEffects->FadeOut(1.0f, [this]() { gameStateManager.SetRoomState(Prepare); });
 
@@ -569,6 +573,7 @@ public:
         }
         else if (inspectStartDialogueSet && dialogueManager->IsDialogueFinished(inspectStartDialogueKey)) {
             gameStateManager.SetRoomState(RoomState::Inspection);
+            ShowInstruction();
         }
 
 
@@ -597,7 +602,7 @@ public:
 
         if (inspectingObject != "")
         {
-            SetInstruction("Press [Space] or [Mouse] to continue");
+            SetInstruction("Press [Space] or  [Mouse] to continue");
             posterInspect->setActiveStatus(false);
             daggerInspect->setActiveStatus(false);
             ObjectsparallaxManager->DisableParallaxEffect();
@@ -605,7 +610,7 @@ public:
         }
         else
         {
-            SetInstruction("Select an object to inspect");
+            SetInstruction("Inspect an object  to start conversation");
             posterInspect->setActiveStatus(!isPosterInspected);
             daggerInspect->setActiveStatus(!isDaggerInspected);
             ObjectsparallaxManager->EnableParallaxEffect();
@@ -664,7 +669,7 @@ public:
     }
 
     void PromptForNextDialogue(const string& nextKey, bool& flag) {
-        SetInstruction("Press [Space] or [Mouse] to continue");
+        SetInstruction("Press [Space] or  [Mouse] to continue");
         if ((!flag && (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0))) && !pauseMenu.IsVisible()) {
             dialogueManager->SetDialogueSet(nextKey);
             flag = true;
@@ -676,14 +681,41 @@ public:
         instructionText->SetContent(message);
     }
 
+    void HandleInstructionVisibility(float dt) {
+        if (!instructionVisible) {
+            if (instructionTimer > 0) {
+                instructionTimer -= dt;
+            }
+            else {
+                ShowInstruction();
+                instructionVisible = true;
+                instructionTimer = 8.0f; // Reset timer
+            }
+        }
+    }
+
     void HandleKeyInputs() {
-        if ((input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) && !pauseMenu.IsVisible()) {
-            dialogueManager->PlayNextDialogue();
+        if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
+            if (!pauseMenu.IsVisible()) {
+                dialogueManager->PlayNextDialogue();
+                HideInstruction();
+            }
         }
 
         if (input.Get().GetKeyDown(GLFW_KEY_ESCAPE)) {
             pauseMenu.Show();
         }
+    }
+
+    void ShowInstruction() {
+        instructionText->setActiveStatus(true);
+        instructionVisible = true;
+    }
+
+    void HideInstruction() {
+        instructionText->setActiveStatus(false);
+        instructionVisible = false;
+        instructionTimer = 8.0f; // Start timer to show instruction again after 8 seconds of no user input
     }
 
     void Render() override {
