@@ -157,6 +157,8 @@ public:
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
 		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
 
+		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-8.32f, -4.8f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true);
+
 		UIButton* ResetButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(-1.75f, 4.75f, 0.0f), glm::vec3(3.19f * 0.8f, 0.92f * 0.8f, 0.0f), true, true, "Assets/Fonts/jibril.ttf");
 		ResetButton->SetHoverTexture("Assets/Images/Kitchen/Button_ResetMeal_Highlight.png");
 		ResetButton->SetButtonText("Reset");
@@ -373,6 +375,7 @@ public:
 
 		//Journal
 		m_gameObjects.push_back(journalButton);
+		m_gameObjects.push_back(journalUpdateIcon);
 		m_gameObjects.push_back(Journal);
 
 		m_gameObjects.push_back(&pauseMenu);
@@ -395,6 +398,9 @@ public:
 		{
 			clearPlate();
 		}
+
+		journalUpdateIcon->setActiveStatus(JournalData::GetInstance()->HasUnopenedClue());
+
 	}
 
 	void Update(float dt, long frame) override {
@@ -415,6 +421,7 @@ public:
 		updateServeButton();
 		UpdateOrderDisplay();
 		UpdatePlateDisplay();
+		journalUpdateIcon->setActiveStatus(JournalData::GetInstance()->HasUnopenedClue());
 
 	}
 
@@ -832,6 +839,8 @@ private:
 	Text* timerText;
 	UIElement* timerUI;
 	UIElement* orderPaper;
+
+	UIElement* journalUpdateIcon;
 
 
 	GameObject* SandwichArrow;

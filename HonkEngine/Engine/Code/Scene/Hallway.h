@@ -52,6 +52,7 @@ private:
 
 	Player* player;
 	Book* Journal;
+	UIElement* journalUpdateIcon;
 
 	Text* orderNoText;
 	Text* teaOrderText;
@@ -229,11 +230,12 @@ public:
 		UIButton* journalButton = new UIButton("JournalButton", "Assets/Images/UI/JournalButton.png", glm::vec3(-8.32f, -4.8f, 0.0f), glm::vec3(3.0f, 3.0f, 0.0f), true, false, "");
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
 		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
-		//journalButton->SetHoverTexture("Assets/Images/Timer.png");
+		
+		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-8.32f, -4.8f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true);
 
-		 journalArrow = new UIObject("JournalArrow", "Assets/Images/Kitchen/Kitchen_Arrow_Tea.png", true);
-		 journalArrow->SetScale(glm::vec3(1.58f * 0.9f, 1.35f * 0.9f, 0.0f));
-		 journalArrow->SetPosition(glm::vec3(-5.9f, -3.2f, 0.0f));
+		journalArrow = new UIObject("JournalArrow", "Assets/Images/Kitchen/Kitchen_Arrow_Tea.png", true); 
+		journalArrow->SetScale(glm::vec3(1.58f * 0.9f, 1.35f * 0.9f, 0.0f));
+		journalArrow->SetPosition(glm::vec3(-5.9f, -3.2f, 0.0f));
 
 		//TO TEST DRAW EMPTY UI
 		/*GameObject* box = new RenderGameObject("textbox", "Assets/Images/Square_Border.png");
@@ -297,6 +299,7 @@ public:
 
 		//UIs
 		m_gameObjects.push_back(journalButton);
+		m_gameObjects.push_back(journalUpdateIcon);
 		m_gameObjects.push_back(journalArrow);
 		m_gameObjects.push_back(timerUI);
 		m_gameObjects.push_back(orderPaper);
@@ -337,6 +340,8 @@ public:
 		else {
 			journalArrow->setActiveStatus(false);
 		}
+
+		journalUpdateIcon->setActiveStatus(JournalData::GetInstance()->HasUnopenedClue());
 
 		// Ensure kitchen door is always accessible
 		//kitchenDoor->setPermission(true);
@@ -389,6 +394,7 @@ public:
 
 		entering = false;
 
+
 	}
 
 
@@ -412,6 +418,11 @@ public:
 				firstEntry = false;
 			}
 		}
+
+		//To test position of update icon
+		//journalUpdateIcon->setActiveStatus(true);
+
+		journalUpdateIcon->setActiveStatus(JournalData::GetInstance()->HasUnopenedClue());
 
 		KitchenData* foodData = KitchenData::GetInstance();
 
@@ -484,6 +495,7 @@ public:
 				Journal->drawBook();
 			}
 		}
+
 	}
 
 	
