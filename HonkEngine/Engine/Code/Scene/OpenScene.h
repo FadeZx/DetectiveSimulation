@@ -88,9 +88,8 @@ public:
         OpenScene13->SetScale(glm::vec3(19.2f, 10.8f, 0.0f));
         scenes.push_back(static_cast<UIObject*>(OpenScene13));
 
-        skipButton = new UIButton("SkpButton", "Assets/Images/MainMenu/MainMenu_Button_Play.png", glm::vec3(7.0f, -5.0f, 0.0f), glm::vec3(1.08f, 1.00f, 0.0f), true, true, "Assets/Fonts/Jibril.ttf");
-        skipButton->SetHoverTexture("Assets/Images/MainMenu/MainMenu_Button_Start_Hover.png");
-        skipButton->SetButtonText("");
+        skipButton = new UIButton("SkpButton", "Assets/Images/UI/Skip_Button.png", glm::vec3(-8.85f, 4.8f, 0.0f), glm::vec3(1.3f / 2, 1.23f / 2, 0.0f), true, false);
+        skipButton->SetHoverTexture("Assets/Images/UI/Skip_Button_Highlight.png");
         skipButton->SetOnClickAction([this]() { TransitionOut(); });
         skipButton->setActiveStatus(false);
 
@@ -195,7 +194,7 @@ public:
             if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
                 interactionCount++;
 
-                if (interactionCount >= 3) {
+                if (interactionCount >= 5) {
                     skipButton->setActiveStatus(true);
                 }
 
