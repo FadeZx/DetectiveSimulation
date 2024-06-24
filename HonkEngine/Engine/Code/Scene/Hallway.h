@@ -231,7 +231,7 @@ public:
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
 		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
 		
-		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-8.32f, -4.8f, 0.0f), glm::vec3(1.0f, 1.0f, 0.0f), true);
+		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-7.6f, -3.7f, 0.0f), glm::vec3(0.62f / 2, 1.71f / 2, 0.0f), true);
 
 		journalArrow = new UIObject("JournalArrow", "Assets/Images/Kitchen/Kitchen_Arrow_Tea.png", true); 
 		journalArrow->SetScale(glm::vec3(1.58f * 0.9f, 1.35f * 0.9f, 0.0f));
