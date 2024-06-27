@@ -22,6 +22,7 @@
 #include "Scene/JournalEntry.h"
 #include "Scene/EndScene.h"
 #include "Scene/OpenScene.h"
+#include "Scene/EndCredit.h"
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -54,6 +55,7 @@ void processInput(GLFWwindow* window);
     game.AddScene("OpenScene", new OpenScene());
     game.AddScene("JournalEntry", new JournalEntry());
     game.AddScene("EndScene", new EndScene());
+    game.AddScene("EndCredit", new EndCredit());
     game.SetScene("LoadScene");
 
     // Run game

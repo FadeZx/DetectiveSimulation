@@ -138,7 +138,7 @@ private:
 			//transitioning = true;
 			AudioManager::GetInstance().PlaySound("buttonClick2");
 			transitionEffects->FadeOut(2.0f, [this]() {
-				Application::Get().SetScene("OpenScene");
+				Application::Get().SetScene("EndCredit");
 				});
 		}
 	}

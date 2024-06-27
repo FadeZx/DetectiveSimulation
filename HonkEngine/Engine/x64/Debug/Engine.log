@@ -61,25 +61,25 @@ C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Po
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\ExitMenu.h(33,29): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(26,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\BackToMainMenu.h(26,34): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(33,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\BackToMainMenu.h(33,29): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(40,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(27,37): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(47,37): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(34,36): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(396,26): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(41,37): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(487,32): warning C4244: 'argument': conversion from 'double' to '__int64', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\PauseMenu.h(48,37): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(493,32): warning C4244: 'argument': conversion from 'double' to '__int64', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(402,26): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(499,32): warning C4244: 'argument': conversion from 'double' to '__int64', possible loss of data
@@ -88,13 +88,19 @@ C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Sc
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(505,32): warning C4244: 'argument': conversion from 'double' to '__int64', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(511,32): warning C4244: 'argument': conversion from 'double' to '__int64', possible loss of data
+  (compiling source file 'Code/Main.cpp')
+  
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Hallway.h(517,32): warning C4244: 'argument': conversion from 'double' to '__int64', possible loss of data
+  (compiling source file 'Code/Main.cpp')
+  
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Room3.h(55,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Kitchen.h(170,13): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Kitchen.h(172,13): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
-C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Kitchen.h(408,26): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
+C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\Kitchen.h(414,26): warning C4244: 'argument': conversion from 'long' to 'float', possible loss of data
   (compiling source file 'Code/Main.cpp')
   
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\MainMenu.h(34,27): warning C4305: 'argument': truncation from 'double' to 'float'
@@ -106,4 +112,19 @@ C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Sc
 C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\Engine\Code\Scene\MainMenu.h(48,27): warning C4305: 'argument': truncation from 'double' to 'float'
   (compiling source file 'Code/Main.cpp')
   
+glfw3.lib(init.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(init.obj)' or at ''; linking object as if no debug info
+glfw3.lib(monitor.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(monitor.obj)' or at ''; linking object as if no debug info
+glfw3.lib(window.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(window.obj)' or at ''; linking object as if no debug info
+glfw3.lib(input.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(input.obj)' or at ''; linking object as if no debug info
+glfw3.lib(context.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(context.obj)' or at ''; linking object as if no debug info
+glfw3.lib(win32_init.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(win32_init.obj)' or at ''; linking object as if no debug info
+glfw3.lib(win32_monitor.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(win32_monitor.obj)' or at ''; linking object as if no debug info
+glfw3.lib(win32_time.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(win32_time.obj)' or at ''; linking object as if no debug info
+glfw3.lib(win32_thread.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(win32_thread.obj)' or at ''; linking object as if no debug info
+glfw3.lib(vulkan.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(vulkan.obj)' or at ''; linking object as if no debug info
+glfw3.lib(win32_window.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(win32_window.obj)' or at ''; linking object as if no debug info
+glfw3.lib(win32_joystick.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(win32_joystick.obj)' or at ''; linking object as if no debug info
+glfw3.lib(wgl_context.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(wgl_context.obj)' or at ''; linking object as if no debug info
+glfw3.lib(egl_context.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(egl_context.obj)' or at ''; linking object as if no debug info
+glfw3.lib(osmesa_context.obj) : warning LNK4099: PDB '' was not found with 'glfw3.lib(osmesa_context.obj)' or at ''; linking object as if no debug info
   Engine.vcxproj -> C:\Users\orangeduck\Documents\Capt\DetectiveSimulation\HonkEngine\x64\Debug\Engine.exe
