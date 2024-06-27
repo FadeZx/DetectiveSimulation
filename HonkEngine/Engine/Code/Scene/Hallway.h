@@ -28,11 +28,11 @@
 #include "../Effects/TransitionEffects.h"
 #include "../PopupWidget/PauseMenu.h"
 
-//set each cbin time before order (in milliseconds) // Remove . to use the correct number
-#define ORDER_DURATION1 50.000 
-#define ORDER_DURATION2 50.000 //for room 2
-#define ORDER_DURATION3 50.000  //for room 3
-#define ORDER_DURATION4 50.000
+//set each cbin time before order (in milliseconds)
+#define ORDER_DURATION1 3500 
+#define ORDER_DURATION2 8500 //for room 2
+#define ORDER_DURATION3 5000  //for room 3
+#define ORDER_DURATION4 6000
 
 #define PLAYER_SPEED 5.75f
 
@@ -90,14 +90,24 @@ public:
 	Hallway() :audioManager(AudioManager::GetInstance())
 	{
 		/// Test clue activation
-		/*JournalData::GetInstance()->ActivateClue(CABIN3, 0);
+
+
+		JournalData::GetInstance()->ActivateClue(CABIN1, 0);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 1);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 2);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 3);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 4);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 5);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 6);
+
+		JournalData::GetInstance()->ActivateClue(CABIN3, 0);
 		JournalData::GetInstance()->ActivateClue(CABIN3, 1);
 		JournalData::GetInstance()->ActivateClue(CABIN3, 2);
 		JournalData::GetInstance()->ActivateClue(CABIN3, 3);
 		JournalData::GetInstance()->ActivateClue(CABIN3, 4);
 		JournalData::GetInstance()->ActivateClue(CABIN3, 5);
 		JournalData::GetInstance()->ActivateClue(CABIN3, 6);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 7);*/
+		JournalData::GetInstance()->ActivateClue(CABIN3, 7);
 
 		/// Draggable paper clues test
 		//JournalData::GetInstance()->ActivateClue(CABIN3, 10);
@@ -233,7 +243,7 @@ public:
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
 		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
 		
-		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-7.6f, -3.7f, 0.0f), glm::vec3(0.62f / 2, 1.71f / 2, 0.0f), true);
+		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-7.38f, -3.65f, 0.0f), glm::vec3(0.62f / 2, 1.71f / 2, 0.0f), true);
 
 		journalArrow = new UIObject("JournalArrow", "Assets/Images/Kitchen/Kitchen_Arrow_Tea.png", true); 
 		journalArrow->SetScale(glm::vec3(1.58f * 0.9f, 1.35f * 0.9f, 0.0f));

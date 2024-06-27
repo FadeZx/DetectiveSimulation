@@ -157,7 +157,7 @@ public:
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
 		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
 
-		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-7.6f, -3.7f, 0.0f), glm::vec3(0.62f / 2, 1.71f / 2, 0.0f), true);
+		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-7.38f, -3.65f, 0.0f), glm::vec3(0.62f / 2, 1.71f / 2, 0.0f), true);
 
 		UIButton* ResetButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(-1.75f, 4.75f, 0.0f), glm::vec3(3.19f * 0.8f, 0.92f * 0.8f, 0.0f), true, true, "Assets/Fonts/jibril.ttf");
 		ResetButton->SetHoverTexture("Assets/Images/Kitchen/Button_ResetMeal_Highlight.png");

@@ -66,7 +66,7 @@ public:
 		ContinueButton->SetTextSize(0.52f);
 		ContinueButton->SetTextPosition(glm::vec3(7.55f, 4.52f, 0.0f));
 		ContinueButton->SetOnClickAction([this]() { 
-			Application::Get().SetScene("MainMenu");
+			Application::Get().SetScene("EndCredit");
 			ContinueButton->setActiveStatus(false);
 			gameStateManager.Reset();
 			journal_data->ResetJournalData();	

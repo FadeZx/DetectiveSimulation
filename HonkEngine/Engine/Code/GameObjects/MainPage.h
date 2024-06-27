@@ -50,16 +50,18 @@ public:
 
 		//SPY BUTTONS
 
-		UIButton* Suspect1 = new UIButton("Suspect1", "Assets/Images/Journal/CaseSummary_Icon_Martha.png", glm::vec3(1.25f, 2.15f, 0.0f), glm::vec3(0.864f, 0.81f, 0.0f), true, false, "");
+		UIButton* Suspect1 = new UIButton("Suspect1", "Assets/Images/Journal/CaseSummary_Icon_Martha.png", glm::vec3(1.3f, 2.05f, 0.0f), glm::vec3(1.05f, 0.99f, 0.0f), true, false, "");
+		Suspect1->SetHoverTexture("Assets/Images/Journal/CaseSummary_Icon_Martha_Hover.png");
 		Suspect1->SetOnClickAction([this]() { setSpy1(); });
 
 		Text* Cabin1 = new Text("Cabin1", "Cabin 1", "Assets/Fonts/ESA-m.ttf");
-		Cabin1->SetPosition(glm::vec3(0.85f, 1.5f, 0.0f));
+		Cabin1->SetPosition(glm::vec3(0.87f, 1.5f, 0.0f));
 		Cabin1->SetColor(glm::vec3(0, 0, 0));
 		Cabin1->SetScale(0.55f);
 
 
-		UIButton* Suspect2 = new UIButton("Suspect2", "Assets/Images/Journal/CaseSummary_Icon_Nathaniel.png", glm::vec3(2.65f, 2.15f, 0.0f), glm::vec3(0.864f, 0.81f, 0.0f), true, false, "");
+		UIButton* Suspect2 = new UIButton("Suspect2", "Assets/Images/Journal/CaseSummary_Icon_Nathaniel.png", glm::vec3(2.75f, 2.02f, 0.0f), glm::vec3(1.05f, 0.99f, 0.0f), true, false, "");
+		Suspect2->SetHoverTexture("Assets/Images/Journal/CaseSummary_Icon_Nathaniel_Hover.png");
 		Suspect2->SetOnClickAction([this]() { setSpy21(); });
 
 		Text* Cabin21 = new Text("Cabin21", "Cabin 2/1", "Assets/Fonts/ESA-m.ttf");
@@ -68,7 +70,8 @@ public:
 		Cabin21->SetScale(0.5f);
 
 
-		UIButton* Suspect3 = new UIButton("Suspect3", "Assets/Images/Journal/CaseSummary_Icon_Evelyn.png", glm::vec3(4.2f, 2.15f, 0.0f), glm::vec3(0.864f, 0.81f, 0.0f), true, false, "");
+		UIButton* Suspect3 = new UIButton("Suspect3", "Assets/Images/Journal/CaseSummary_Icon_Evelyn.png", glm::vec3(4.25f, 2.02f, 0.0f), glm::vec3(1.05f, 0.99f, 0.0f), true, false, "");
+		Suspect3->SetHoverTexture("Assets/Images/Journal/CaseSummary_Icon_Evelyn_Hover.png");
 		Suspect3->SetOnClickAction([this]() { setSpy22(); });
 
 		Text* Cabin22 = new Text("Cabin22", "Cabin 2/2", "Assets/Fonts/ESA-m.ttf");
@@ -77,7 +80,8 @@ public:
 		Cabin22->SetScale(0.5f);
 
 
-		UIButton* Suspect4 = new UIButton("Suspect4", "Assets/Images/Journal/CaseSummary_Icon_Archibald.png", glm::vec3(1.25f, 0.85f, 0.0f), glm::vec3(0.864f, 0.81f, 0.0f), true, false, "");
+		UIButton* Suspect4 = new UIButton("Suspect4", "Assets/Images/Journal/CaseSummary_Icon_Archibald.png", glm::vec3(1.4f, 0.75f, 0.0f), glm::vec3(1.05f, 0.99f, 0.0f), true, false, "");
+		Suspect4->SetHoverTexture("Assets/Images/Journal/CaseSummary_Icon_Archibald_Hover.png");
 		Suspect4->SetOnClickAction([this]() { setSpy3(); });
 
 		Text* Cabin3 = new Text("Cabin3", "Cabin 3", "Assets/Fonts/ESA-m.ttf");
@@ -86,7 +90,8 @@ public:
 		Cabin3->SetScale(0.5f);
 
 
-		UIButton* Suspect5 = new UIButton("Suspect5", "Assets/Images/Journal/CaseSummary_Icon_Octavia.png", glm::vec3(2.65f, 0.85f, 0.0f), glm::vec3(0.864f, 0.81f, 0.0f), true, false, "");
+		UIButton* Suspect5 = new UIButton("Suspect5", "Assets/Images/Journal/CaseSummary_Icon_Octavia.png", glm::vec3(2.75f, 0.75f, 0.0f), glm::vec3(1.05f, 0.99f, 0.0f), true, false, "");
+		Suspect5->SetHoverTexture("Assets/Images/Journal/CaseSummary_Icon_Octavia_Hover.png");
 		Suspect5->SetOnClickAction([this]() { setSpy4(); });
 
 		Text* Cabin4 = new Text("Cabin4", "Cabin 4", "Assets/Fonts/ESA-m.ttf");
@@ -105,24 +110,32 @@ public:
 
 		// BOMB LOCATIONS
 
-		UIButtonEmpty* TownSquare = new UIButtonEmpty("TownSquare", glm::vec3(1.57f, -2.25f, 0.0f), glm::vec3(1.4f, 0.4f, 0.0f), true, true, "Assets/Fonts/ESA-m.ttf");
+		UIButton* TownSquare = new UIButton("TownSquare", "Assets/Images/Journal/CaseSummary_Underline.png", glm::vec3(1.64f, -2.03f, 0.0f), glm::vec3(2.33f * 0.95f, 0.61f * 0.95f, 0.0f), true, true, "Assets/Fonts/ESA-m.ttf");
+		TownSquare->SetHoverTexture("Assets/Images/Journal/CaseSummary_Underline_Hover.png");
 		TownSquare->SetButtonText("Town Square");
 		TownSquare->SetTextSize(0.6f);
+		TownSquare->SetTextPosition(glm::vec3(1.57f, -2.25f, 0.0f));
 		TownSquare->SetOnClickAction([this]() { setLocationTownSquare(); });
 
-		UIButtonEmpty* TheHolyChurch = new UIButtonEmpty("TheHolyChurch", glm::vec3(3.6f, -2.25f, 0.0f), glm::vec3(1.4f, 0.4f, 0.0f), true, true, "Assets/Fonts/ESA-m.ttf");
+		UIButton* TheHolyChurch = new UIButton("TheHolyChurch", "Assets/Images/Journal/CaseSummary_Underline.png", glm::vec3(4.05f, -2.05f, 0.0f), glm::vec3(2.33f * 0.95f, 0.61f * 0.95f, 0.0f), true, true, "Assets/Fonts/ESA-m.ttf");
+		TheHolyChurch->SetHoverTexture("Assets/Images/Journal/CaseSummary_Underline_Hover.png");
 		TheHolyChurch->SetButtonText("The Holy Church");
+		TheHolyChurch->SetTextPosition(glm::vec3(3.75f, -2.25f, 0.0f));
 		TheHolyChurch->SetTextSize(0.6f);
 		TheHolyChurch->SetOnClickAction([this]() { setLocationHolyChurch(); });
 
-		UIButtonEmpty* TheCouncil = new UIButtonEmpty("TheCouncil", glm::vec3(1.48f, -2.75f, 0.0f), glm::vec3(1.4f, 0.4f, 0.0f), true, true, "Assets/Fonts/ESA-m.ttf");
+		UIButton* TheCouncil = new UIButton("TheCouncil", "Assets/Images/Journal/CaseSummary_Underline.png", glm::vec3(1.48f, -2.65f, 0.0f), glm::vec3(2.33f * 0.95f, 0.61f * 0.95f, 0.0f), true, true, "Assets/Fonts/ESA-m.ttf");
+		TheCouncil->SetHoverTexture("Assets/Images/Journal/CaseSummary_Underline_Hover.png");
 		TheCouncil->SetButtonText("The Council");
 		TheCouncil->SetTextSize(0.6f);
+		TheCouncil->SetTextPosition(glm::vec3(1.48f, -2.75f, 0.0f));
 		TheCouncil->SetOnClickAction([this]() { setLocationCouncil(); });
 
-		UIButtonEmpty* SupremeCourt = new UIButtonEmpty("SupremeCourt", glm::vec3(3.6f, -2.75f, 0.0f), glm::vec3(1.4f, 0.4f, 0.0f), true, true, "Assets/Fonts/ESA-m.ttf");
+		UIButton* SupremeCourt = new UIButton("SupremeCourt", "Assets/Images/Journal/CaseSummary_Underline.png", glm::vec3(3.95f, -2.65f, 0.0f), glm::vec3(2.33f * 0.95f, 0.61f * 0.95f, 0.0f), true, true, "Assets/Fonts/ESA-m.ttf");
+		SupremeCourt->SetHoverTexture("Assets/Images/Journal/CaseSummary_Underline_Hover.png");
 		SupremeCourt->SetButtonText("Supreme Court");
 		SupremeCourt->SetTextSize(0.6f);
+		SupremeCourt->SetTextPosition(glm::vec3(3.75f, -2.75f, 0.0f));
 		SupremeCourt->SetOnClickAction([this]() { setLocationSupremeCourt(); });
 
 		RedUnderline = new UIObject("RedUnderline", "Assets/Images/Journal/CaseSummary_Icon_Red_Underline.png", true);
@@ -172,7 +185,7 @@ public:
 		m_gameObjects.push_back(SupremeCourt);
 
 		m_gameObjects.push_back(CaseNews);
-		m_gameObjects.push_back(PlayerGuide);
+		//m_gameObjects.push_back(PlayerGuide);
 		m_gameObjects.push_back(Ticket);
 		m_gameObjects.push_back(JournalSleeve);
 
