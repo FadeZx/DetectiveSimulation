@@ -52,6 +52,7 @@ private:
 
 	Player* player;
 	Book* Journal;
+	UIElement* journalUpdateIcon;
 
 	Text* orderNoText;
 	Text* teaOrderText;
@@ -122,10 +123,10 @@ public:
 		
 
 		background1a->SetScale(glm::vec3(76.6f, 10.8f, 0.0f));background1a->SetPosition(glm::vec3(0.0f, 3.0f, 0.0f)); 
-		background2a->SetScale(glm::vec3(76.6f, 10.8f, 0.0f)); background2a->SetPosition(glm::vec3(0.0f, 3.0f, 0.0f));
+		background2a->SetScale(glm::vec3(76.6f, 10.8f, 0.0f)); background2a->SetPosition(glm::vec3(0.0f, 5.0f, 0.0f));
 		background3a->SetScale(glm::vec3(76.6f, 10.8f, 0.0f)); background3a->SetPosition(glm::vec3(0.0f, 3.0f, 0.0f));
 		background1b->SetScale(glm::vec3(76.6f, 10.8f, 0.0f)); background1b->SetPosition(glm::vec3(76.6f, 3.0f, 0.0f));
-		background2b->SetScale(glm::vec3(76.6f, 10.8f, 0.0f)); background2b->SetPosition(glm::vec3(76.6f, 3.0f, 0.0f));
+		background2b->SetScale(glm::vec3(76.6f, 10.8f, 0.0f)); background2b->SetPosition(glm::vec3(76.6f, 5.0f, 0.0f));
 		background3b->SetScale(glm::vec3(76.6f, 10.8f, 0.0f)); background3b->SetPosition(glm::vec3(76.6f, 3.0f, 0.0f));
 
 		BackgroundparallaxManager = std::make_unique<BackgroundParallax>();
@@ -231,11 +232,12 @@ public:
 		UIButton* journalButton = new UIButton("JournalButton", "Assets/Images/UI/JournalButton.png", glm::vec3(-8.32f, -4.8f, 0.0f), glm::vec3(3.0f, 3.0f, 0.0f), true, false, "");
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
 		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
-		//journalButton->SetHoverTexture("Assets/Images/Timer.png");
+		
+		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-7.6f, -3.7f, 0.0f), glm::vec3(0.62f / 2, 1.71f / 2, 0.0f), true);
 
-		 journalArrow = new UIObject("JournalArrow", "Assets/Images/Kitchen/Kitchen_Arrow_Tea.png", true);
-		 journalArrow->SetScale(glm::vec3(1.58f * 0.9f, 1.35f * 0.9f, 0.0f));
-		 journalArrow->SetPosition(glm::vec3(-5.9f, -3.2f, 0.0f));
+		journalArrow = new UIObject("JournalArrow", "Assets/Images/Kitchen/Kitchen_Arrow_Tea.png", true); 
+		journalArrow->SetScale(glm::vec3(1.58f * 0.9f, 1.35f * 0.9f, 0.0f));
+		journalArrow->SetPosition(glm::vec3(-5.9f, -3.2f, 0.0f));
 
 
 		 ReadyButton = new UIButton("PlayButton", "Assets/Images/Kitchen/Button_ResetMeal.png", glm::vec3(7.5f, 4.6f, 0.0f), glm::vec3(3.19f * 1.1, 0.92f * 1.1, 0.0f), true, true, "Assets/Fonts/OverpassMono-SemiBold.ttf");
@@ -308,6 +310,7 @@ public:
 
 		//UIs
 		m_gameObjects.push_back(journalButton);
+		m_gameObjects.push_back(journalUpdateIcon);
 		m_gameObjects.push_back(journalArrow);
 		m_gameObjects.push_back(timerUI);
 		m_gameObjects.push_back(orderPaper);
@@ -350,6 +353,8 @@ public:
 			journalArrow->setActiveStatus(false);
 		}
 
+		journalUpdateIcon->setActiveStatus(JournalData::GetInstance()->HasUnopenedClue());
+
 		// Ensure kitchen door is always accessible
 		//kitchenDoor->setPermission(true);
 
@@ -379,6 +384,7 @@ public:
 		 }
 		entering = false;
 
+
 	}
 
 
@@ -402,6 +408,11 @@ public:
 				firstEntry = false;
 			}
 		}
+
+		//To test position of update icon
+		//journalUpdateIcon->setActiveStatus(true);
+
+		journalUpdateIcon->setActiveStatus(JournalData::GetInstance()->HasUnopenedClue());
 
 		KitchenData* foodData = KitchenData::GetInstance();
 
@@ -474,6 +485,7 @@ public:
 				Journal->drawBook();
 			}
 		}
+
 	}
 
 	void StartOrderTime() {

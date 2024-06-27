@@ -211,6 +211,8 @@ public:
 
 		}
 
+		// Set the page as containing an unopened clue
+		unopenedClues[cabin] = true;
 
 	}
 
@@ -322,9 +324,27 @@ public:
 		// Reset lock book state
 		LockBook = false;
 
+		unopenedClues.clear();
+
 		NotifyObservers();
 
 	}
+
+	// Function to check if the book has any unopened clues
+	bool HasUnopenedClue() const {
+		for (const auto& pair : unopenedClues) {
+			if (pair.second) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// Function to mark a cabin's clues as opened
+	void MarkClueAsOpened(Cabin cabin) {
+		unopenedClues[cabin] = false;
+	}
+
 
 
 private:
@@ -362,6 +382,9 @@ private:
 	bool LockBook = false; //Set as true so player can't close journal
 
 	std::vector<JournalObserver> observers;
+
+	// Map to track whether a page has an unopened clue
+	std::map<Cabin, bool> unopenedClues;
 
 };
 

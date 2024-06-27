@@ -269,12 +269,58 @@ public:
 
 	//-----------------------BOOK UI BUTTON FUNCTIONS-----------------------------------
 
-	void setActiveTab1() { if (activePage != MAIN_PAGE) { activePage = currentPage::MAIN_PAGE; } audioManager.PlaySound("pageSwitch", false); };
-	void setActiveTab2() { if (activePage != CABIN1_PAGE) { activePage = currentPage::CABIN1_PAGE; } audioManager.PlaySound("pageSwitch", false); };
-	void setActiveTab3() { if (activePage != CABIN2_PAGE) { activePage = currentPage::CABIN2_PAGE; } audioManager.PlaySound("pageSwitch", false); };
+	void setActiveTab1() { 
+		if (activePage != MAIN_PAGE) { 
+			activePage = currentPage::MAIN_PAGE; 
+		}
+		audioManager.PlaySound("pageSwitch", false);
+	};
+	void setActiveTab2() { 
+		if (activePage != CABIN1_PAGE) { 
+			activePage = currentPage::CABIN1_PAGE; 
+		} 
+		audioManager.PlaySound("pageSwitch", false); 
+		m_journal->MarkClueAsOpened(CABIN1);
+	};
+
+	void setActiveTab3() {
+		if (activePage != CABIN2_PAGE) {
+			activePage = currentPage::CABIN2_PAGE;
+		}
+		audioManager.PlaySound("pageSwitch", false);
+		m_journal->MarkClueAsOpened(CABIN21);
+	}
+
+	void setActiveTab4() {
+		if (activePage != CABIN3_PAGE) {
+			activePage = currentPage::CABIN3_PAGE;
+		}
+		audioManager.PlaySound("pageSwitch", false);
+		m_journal->MarkClueAsOpened(CABIN22);
+	}
+
+	void setActiveTab5() {
+		if (activePage != CABIN4_PAGE) {
+			activePage = currentPage::CABIN4_PAGE;
+		}
+		audioManager.PlaySound("pageSwitch", false);
+		m_journal->MarkClueAsOpened(CABIN3);
+	}
+
+	void setActiveTab6() {
+		if (activePage != CABIN5_PAGE) {
+			activePage = currentPage::CABIN5_PAGE;
+		}
+		audioManager.PlaySound("pageSwitch", false);
+		m_journal->MarkClueAsOpened(CABIN4);
+	}
+
+
+	/*void setActiveTab3() { if (activePage != CABIN2_PAGE) { activePage = currentPage::CABIN2_PAGE; } audioManager.PlaySound("pageSwitch", false); };
 	void setActiveTab4() { if (activePage != CABIN3_PAGE) { activePage = currentPage::CABIN3_PAGE; } audioManager.PlaySound("pageSwitch", false); };
 	void setActiveTab5() { if (activePage != CABIN4_PAGE) { activePage = currentPage::CABIN4_PAGE; } audioManager.PlaySound("pageSwitch", false); };
-	void setActiveTab6() { if (activePage != CABIN5_PAGE) { activePage = currentPage::CABIN5_PAGE; } audioManager.PlaySound("pageSwitch", false); };
+	void setActiveTab6() { if (activePage != CABIN5_PAGE) { activePage = currentPage::CABIN5_PAGE; } audioManager.PlaySound("pageSwitch", false); };*/
+	
 	void setActiveTab7() { if (activePage != FOODGUIDE_PAGE) { activePage = currentPage::FOODGUIDE_PAGE; } audioManager.PlaySound("pageSwitch", false); };
 
 	void closeJournal() {
