@@ -25,22 +25,28 @@ private:
     std::vector<UIObject*> creditsImages;
     std::unique_ptr<TransitionEffects> transitionEffects;
     UIElement* transitionObject;
+    UIButton* ContinueButton;
     int currentImageIndex = 0;
     float sceneTimer = 0.0f;
-    const float sceneDuration = 3.0f;
+    const float sceneDuration = 4.0f;
     bool isTransitioning = false;
     float transitionProgress = 0.0f;
     const float transitionSpeed = 20.0f; // Speed of transition
 
 public:
     EndCredit() : audioManager(AudioManager::GetInstance()) {
-        audioManager.LoadSound("EndCreditsMusic", "Assets/Sounds/Music/BGmusic_Cutscene.mp3", Music, 1.0f);
 
         InitializeImages();
 
         transitionObject = new UINormal("Transition", "Assets/Images/black.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(25.0f, 20.0f, 0.0f), true);
         transitionEffects = std::unique_ptr<TransitionEffects>(new TransitionEffects(transitionObject));
 
+        ContinueButton = new UIButton("SkpButton", "Assets/Images/UI/Skip_Button.png", glm::vec3(-8.85f, 4.8f, 0.0f), glm::vec3(1.3f / 2, 1.23f / 2, 0.0f), true, false);
+        ContinueButton->SetHoverTexture("Assets/Images/UI/Skip_Button_Highlight.png");
+        ContinueButton->SetOnClickAction([this]() { ContinueButton->setActiveStatus(false); audioManager.PlaySound("ProjectorSFX"); TransitionOut(); });
+        ContinueButton->setActiveStatus(false);
+
+        m_gameObjects.push_back(ContinueButton);
         m_gameObjects.push_back(transitionObject);
     }
 
@@ -57,7 +63,7 @@ public:
     }
 
     void OnEnter() override {
-        audioManager.PlaySound("EndCreditsMusic", true);
+        audioManager.PlaySound("menuMusic", true);
         ResetScene();
         transitionEffects->FadeIn(2.0f);
     }
@@ -82,11 +88,17 @@ public:
             if (currentImageIndex < creditsImages.size() - 1) {
                 StartTransition();
             } else {
-                TransitionOut();
+                Application::Get().SetTimer(4000, [this]() { TransitionOut(); }, false);
             }
         } else {
             sceneTimer += dt;
         }
+
+        Scene::Update(dt, frame);
+        Input& input = Application::GetInput();
+
+        if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0))
+            ContinueButton->setActiveStatus(true);
     }
 
     void StartTransition() {
@@ -128,6 +140,6 @@ public:
     }
 
     void OnExit() override {
-        audioManager.StopSound("EndCreditsMusic");
+
     }
 };

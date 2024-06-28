@@ -611,6 +611,7 @@ public:
         else
         {
             SetInstruction("Inspect an object  to start conversation");
+            ShowInstruction();
             posterInspect->setActiveStatus(!isPosterInspected);
             daggerInspect->setActiveStatus(!isDaggerInspected);
             ObjectsparallaxManager->EnableParallaxEffect();

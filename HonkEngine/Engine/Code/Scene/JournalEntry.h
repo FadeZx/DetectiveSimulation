@@ -22,7 +22,7 @@ public:
 	JournalEntry() :audioManager(AudioManager::GetInstance()) {
 
 		audioManager.LoadSound("cabinMusic", "Assets/Sounds/Music/BGmusic_Cabin.mp3", Music, 4.0f);
-		audioManager.LoadSound("CaseCloseStamp", "Assets/Sounds/SFX_CaseCloseStamp.mp3", SFX, 2.0f);
+		audioManager.LoadSound("CaseCloseStamp", "Assets/Sounds/SFX_CaseCloseStamp.mp3", SFX, 3.0f);
 
 		GameObject* EntrySceneBackground = new UIObject("EntrySceneBackground", "Assets/Images/Ending/EndingSelect_Background.png", true);
 		EntrySceneBackground->SetScale(glm::vec3(19.2f, 10.8f, 0.0f));
@@ -71,20 +71,20 @@ public:
 	}
 	void OnEnter() override {
 
+		audioManager.PlaySound("cabinMusic", true);
 		JournalData::GetInstance()->ActivateLastScene();
 		m_gameObjects.push_back(Journal);
 		m_gameObjects.push_back(&pauseMenu);
 		Journal->drawBook();
 		m_gameObjects.push_back(CloseCaseButton);
 		m_gameObjects.push_back(transitionObject);
-		AudioManager::GetInstance().PlaySound("OpenSceneBGMusic", true);
+		audioManager.StopSound("hallwayMusic");
 		//JournalData::GetInstance()->SetBookState(true); //Lock book	
 
 
 		transitionEffects->FadeIn(2.0f, [this]() {
 			std::cout << "Fade in complete" << std::endl;
 			});
-		audioManager.StopSound("trainAmbience");
 	}
 
 

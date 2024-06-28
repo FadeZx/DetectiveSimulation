@@ -64,6 +64,7 @@ private:
 	Text* timerText;
     UIElement* timerUI;
 	Text* instructionText;
+	Text* moveGuideText;
 
 	UIButton* ReadyButton;
 
@@ -84,19 +85,15 @@ private:
 	bool inDoorCollision = false;
 	bool entering = false;
 
+	bool pressA = false;
+	bool pressD = false;
+	bool moveTextOn = true;
+
 	PauseMenu pauseMenu;
 	
 public:
 	Hallway() :audioManager(AudioManager::GetInstance())
 	{
-		/// Test clue activation
-
-
-		
-
-		/// Draggable paper clues test
-		//JournalData::GetInstance()->ActivateClue(CABIN3, 10);
-		//JournalData::GetInstance()->ActivateClue(CABIN4, 7);
 
 		/*--------------------------------------------------------------🔊LOAD AUDDIO🔊------------------------------------------------------------------------------------------------------- */
 		audioManager.LoadSound("hallwayMusic", "Assets/Sounds/Music/BGmusic_Corridor_NoTimer.mp3", Music, 0.1f);
@@ -211,6 +208,12 @@ public:
 		instructionText->SetScale(0.6f);
 		instructionText->SetPosition(glm::vec3(7.30f, -4.5f, 0.0f));
 		instructionText->SetColor(glm::vec3(1, 1, 1));
+
+
+		moveGuideText = new Text("moveGuideText", "Press [A] to move left and [D] to move right.", "Assets/Fonts/mvboli.ttf", true);
+		moveGuideText->SetScale(0.6f);
+		moveGuideText->SetPosition(glm::vec3(0.0f, -4.5f, 0.0f));
+		moveGuideText->SetColor(glm::vec3(1, 1, 1));
 		
 
 		/*-------------------------------------------------------------💬CREATE UI💬------------------------------------------------------------------------------------------------------- */
@@ -319,6 +322,7 @@ public:
 		m_gameObjects.push_back(pastryOrderText);
 		m_gameObjects.push_back(timerText);
 		m_gameObjects.push_back(instructionText);
+		m_gameObjects.push_back(moveGuideText);
 
 		//Journal
 		m_gameObjects.push_back(Journal);
@@ -379,8 +383,9 @@ public:
 		 }
 		entering = false;
 
+		// Test clue activation
 
-		JournalData::GetInstance()->ActivateClue(CABIN1, 0);
+		/*JournalData::GetInstance()->ActivateClue(CABIN1, 0);
 		JournalData::GetInstance()->ActivateClue(CABIN1, 1);
 		JournalData::GetInstance()->ActivateClue(CABIN1, 2);
 		JournalData::GetInstance()->ActivateClue(CABIN1, 3);
@@ -395,7 +400,11 @@ public:
 		JournalData::GetInstance()->ActivateClue(CABIN3, 4);
 		JournalData::GetInstance()->ActivateClue(CABIN3, 5);
 		JournalData::GetInstance()->ActivateClue(CABIN3, 6);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 7);
+		JournalData::GetInstance()->ActivateClue(CABIN3, 7);*/
+
+		// Draggable paper clues test
+		//JournalData::GetInstance()->ActivateClue(CABIN3, 10);
+		//JournalData::GetInstance()->ActivateClue(CABIN4, 7);
 
 	}
 
@@ -498,11 +507,28 @@ public:
 			}
 		}
 
+		if (moveTextOn) {
+			if (input.Get().GetKeyDown(GLFW_KEY_A)) {
+				pressA = true;
+			}
+
+			if (input.Get().GetKeyDown(GLFW_KEY_D)) {
+				pressD = true;
+			}
+
+			if (pressA && pressD) {
+
+				// Start countdown to hide text
+				Application::Get().SetTimer(8000, [this]() { moveGuideText->setActiveStatus(false);	}, false);
+				moveTextOn = false;
+			}
+		}
+
 	}
 
 	void StartOrderTime() {
 
-		audioManager.PlaySound("bellRing", false);
+		audioManager.PlaySound("servingBellRing", false);
 		GameState currentGameState = gameStateManager.getGameState();
 		RoomState currentRoomState = gameStateManager.getRoomState();
 		ReadyButton->setActiveStatus(false); 

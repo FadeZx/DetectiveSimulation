@@ -90,7 +90,7 @@ public:
 
         skipButton = new UIButton("SkpButton", "Assets/Images/UI/Skip_Button.png", glm::vec3(-8.85f, 4.8f, 0.0f), glm::vec3(1.3f / 2, 1.23f / 2, 0.0f), true, false);
         skipButton->SetHoverTexture("Assets/Images/UI/Skip_Button_Highlight.png");
-        skipButton->SetOnClickAction([this]() { TransitionOut(); });
+        skipButton->SetOnClickAction([this]() { skipButton->setActiveStatus(false); audioManager.PlaySound("ProjectorSFX"); TransitionOut(); });
         skipButton->setActiveStatus(false);
 
 

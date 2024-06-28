@@ -638,6 +638,7 @@ public:
         else
         {
             SetInstruction("Inspect an object  to start conversation");
+            ShowInstruction();
             movingLuggageInspect->setActiveStatus(!isMovingLuggageInspected);
             newspaperInspect->setActiveStatus(!isNewspaperInspected);
             messyClothesInspect->setActiveStatus(!isMessyClothesInspected);

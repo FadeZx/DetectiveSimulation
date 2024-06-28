@@ -114,7 +114,8 @@ public:
 	}
 
 	void OnEnter() override {
-		audioManager.PlaySound("menuMusic", true);
+		if (!audioManager.IsSoundPlaying("menuMusic"))
+			audioManager.PlaySound("menuMusic", true);
 		transitioning = true;
 		transitionEffects->FadeIn(3.0f, [this]() {
 			transitioning = false;
@@ -139,7 +140,7 @@ private:
 			AudioManager::GetInstance().PlaySound("buttonClick2");
 			transitionEffects->FadeOut(2.0f, [this]() {
 				//Application::Get().SetScene("EndCredit");
-				Application::Get().SetScene("OpenScene");
+				Application::Get().SetScene("EndCredit");
 				});
 		}
 	}

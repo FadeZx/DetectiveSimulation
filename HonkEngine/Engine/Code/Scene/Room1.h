@@ -603,6 +603,7 @@ public:
         else
         {
             SetInstruction("Inspect an object  to start conversation");
+            ShowInstruction();
             caneInspect->setActiveStatus(!isCaneInspected);
             letterInspect->setActiveStatus(!isLetterInspected);
             ObjectsparallaxManager->EnableParallaxEffect();

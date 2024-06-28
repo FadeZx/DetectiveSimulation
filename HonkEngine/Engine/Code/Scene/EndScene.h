@@ -66,10 +66,10 @@ public:
 		ContinueButton->SetTextSize(0.52f);
 		ContinueButton->SetTextPosition(glm::vec3(7.55f, 4.52f, 0.0f));
 		ContinueButton->SetOnClickAction([this]() { 
-			Application::Get().SetScene("EndCredit");
 			ContinueButton->setActiveStatus(false);
 			gameStateManager.Reset();
 			journal_data->ResetJournalData();	
+			Application::Get().SetScene("EndCredit");
 			});
 		ContinueButton->setActiveStatus(false);
 
@@ -88,13 +88,14 @@ public:
 	void OnEnter() override {
 
 		audioManager.PlaySound("NewspaperSlam");
+		audioManager.StopSound("trainAmbience");
 
 		final_ending = journal_data->checkMainPageEntry();
 
 		std::cout << "ENDING " << final_ending + 1 << std::endl;
 
 		Application::Get().SetTimer(CONTINUE_TIME, [this]() {
-			ContinueButton->setActiveStatus(true);
+			ShowContinueButton();
 			}, false);
 
 		SetFinalScene(final_ending);
@@ -105,7 +106,7 @@ public:
 
 	void OnExit() override {
 
-		audioManager.StopSound("OpenSceneBGMusic");
+		audioManager.StopSound("cabinMusic");
 
 	}
 
@@ -147,8 +148,20 @@ public:
 			ChosenEndingPoster->SetScale(glm::vec3(targetScaleX, targetScaleY, 0.0f));
 		}
 
+
+
 		Input& input = Application::GetInput();
 
+		if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
+			ShowContinueButton();
+		}
+
+	}
+
+	void ShowContinueButton()
+	{
+		if (ContinueButton->getActiveStatus() == false)
+			ContinueButton->setActiveStatus(true);
 	}
 
 
