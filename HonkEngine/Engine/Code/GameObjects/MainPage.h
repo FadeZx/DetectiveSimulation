@@ -154,11 +154,12 @@ public:
 		EvidenceButton->SetTextColor(glm::vec3(0.58, 0.04, 0.00));
 		EvidenceButton->SetOnClickAction([this]() { clickEvidenceButton(); });*/
 
-		EvidenceButton = new UIButton("EvidenceText", "Assets/Images/Journal/CaseSummary_Underline.png", glm::vec3(3.2f, -1.0f, 0.0f), glm::vec3(5.0f, 0.5f, 0.0f), true, true, "Assets/Fonts/ESA-smb.ttf");
+		EvidenceButton = new UIButton("EvidenceText", "Assets/Images/Journal/CaseSummary_Evidence.png", glm::vec3(3.18f, -0.47f, 0.0f), glm::vec3(4.75f * 0.95f, 0.92f * 0.95f, 0.0f), true, true, "Assets/Fonts/ESA-smb.ttf");
 		EvidenceButton->SetTextSize(0.55f);
 		EvidenceButton->SetTextColor(glm::vec3(0.58, 0.04, 0.00));
+		EvidenceButton->SetTextPosition(glm::vec3(3.2f, -1.0f, 0.0f));
 		EvidenceButton->SetOnClickAction([this]() { clickEvidenceButton(); });
-		EvidenceButton->SetHoverTexture("Assets/Images/Journal/CaseSummary_Underline_Hover.png");
+		EvidenceButton->SetHoverTexture("Assets/Images/Journal/CaseSummary_Evidence_Hover.png");
 
 		evidenceButtonDeferred = new DeferredRenderObject();
 		evidenceButtonDeferred->showObject = false;

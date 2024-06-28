@@ -107,7 +107,7 @@ public:
         OpenScene11->SetPosition(glm::vec3(0.0f, 108.0f, 0.0f));
         OpenScene12->SetPosition(glm::vec3(0.0f, 118.8f, 0.0f));
         OpenScene13->SetPosition(glm::vec3(0.0f, 129.6f, 0.0f));
-   
+
 
         // Create dialogue manager
         UIButton* dialogueBox = new UIButton("DialogueBox", "", glm::vec3(0.0f, -4.5f, 0.0f), glm::vec3(10.96f, 2.05f, 0.0f), true, true, "Assets/Fonts/OverpassMono-SemiBold.ttf");
@@ -204,7 +204,7 @@ public:
 
                 if (instructionText->getActiveStatus())
                 {
-                   instructionText->setActiveStatus(false);
+                    instructionText->setActiveStatus(false);
                 }
                 if (dialogueManager->IsDialogueFinished(dialogueKeys[currentSceneIndex])) {
                     if (currentSceneIndex + 1 < scenes.size()) {
