@@ -84,6 +84,7 @@
     <ClInclude Include="Code\Effects\TransitionEffects.h" />
     <ClInclude Include="Code\PopupWidget\BackToMainMenu.h" />
     <ClInclude Include="Code\Scene\EndCredit.h" />
+    <ClInclude Include="Code\Scene\TutorialScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="External\Library\freetype.lib" />

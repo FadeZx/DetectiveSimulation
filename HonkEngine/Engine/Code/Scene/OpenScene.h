@@ -164,10 +164,10 @@ public:
         skipButton->setActiveStatus(false);
     }
 
-    void OnExit() override {
+    /*void OnExit() override {
         audioManager.StopSound("OpenSceneBGMusic");
 
-    }
+    }*/
 
     void Update(float dt, long frame) override {
         Scene::Update(dt, frame);
@@ -226,7 +226,7 @@ public:
     void TransitionOut()
     {
         isFadingOut = true;
-        transitionEffects->FadeOut(2.0f, [this]() { Application::Get().SetScene("Hallway"); });
+        transitionEffects->FadeOut(2.0f, [this]() { Application::Get().SetScene("TutorialScene"); });
     }
 
     void Render() override {

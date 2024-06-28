@@ -8,7 +8,7 @@ C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\Engine
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\JournalData.h(87,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\JournalData.h(132,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Page.h(40,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\MainPage.h(223,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\MainPage.h(224,1): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(26,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\Player.h(26,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\GameObjects\BellManager.h(44,30): warning C4244: 'argument': conversion from 'float' to 'long', possible loss of data
