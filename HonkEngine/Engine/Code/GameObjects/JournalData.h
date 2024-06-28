@@ -82,7 +82,7 @@ public:
 
 	}
 
-	void setCurrentEvidencetext(UIButtonEmpty* evidenceButton) {
+	void setCurrentEvidencetext(UIButton* evidenceButton) {
 
 		no_of_Evidence = allCabinData[main_page.player_Spy].activeEvidence.size();
 
