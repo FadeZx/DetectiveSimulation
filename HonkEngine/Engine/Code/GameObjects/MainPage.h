@@ -23,9 +23,6 @@ public:
 		UIDraggable* Ticket = new UIDraggable("Ticket", "Assets/Images/Journal/CaseSummary_Ticket.png", glm::vec3(-3.6f, -2.5f, 1.0f), glm::vec3(4.18f, 1.65f, 0.0f), true);
 		Ticket->setDragBoundsByObject(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(12.68f, 7.45f, 1.0f));
 
-		PlayerGuide = new UIDraggable("PlayerGuide", "Assets/Images/Journal/PlayerGuide.png", glm::vec3(-3.4f, 0.25f, 0.0f), glm::vec3(6.4f * 0.6f, 10.8f * 0.6f, 0.0f), true);
-		PlayerGuide->setDragBoundsByObject(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(12.68f, 7.45f, 1.0f));
-
 		//JOURNAL PART
 		GameObject* JournalSleeve = new UIObject("JounalSleeve", "Assets/Images/Journal/CaseSummary_Sleeve.png", true);
 		JournalSleeve->SetScale(glm::vec3(2.68f, 8.09f, 0.0f));
@@ -192,7 +189,6 @@ public:
 		m_gameObjects.push_back(SupremeCourt);
 
 		m_gameObjects.push_back(CaseNews);
-		//m_gameObjects.push_back(PlayerGuide);
 		m_gameObjects.push_back(Ticket);
 		m_gameObjects.push_back(JournalSleeve);
 
@@ -401,10 +397,6 @@ public:
 	virtual void Update(float dt, long frame) override {
 		Page::Update(dt, frame);
 
-		if (JournalData::GetInstance()->GetSceneState()) {
-			PlayerGuide->setActiveStatus(false);
-		}
-
 
 	}
 
@@ -413,8 +405,6 @@ private:
 
 	UIObject* RedCircle;
 	UIObject* RedUnderline;
-
-	UIDraggable* PlayerGuide;
 
 	DeferredRenderObject* redUnderline;
 	DeferredRenderObject* redCircle;

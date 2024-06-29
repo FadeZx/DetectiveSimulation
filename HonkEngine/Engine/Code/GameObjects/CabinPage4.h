@@ -71,7 +71,7 @@ public:
 		A_Clue4->SetColor(glm::vec3(0, 0, 0));
 		A_Clue4->SetScale(0.53f);
 
-		Text* A_Clue5 = new Text("A_Clue5", "Carrying a strange gadget with his luggage", "Assets/Fonts/ESA-smb.ttf");
+		Text* A_Clue5 = new Text("A_Clue5", "Carrying mechanical device in his luggage", "Assets/Fonts/ESA-smb.ttf");
 		A_Clue5->SetPosition(glm::vec3(0.88f, 1.27f, 0.0f));
 		A_Clue5->SetColor(glm::vec3(0, 0, 0));
 		A_Clue5->SetScale(0.6f);

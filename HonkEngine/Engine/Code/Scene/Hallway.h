@@ -394,9 +394,9 @@ public:
 		JournalData::GetInstance()->ActivateClue(CABIN21, 3);
 		JournalData::GetInstance()->ActivateClue(CABIN21, 4);
 		JournalData::GetInstance()->ActivateClue(CABIN21, 5);
-		JournalData::GetInstance()->ActivateClue(CABIN21, 6);*/
+		JournalData::GetInstance()->ActivateClue(CABIN21, 6);
 
-		/*JournalData::GetInstance()->ActivateClue(CABIN1, 0);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 0);
 		JournalData::GetInstance()->ActivateClue(CABIN1, 1);
 		JournalData::GetInstance()->ActivateClue(CABIN1, 2);
 		JournalData::GetInstance()->ActivateClue(CABIN1, 3);
