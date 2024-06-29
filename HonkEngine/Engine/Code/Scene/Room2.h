@@ -87,30 +87,30 @@ public:
         float sm = 1.23f;
 
         //Objects     
-        UIElement* room = new UINormal("cabin2", "Assets/Images/Twins/Twin_Cabin.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(19.0f * sm, 10.55f * sm, 0.0f), true);
-        UIElement* medicineBack = new UINormal("MedicineBack", "Assets/Images/Twins/Twin_Inspection_MedicineBack.png", glm::vec3(-6.4f, -2.9f, 0.0f), glm::vec3(3.44f / 4 * sm, 3.96f / 4 * sm, 0.0f), true);
+        UIElement* room = new UINormal("cabin2", "Assets/Images/Twins/Twin_Cabin.png", glm::vec3(0.0f, 0.17f, 0.0f), glm::vec3(19.0f * sm, 10.55f * sm, 0.0f), true);
+        UIElement* medicineBack = new UINormal("MedicineBack", "Assets/Images/Twins/Twin_Inspection_MedicineBack.png", glm::vec3(-6.4f, -2.7f, 0.0f), glm::vec3(3.44f / 4 * sm, 3.96f / 4 * sm, 0.0f), true);
 
 
         //Inspection Items
-        medicineFront = new UINormal("MedicineFront", "Assets/Images/Twins/Twin_Inspection_MedicineFront.png", glm::vec3(-5.25f, -3.35f, 0.0f), glm::vec3(4.56f / 4 * sm, 1.76f / 4 * sm, 0.0f), true);
-        hat = new UINormal("Hat", "Assets/Images/Twins/Twin_Inspection_Hat.png", glm::vec3(4.6f, -2.05f, 0.0f), glm::vec3(4.89f / 3 * sm, 4.05f / 3 * sm, 0.0f), true);
-        bag = new UINormal("Bag", "Assets/Images/Twins/Twin_Inspection_Bag.png", glm::vec3(2.6f, -5.35f, 0.0f), glm::vec3(5.58f / 3 * sm, 4.92f / 3 * sm, 0.0f), true);
+        medicineFront = new UINormal("MedicineFront", "Assets/Images/Twins/Twin_Inspection_MedicineFront.png", glm::vec3(-5.25f, -3.2f, 0.0f), glm::vec3(4.56f / 4 * sm, 1.76f / 4 * sm, 0.0f), true);
+        hat = new UINormal("Hat", "Assets/Images/Twins/Twin_Inspection_Hat.png", glm::vec3(4.52f, -1.97f, 0.0f), glm::vec3(4.89f / 3 * sm, 4.05f / 3 * sm, 0.0f), true);
+        bag = new UINormal("Bag", "Assets/Images/Twins/Twin_Inspection_Bag.png", glm::vec3(2.6f, -5.3f, 0.0f), glm::vec3(5.58f / 3 * sm, 4.92f / 3 * sm, 0.0f), true);
 
 
         //Inspection Item Buttons
-        medicineFrontInspect = new UIButton("MedicineFrontInspect", "Assets/Images/Twins/Twin_Inspection_MedicineFront.png", glm::vec3(-5.25f, -3.35f, 0.0f), glm::vec3(4.56f / 4 * sm, 1.76f / 4 * sm, 0.0f), true, false, "");
+        medicineFrontInspect = new UIButton("MedicineFrontInspect", "Assets/Images/Twins/Twin_Inspection_MedicineFront.png", glm::vec3(-5.25f, -3.2f, 0.0f), glm::vec3(4.56f / 4 * sm, 1.76f / 4 * sm, 0.0f), true, false, "");
         medicineFrontInspect->SetHoverTexture("Assets/Images/Twins/Twin_Inspection_MedicineFront_Highlight.png");
         medicineFrontInspect->SetOnClickAction([this]() {
             std::cout << "Medicine button clicked." << std::endl;
             inspectingObject = "Medicine";
             });
-        hatInspect = new UIButton("HatInspect", "Assets/Images/Twins/Twin_Inspection_Hat.png", glm::vec3(4.6f, -2.05f, 0.0f), glm::vec3(4.89f / 3 * sm, 4.05f / 3 * sm, 0.0f), true, false, "");
+        hatInspect = new UIButton("HatInspect", "Assets/Images/Twins/Twin_Inspection_Hat.png", glm::vec3(4.52f, -1.97f, 0.0f), glm::vec3(4.89f / 3 * sm, 4.05f / 3 * sm, 0.0f), true, false, "");
         hatInspect->SetHoverTexture("Assets/Images/Twins/Twin_Inspection_Hat_Highlight.png");
         hatInspect->SetOnClickAction([this]() {
             std::cout << "Hat button clicked." << std::endl;
             inspectingObject = "Hat";
             });
-        bagInspect = new UIButton("BagInspect", "Assets/Images/Twins/Twin_Inspection_Bag.png", glm::vec3(2.6f, -5.35f, 0.0f), glm::vec3(5.58f / 3 * sm, 4.92f / 3 * sm, 0.0f), true, false, "");
+        bagInspect = new UIButton("BagInspect", "Assets/Images/Twins/Twin_Inspection_Bag.png", glm::vec3(2.6f, -5.3f, 0.0f), glm::vec3(5.58f / 3 * sm, 4.92f / 3 * sm, 0.0f), true, false, "");
         bagInspect->SetHoverTexture("Assets/Images/Twins/Twin_Inspection_Bag_Highlight.png");
         bagInspect->SetOnClickAction([this]() {
             std::cout << "Bag button clicked." << std::endl;
@@ -123,19 +123,19 @@ public:
 
         //UIs
         //Speaker Sprite emotion
-        UIElement* nathanielNormal = new UINormal("Nathaniel_Normal", "Assets/Images/Twins/Nathaniel_Normal.png", glm::vec3(-3.95f, -2.55f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
-        UIElement* nathanielHappy = new UINormal("Nathaniel_Happy", "Assets/Images/Twins/Nathaniel_Happy.png", glm::vec3(-3.95f, -2.55f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
-        UIElement* nathanielDisappoint = new UINormal("Nathaniel_Disappoint", "Assets/Images/Twins/Nathaniel_Disappoint.png", glm::vec3(-3.95f, -2.55f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
-        UIElement* nathanielUpset = new UINormal("Nathaniel_Upset", "Assets/Images/Twins/Nathaniel_Upset.png", glm::vec3(-3.95f, -2.55f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
-        UIElement* nathanielSad = new UINormal("Nathaniel_Sad", "Assets/Images/Twins/Nathaniel_Sad.png", glm::vec3(-3.95f, -2.55f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
-        UIElement* nathanielShy = new UINormal("Nathaniel_Shy", "Assets/Images/Twins/Nathaniel_Shy.png", glm::vec3(-3.95f, -2.55f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
+        UIElement* nathanielNormal = new UINormal("Nathaniel_Normal", "Assets/Images/Twins/Nathaniel_Normal.png", glm::vec3(-3.95f, -2.39f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
+        UIElement* nathanielHappy = new UINormal("Nathaniel_Happy", "Assets/Images/Twins/Nathaniel_Happy.png", glm::vec3(-3.95f, -2.39f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
+        UIElement* nathanielDisappoint = new UINormal("Nathaniel_Disappoint", "Assets/Images/Twins/Nathaniel_Disappoint.png", glm::vec3(-3.95f, -2.39f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
+        UIElement* nathanielUpset = new UINormal("Nathaniel_Upset", "Assets/Images/Twins/Nathaniel_Upset.png", glm::vec3(-3.95f, -2.39f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
+        UIElement* nathanielSad = new UINormal("Nathaniel_Sad", "Assets/Images/Twins/Nathaniel_Sad.png", glm::vec3(-3.95f, -2.39f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
+        UIElement* nathanielShy = new UINormal("Nathaniel_Shy", "Assets/Images/Twins/Nathaniel_Shy.png", glm::vec3(-3.95f, -2.39f, 0.0f), glm::vec3(4.72f * sm, 6.19f * sm, 0.0f), true);
 
-        UIElement* evelynNormal = new UINormal("Evelyn_Normal", "Assets/Images/Twins/Evelyn_Normal.png", glm::vec3(5.2f, -2.58f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
-        UIElement* evelynHappy = new UINormal("Evelyn_Happy", "Assets/Images/Twins/Evelyn_Happy.png", glm::vec3(5.2f, -2.58f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
-        UIElement* evelynDisappoint = new UINormal("Evelyn_Disappoint", "Assets/Images/Twins/Evelyn_Disappoint.png", glm::vec3(5.2f, -2.58f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
-        UIElement* evelynUpset = new UINormal("Evelyn_Upset", "Assets/Images/Twins/Evelyn_Upset.png", glm::vec3(5.2f, -2.58f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
-        UIElement* evelynSad = new UINormal("Evelyn_Sad", "Assets/Images/Twins/Evelyn_Sad.png", glm::vec3(5.2f, -2.58f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
-        UIElement* evelynShy = new UINormal("Evelyn_Shy", "Assets/Images/Twins/Evelyn_Shy.png", glm::vec3(5.2f, -2.58f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
+        UIElement* evelynNormal = new UINormal("Evelyn_Normal", "Assets/Images/Twins/Evelyn_Normal.png", glm::vec3(5.2f, -2.45f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
+        UIElement* evelynHappy = new UINormal("Evelyn_Happy", "Assets/Images/Twins/Evelyn_Happy.png", glm::vec3(5.2f, -2.45f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
+        UIElement* evelynDisappoint = new UINormal("Evelyn_Disappoint", "Assets/Images/Twins/Evelyn_Disappoint.png", glm::vec3(5.2f, -2.45f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
+        UIElement* evelynUpset = new UINormal("Evelyn_Upset", "Assets/Images/Twins/Evelyn_Upset.png", glm::vec3(5.2f, -2.45f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
+        UIElement* evelynSad = new UINormal("Evelyn_Sad", "Assets/Images/Twins/Evelyn_Sad.png", glm::vec3(5.2f, -2.45f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
+        UIElement* evelynShy = new UINormal("Evelyn_Shy", "Assets/Images/Twins/Evelyn_Shy.png", glm::vec3(5.2f, -2.45f, 0.0f), glm::vec3(3.06f * sm, 5.87f * sm, 0.0f), true);
 
         //Dialogue Box
         UIButton* dialogueBox = new UIButton("DialogueBox", "Assets/Images/UI/DialogueBox.png",

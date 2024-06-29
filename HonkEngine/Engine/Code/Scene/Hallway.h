@@ -137,8 +137,8 @@ public:
 		/*-------------------------------------------------------------🚪CREATE DOORS🚪------------------------------------------------------------------------------------------------------- */
 		GameObject* roomdoor1Highlight = new RenderGameObject("RoomdoorHighlight1", "Assets/Images/Corridor/PassengerDoor_Highlight.png");
 		GameObject* roomdoor2Highlight = new RenderGameObject("RoomdoorHighlight1", "Assets/Images/Corridor/PassengerDoor_Highlight.png");
-		GameObject* roomdoor3Highlight = new RenderGameObject("RoomdoorHighlight2", "Assets/Images/Corridor/PassengerDoor_Highlight.png");
-		GameObject* roomdoor4Highlight = new RenderGameObject("RoomdoorHighlight2", "Assets/Images/Corridor/PassengerDoor_Highlight.png");
+		GameObject* roomdoor3Highlight = new RenderGameObject("RoomdoorHighlight3", "Assets/Images/Corridor/PassengerDoor3_Highlight.png");
+		GameObject* roomdoor4Highlight = new RenderGameObject("RoomdoorHighlight4", "Assets/Images/Corridor/PassengerDoor4_Highlight.png");
 		GameObject* kitchendoorHighlight = new RenderGameObject("KitchendoorHighlight", "Assets/Images/Corridor/KitchenDoor_Highlight.png");
 
 		DoorManager& doorManager = DoorManager::GetInstance();
@@ -148,10 +148,10 @@ public:
 		room2Door = new Door("Room2Door", roomdoor2Highlight, glm::vec3(-8.588f, -0.632f, 0.0f), glm::vec3(2.29f * 1.2f, 4.65f * 1.2f, 0.0f), "Room2");
 		doorManager.AddDoor(room2Door);
 
-		room3Door = new Door("Room3Door", roomdoor3Highlight, glm::vec3(0.38f, -0.632f, 0.0f), glm::vec3(2.29f * 1.2f, 4.65f * 1.2f, 0.0f), "Room3");
+		room3Door = new Door("Room3Door", roomdoor3Highlight, glm::vec3(0.367f, -0.622f, 0.0f), glm::vec3(2.29f * 1.2f, 4.65f * 1.2f, 0.0f), "Room3");
 		doorManager.AddDoor(room3Door);
 
-		room4Door = new Door("Room4Door", roomdoor4Highlight, glm::vec3(9.358f, -0.632f, 0.0f), glm::vec3(2.29f * 1.2f, 4.65f * 1.2f, 0.0f), "Room4");
+		room4Door = new Door("Room4Door", roomdoor4Highlight, glm::vec3(9.345f, -0.622f, 0.0f), glm::vec3(2.29f * 1.2f, 4.65f * 1.2f, 0.0f), "Room4");
 		doorManager.AddDoor(room4Door);
 
 		kitchenDoor = new Door("KitchenDoor", kitchendoorHighlight, glm::vec3(18.31f, -0.629f, 0.0f), glm::vec3(2.29f * 1.2f, 4.65f * 1.2f, 0.0f), "Kitchen");
@@ -210,7 +210,7 @@ public:
 		instructionText->SetColor(glm::vec3(1, 1, 1));
 
 
-		moveGuideText = new Text("moveGuideText", "Press [A] to move left and [D] to move right.", "Assets/Fonts/mvboli.ttf", true);
+		moveGuideText = new Text("moveGuideText", "Press [A] to move left and [D] to move right", "Assets/Fonts/mvboli.ttf", true);
 		moveGuideText->SetScale(0.6f);
 		moveGuideText->SetPosition(glm::vec3(0.0f, -4.5f, 0.0f));
 		moveGuideText->SetColor(glm::vec3(1, 1, 1));
@@ -347,9 +347,12 @@ public:
 
 		if (firstEntry) {
 			journalArrow->setActiveStatus(true);
+			moveGuideText->setActiveStatus(true);
+			moveTextOn = true;
 		}
 		else {
 			journalArrow->setActiveStatus(false);
+			moveTextOn = false;
 		}
 
 		journalUpdateIcon->setActiveStatus(JournalData::GetInstance()->HasUnopenedClue());
@@ -384,6 +387,14 @@ public:
 		entering = false;
 
 		// Test clue activation
+
+		/*JournalData::GetInstance()->ActivateClue(CABIN21, 0);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 1);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 2);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 3);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 4);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 5);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 6);*/
 
 		/*JournalData::GetInstance()->ActivateClue(CABIN1, 0);
 		JournalData::GetInstance()->ActivateClue(CABIN1, 1);
@@ -517,9 +528,8 @@ public:
 			}
 
 			if (pressA && pressD) {
-
 				// Start countdown to hide text
-				Application::Get().SetTimer(8000, [this]() { moveGuideText->setActiveStatus(false);	}, false);
+				Application::Get().SetTimer(5000, [this]() { moveGuideText->setActiveStatus(false);	}, false);
 				moveTextOn = false;
 			}
 		}

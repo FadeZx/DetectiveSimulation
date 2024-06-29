@@ -90,31 +90,31 @@ public:
         float sm = 1.23f;
 
         //Objects     
-        UIElement* room = new UINormal("cabin1", "Assets/Images/Archibald/Archibald_Cabin.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(19.0f * sm, 10.55f * sm, 0.0f), true);
-        UIElement* lamp = new UINormal("Lamp", "Assets/Images/Archibald/Archibald_Lamp.png", glm::vec3(1.3f, -0.5f, 0.0f), glm::vec3(0.84f * sm, 1.94f * sm, 0.0f), true);
-        UIElement* luggage = new UINormal("Luggage", "Assets/Images/Archibald/Archibald_Bag.png", glm::vec3(6.2f, -1.9f, 0.0f), glm::vec3(1.59f * sm * 1.2f, 2.32f * sm * 1.2f, 0.0f), true);
+        UIElement* room = new UINormal("cabin1", "Assets/Images/Archibald/Archibald_Cabin.png", glm::vec3(0.0f, 0.2f, 0.0f), glm::vec3(19.0f * sm, 10.55f * sm, 0.0f), true);
+        UIElement* lamp = new UINormal("Lamp", "Assets/Images/Archibald/Archibald_Lamp.png", glm::vec3(1.3f, -0.3f, 0.0f), glm::vec3(0.84f * sm, 1.94f * sm, 0.0f), true);
+        UIElement* luggage = new UINormal("Luggage", "Assets/Images/Archibald/Archibald_Bag.png", glm::vec3(6.2f, -1.67f, 0.0f), glm::vec3(1.59f * sm * 1.2f, 2.32f * sm * 1.2f, 0.0f), true);
         
         //Inspection Items
-        movingLuggage = new UINormal("MovingLuggage", "Assets/Images/Archibald/Archibald_Inspection_MovingLuggage.png", glm::vec3(1.7f, -4.6f, 0.0f), glm::vec3(3.78f * sm * 1.2f, 2.38f * sm * 1.2f, 0.0f), true);
-        newspaper = new UINormal("Newspaper", "Assets/Images/Archibald/Archibald_Inspection_Newspaper.png", glm::vec3(-3.139f, 0.224f, 0.0f), glm::vec3(1.09f * sm , 2.22f * sm, 0.0f), true);
+        movingLuggage = new UINormal("MovingLuggage", "Assets/Images/Archibald/Archibald_Inspection_MovingLuggage.png", glm::vec3(1.7f, -4.45f, 0.0f), glm::vec3(3.78f * sm * 1.2f, 2.38f * sm * 1.2f, 0.0f), true);
+        newspaper = new UINormal("Newspaper", "Assets/Images/Archibald/Archibald_Inspection_Newspaper.png", glm::vec3(-3.139f, 0.415f, 0.0f), glm::vec3(1.09f * sm , 2.22f * sm, 0.0f), true);
        
 
         //Inspection Item Buttons
-        movingLuggageInspect = new UIButton("MovingLuggageInspect", "Assets/Images/Archibald/Archibald_Inspection_MovingLuggage.png", glm::vec3(1.7f, -4.6f, 0.0f), glm::vec3(3.78f * sm * 1.2f, 2.38f * sm * 1.2f, 0.0f), true, false, "");
+        movingLuggageInspect = new UIButton("MovingLuggageInspect", "Assets/Images/Archibald/Archibald_Inspection_MovingLuggage.png", glm::vec3(1.7f, -4.45f, 0.0f), glm::vec3(3.78f * sm * 1.2f, 2.38f * sm * 1.2f, 0.0f), true, false, "");
         movingLuggageInspect->SetHoverTexture("Assets/Images/Archibald/Archibald_Inspection_MovingLuggage_Highlight.png");
         movingLuggageInspect->SetOnClickAction([this]() {
             std::cout << "MovingLuggage button clicked." << std::endl;
             inspectingObject = "MovingLuggage";
             });
 
-        newspaperInspect = new UIButton("NewspaperInspect", "Assets/Images/Archibald/Archibald_Inspection_Newspaper.png", glm::vec3(-3.139f, 0.224f, 0.0f), glm::vec3(1.09f * sm, 2.22f * sm, 0.0f), true, false, "");
+        newspaperInspect = new UIButton("NewspaperInspect", "Assets/Images/Archibald/Archibald_Inspection_Newspaper.png", glm::vec3(-3.139f, 0.415f, 0.0f), glm::vec3(1.09f * sm, 2.22f * sm, 0.0f), true, false, "");
         newspaperInspect->SetHoverTexture("Assets/Images/Archibald/Archibald_Inspection_Newspaper_Highlight.png");
         newspaperInspect->SetOnClickAction([this]() {
             std::cout << "Newspaper button clicked." << std::endl;
             inspectingObject = "Newspaper";
             });
 
-        messyClothesInspect = new UIButton("MessyClothesInspect", "Assets/Images/Archibald/Archibald_Inspection_MessyClothes.png", glm::vec3(-3.58f, -1.99f, 0.0f), glm::vec3(6.6f * sm, 7.6f * sm, 0.0f), true, false, "");
+        messyClothesInspect = new UIButton("MessyClothesInspect", "Assets/Images/Archibald/Archibald_Inspection_MessyClothes.png", glm::vec3(-3.58f, -1.8f, 0.0f), glm::vec3(6.6f * sm, 7.6f * sm, 0.0f), true, false, "");
         messyClothesInspect->SetHoverTexture("Assets/Images/Archibald/Archibald_Inspection_MessyClothes_Highlight.png");
         messyClothesInspect->SetOnClickAction([this]() {
             std::cout << "MessyClothes button clicked." << std::endl;
@@ -129,12 +129,12 @@ public:
 
         //UIs
         //Speaker Sprite emotion
-        UIElement* archibaldNormal = new UINormal("Archibald_Normal", "Assets/Images/Archibald/Archibald_Normal.png", glm::vec3(-3.58f, -1.99f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
-        UIElement* archibaldHappy = new UINormal("Archibald_Happy", "Assets/Images/Archibald/Archibald_Happy.png", glm::vec3(-3.58f, -1.99f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
-        UIElement* archibaldDisappoint = new UINormal("Archibald_Disappoint", "Assets/Images/Archibald/Archibald_Disappoint.png", glm::vec3(-3.58f, -1.99f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
-        UIElement* archibaldUpset = new UINormal("Archibald_Upset", "Assets/Images/Archibald/Archibald_Upset.png", glm::vec3(-3.58f, -1.99f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
-        UIElement* archibaldSad = new UINormal("Archibald_Sad", "Assets/Images/Archibald/Archibald_Sad.png", glm::vec3(-3.58f, -1.99f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
-        UIElement* archibaldShy = new UINormal("Archibald_Shy", "Assets/Images/Archibald/Archibald_Shy.png", glm::vec3(-3.58f, -1.99f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
+        UIElement* archibaldNormal = new UINormal("Archibald_Normal", "Assets/Images/Archibald/Archibald_Normal.png", glm::vec3(-3.58f, -1.8f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
+        UIElement* archibaldHappy = new UINormal("Archibald_Happy", "Assets/Images/Archibald/Archibald_Happy.png", glm::vec3(-3.58f, -1.8f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
+        UIElement* archibaldDisappoint = new UINormal("Archibald_Disappoint", "Assets/Images/Archibald/Archibald_Disappoint.png", glm::vec3(-3.58f, -1.8f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
+        UIElement* archibaldUpset = new UINormal("Archibald_Upset", "Assets/Images/Archibald/Archibald_Upset.png", glm::vec3(-3.58f, -1.8f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
+        UIElement* archibaldSad = new UINormal("Archibald_Sad", "Assets/Images/Archibald/Archibald_Sad.png", glm::vec3(-3.58f, -1.8f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
+        UIElement* archibaldShy = new UINormal("Archibald_Shy", "Assets/Images/Archibald/Archibald_Shy.png", glm::vec3(-3.58f, -1.8f, 0.0f), glm::vec3(6.46f * sm, 7.32f * sm, 0.0f), true);
 
         //Dialogue Box
         UIButton* dialogueBox = new UIButton("DialogueBox", "Assets/Images/UI/DialogueBox.png",

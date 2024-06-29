@@ -86,24 +86,24 @@ public:
         float sm = 1.23f;
 
         //Objects     
-        UIElement* room = new UINormal("Cabin4", "Assets/Images/Octavia/Octavia_Cabin.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(19.0f * sm, 10.55f * sm, 0.0f), true);
-        UIElement* bag = new UINormal("Bag", "Assets/Images/Octavia/Octavia_Bag.png", glm::vec3(-1.7f, -4.85f, 0.0f), glm::vec3(3.75f * sm, 2.7f * sm, 0.0f), true);
-        UIElement* lamp = new UINormal("Lamp", "Assets/Images/Octavia/Octavia_Lamp.png", glm::vec3(-1.65f, -0.335f, 0.0f), glm::vec3(1.25f * sm, 2.22f * sm, 0.0f), true);
+        UIElement* room = new UINormal("Cabin4", "Assets/Images/Octavia/Octavia_Cabin.png", glm::vec3(0.0f, 0.15f, 0.0f), glm::vec3(19.0f * sm, 10.55f * sm, 0.0f), true);
+        UIElement* bag = new UINormal("Bag", "Assets/Images/Octavia/Octavia_Bag.png", glm::vec3(-1.7f, -4.75f, 0.0f), glm::vec3(3.75f * sm, 2.7f * sm, 0.0f), true);
+        UIElement* lamp = new UINormal("Lamp", "Assets/Images/Octavia/Octavia_Lamp.png", glm::vec3(-1.65f, -0.19f, 0.0f), glm::vec3(1.25f * sm, 2.22f * sm, 0.0f), true);
 
 
         //Inspection Items
-        poster = new UINormal("OperaPoster", "Assets/Images/Octavia/Octavia_Inspection_Poster.png",    glm::vec3(0.42f, 1.9f, 0.0f),   glm::vec3(5.88f / 4 * sm, 7.4f / 4 * sm, 0.0f), true);
-        dagger = new UINormal("Dagger", "Assets/Images/Octavia/Octavia_Inspection_Dagger.png",               glm::vec3(-5.925f, 2.95f, 0.0f),   glm::vec3(2.72f / 4 * sm, 4.44f / 4 * sm, 0.0f), true);
+        poster = new UINormal("OperaPoster", "Assets/Images/Octavia/Octavia_Inspection_Poster.png",    glm::vec3(0.42f, 2.1f, 0.0f),   glm::vec3(5.88f / 4 * sm, 7.4f / 4 * sm, 0.0f), true);
+        dagger = new UINormal("Dagger", "Assets/Images/Octavia/Octavia_Inspection_Dagger.png",               glm::vec3(-5.925f, 3.09f, 0.0f),   glm::vec3(2.72f / 4 * sm, 4.44f / 4 * sm, 0.0f), true);
 
 
         //Inspection Item Buttons
-        posterInspect = new UIButton("OperaPoster", "Assets/Images/Octavia/Octavia_Inspection_Poster.png", glm::vec3(0.42f, 1.9f, 0.0f), glm::vec3(5.88f / 4 * sm, 7.4f / 4 * sm, 0.0f), true, false, "");
+        posterInspect = new UIButton("OperaPoster", "Assets/Images/Octavia/Octavia_Inspection_Poster.png", glm::vec3(0.42f, 2.1f, 0.0f), glm::vec3(5.88f / 4 * sm, 7.4f / 4 * sm, 0.0f), true, false, "");
         posterInspect->SetHoverTexture("Assets/Images/Octavia/Octavia_Inspection_Poster_Highlight.png");
         posterInspect->SetOnClickAction([this]() {
             std::cout << "OperaPoster button clicked." << std::endl;
             inspectingObject = "Poster";
             });
-        daggerInspect = new UIButton("HatInspect", "Assets/Images/Octavia/Octavia_Inspection_Dagger.png", glm::vec3(-5.925f, 2.95f, 0.0f), glm::vec3(2.72f / 4 * sm, 4.44f / 4 * sm, 0.0f), true, false, "");
+        daggerInspect = new UIButton("HatInspect", "Assets/Images/Octavia/Octavia_Inspection_Dagger.png", glm::vec3(-5.925f, 3.09f, 0.0f), glm::vec3(2.72f / 4 * sm, 4.44f / 4 * sm, 0.0f), true, false, "");
         daggerInspect->SetHoverTexture("Assets/Images/Octavia/Octavia_Inspection_Dagger_Highlight.png");
         daggerInspect->SetOnClickAction([this]() {
             std::cout << "Dagger button clicked." << std::endl;
@@ -115,13 +115,13 @@ public:
 
         //UIs
         //Speaker Sprite emotion
-        UIElement* octaviaNormal = new UINormal("Octavia_Normal", "Assets/Images/Octavia/Octavia_Normal.png",                   glm::vec3(4.4f, -1.7f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
-        UIElement* octaviaHappy = new UINormal("Octavia_Happy", "Assets/Images/Octavia/Octavia_Happy.png",                      glm::vec3(4.4f, -1.7f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
-        UIElement* octaviaHappy2 = new UINormal("Octavia_Happy2", "Assets/Images/Octavia/Octavia_Happy2.png",                   glm::vec3(4.4f, -1.7f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
-        UIElement* octaviaDisappoint = new UINormal("Octavia_Disappoint", "Assets/Images/Octavia/Octavia_Disappoint.png",       glm::vec3(4.4f, -1.7f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
-        UIElement* octaviaUpset = new UINormal("Octavia_Upset", "Assets/Images/Octavia/Octavia_Upset.png",                      glm::vec3(4.4f, -1.7f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
-        UIElement* octaviaSad = new UINormal("Octavia_Sad", "Assets/Images/Octavia/Octavia_Sad.png",                            glm::vec3(4.4f, -1.7f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
-        UIElement* octaviaSurprise = new UINormal("Octavia_Surprise", "Assets/Images/Octavia/Octavia_Surprise.png",             glm::vec3(4.4f, -1.7f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
+        UIElement* octaviaNormal = new UINormal("Octavia_Normal", "Assets/Images/Octavia/Octavia_Normal.png",                   glm::vec3(4.4f, -1.55f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
+        UIElement* octaviaHappy = new UINormal("Octavia_Happy", "Assets/Images/Octavia/Octavia_Happy.png",                      glm::vec3(4.4f, -1.55f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
+        UIElement* octaviaHappy2 = new UINormal("Octavia_Happy2", "Assets/Images/Octavia/Octavia_Happy2.png",                   glm::vec3(4.4f, -1.55f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
+        UIElement* octaviaDisappoint = new UINormal("Octavia_Disappoint", "Assets/Images/Octavia/Octavia_Disappoint.png",       glm::vec3(4.4f, -1.55f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
+        UIElement* octaviaUpset = new UINormal("Octavia_Upset", "Assets/Images/Octavia/Octavia_Upset.png",                      glm::vec3(4.4f, -1.55f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
+        UIElement* octaviaSad = new UINormal("Octavia_Sad", "Assets/Images/Octavia/Octavia_Sad.png",                            glm::vec3(4.4f, -1.55f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
+        UIElement* octaviaSurprise = new UINormal("Octavia_Surprise", "Assets/Images/Octavia/Octavia_Surprise.png",             glm::vec3(4.4f, -1.55f, 0.0f), glm::vec3(6.05f * sm, 7.76f * sm, 0.0f), true);
 
 
         //Dialogue Box

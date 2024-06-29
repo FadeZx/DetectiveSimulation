@@ -11,7 +11,7 @@
 
 #include "../GameObjects/JournalData.h"
 
-#define CONTINUE_TIME 10000
+#define CONTINUE_TIME 15000
 class EndScene : public Scene {
 
 public:
@@ -19,7 +19,7 @@ public:
 	EndScene() :audioManager(AudioManager::GetInstance())
 	{
 
-		audioManager.LoadSound("NewspaperSlam", "Assets/Sounds/SFX_EndingNewspaperSlam.mp3", SFX, 4.0f);
+		audioManager.LoadSound("NewspaperSlam", "Assets/Sounds/SFX_EndingNewspaperSlam.mp3", SFX, 9.0f);
 
 		GameObject* EndingSceneBackground = new UIObject("EndingSceneBackground", "Assets/Images/Ending/Ending_Background.png", true);
 		EndingSceneBackground->SetScale(glm::vec3(19.2f, 10.8f, 0.0f));
@@ -67,11 +67,13 @@ public:
 		ContinueButton->SetTextPosition(glm::vec3(7.55f, 4.52f, 0.0f));
 		ContinueButton->SetOnClickAction([this]() { 
 			ContinueButton->setActiveStatus(false);
-			gameStateManager.Reset();
-			journal_data->ResetJournalData();	
-			Application::Get().SetScene("EndCredit");
+			audioManager.PlaySound("buttonClick2");
+			TransitionOut();
 			});
 		ContinueButton->setActiveStatus(false);
+
+		transitionObject = new UINormal("Transition", "Assets/Images/black.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(25.0f, 20.0f, 0.0f), true);
+		transitionEffects = std::unique_ptr<TransitionEffects>(new TransitionEffects(transitionObject));
 
 		m_gameObjects.push_back(EndingSceneBackground);
 		m_gameObjects.push_back(MissingPoster);
@@ -82,13 +84,13 @@ public:
 		m_gameObjects.push_back(Ending4);
 		m_gameObjects.push_back(Ending5);
 		m_gameObjects.push_back(Ending6);
+		m_gameObjects.push_back(transitionObject);
 
 	}
 
 	void OnEnter() override {
 
 		audioManager.PlaySound("NewspaperSlam");
-		audioManager.StopSound("trainAmbience");
 
 		final_ending = journal_data->checkMainPageEntry();
 
@@ -100,13 +102,15 @@ public:
 
 		SetFinalScene(final_ending);
 		currentTime = 0.0f;
+		transitioning = false;
+		transitionEffects->FadeIn(0.5f);
 
 	}
 
 
 	void OnExit() override {
 
-		audioManager.StopSound("cabinMusic");
+		audioManager.StopSound("OpenSceneBGMusic");
 
 	}
 
@@ -136,7 +140,7 @@ public:
 	{
 
 		Scene::Update(dt, frame);
-
+		transitionEffects->Update(dt);
 
 		if (ChosenEndingPoster && currentTime <= zoomInDuration) {
 
@@ -152,16 +156,27 @@ public:
 
 		Input& input = Application::GetInput();
 
-		if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
-			ShowContinueButton();
+		if (!transitioning)
+		{
+			if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
+				ShowContinueButton();
+			}
 		}
 
 	}
 
 	void ShowContinueButton()
 	{
-		if (ContinueButton->getActiveStatus() == false)
+		if (!ContinueButton->getActiveStatus())
 			ContinueButton->setActiveStatus(true);
+	}
+
+	void TransitionOut()
+	{
+		gameStateManager.Reset();
+		journal_data->ResetJournalData();
+		transitionEffects->FadeOut(3.0f, [this]() { Application::Get().SetScene("EndCredit"); });
+		transitioning = true;
 	}
 
 
@@ -190,7 +205,12 @@ private:
 
 	UIButton* ContinueButton;
 
+	UIElement* transitionObject;
+	std::unique_ptr<TransitionEffects> transitionEffects;
+
 	float zoomInDuration = 0.5f;  // Duration for zoom in effect in seconds
 	float currentTime = 0.0f;     // Current time elapsed
+
+	bool transitioning = false;
 
 };

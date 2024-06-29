@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialogues xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Dialogue id="10WD02">
+		<Speaker name="Waiter">
+			<line1>Authorities urgently inspect the potential bomb location you identified,</line1>
+		</Speaker>
+		<Choices/>
+	</Dialogue>
+	<Dialogue id="10WD02">
+		<Speaker name="Waiter">
+			<line1>racing against time to defuse the ticking threat.</line1>
+		</Speaker>
+		<Choices/>
+	</Dialogue>
+	<Dialogue id="10WD02">
+		<Speaker name="Waiter">
+			<line1>Now, the resolution of this national catastrophe</line1>
+		</Speaker>
+		<Choices/>
+	</Dialogue>
+	<Dialogue id="10WD02">
+		<Speaker name="Waiter">
+			<line1>dominates the front page of the following day's newspaper...</line1>
+		</Speaker>
+		<Choices/>
+	</Dialogue>
+</Dialogues>

@@ -24,6 +24,7 @@
 #include "Scene/OpenScene.h"
 #include "Scene/EndCredit.h"
 #include "Scene/TutorialScene.h"
+#include "Scene/BeforeEndCutscene.h"
 #include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -58,6 +59,7 @@ void processInput(GLFWwindow* window);
     game.AddScene("EndScene", new EndScene());
     game.AddScene("EndCredit", new EndCredit());
     game.AddScene("TutorialScene", new TutorialScene());
+    game.AddScene("BeforeEndCutscene", new BeforeEndCutscene());
     game.SetScene("LoadScene");
 
     // Run game
