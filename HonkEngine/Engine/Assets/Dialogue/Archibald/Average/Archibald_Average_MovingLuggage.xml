@@ -184,7 +184,7 @@
 		</Speaker>
 		<Choices>
 			<Choice1 next="2WD71">Ask how he got invited</Choice1>
-			<Choice2 next="2WD72">Praise him</Choice2>
+			<Choice2 next="2WD72" clueID="CABIN3_6">Praise him</Choice2>
 		</Choices>
 	</Dialogue>
 	<Dialogue id="2WD71" next="2AD49">
@@ -287,8 +287,8 @@
 			<line1>What a pointless lost to my precious  time!</line1>
 		</Speaker>
 		<Choices>
-			<Choice1 next="2WD37" clueID="CABIN3_6">Ask about the client identity</Choice1>
-			<Choice2 next="2WD38" clueID="CABIN3_6">Ask what kind of product  did they buy</Choice2>
+			<Choice1 next="2WD37">Ask about the client identity</Choice1>
+			<Choice2 next="2WD38">Ask what kind of product  did they buy</Choice2>
 		</Choices>
 	</Dialogue>
 	<Dialogue id="2WD37" next="2AD49_1">

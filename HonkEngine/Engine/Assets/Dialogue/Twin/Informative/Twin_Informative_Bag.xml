@@ -48,7 +48,7 @@
 			<line1>You two are quite brave for children  your age.</line1>
 		</Speaker>
 		<Choices>
-			<Choice1 next="3WD38">Are you going to see your parent?</Choice1>
+			<Choice1 next="3WD38">Are you going to see your parents?</Choice1>
 			<Choice2 next="3WD39">It must be challenging to  travel alone</Choice2>
 		</Choices>
 	</Dialogue>
@@ -63,7 +63,7 @@
 			<line1>I've always wanted to travel with my  entire family.</line1>
 		</Speaker>
 		<Choices>
-			<Choice1 next="3WD38">Are you going to see your parent?</Choice1>
+			<Choice1 next="3WD38">Are you going to see your parents?</Choice1>
 			<Choice2 next="3WD39">It must be challenging to travel alone</Choice2>
 		</Choices>
 	</Dialogue>

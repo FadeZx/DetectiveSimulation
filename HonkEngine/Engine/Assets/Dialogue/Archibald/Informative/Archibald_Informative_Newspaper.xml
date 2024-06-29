@@ -145,9 +145,9 @@
 			<line1>Where do you come from?</line1>
 		</Speaker>
 		<Choices>
-			<Choice1 next="2WD48" clueID="CABIN3_6">Westside</Choice1>
-			<Choice2 next="2WD49" clueID="CABIN3_6">Same as you</Choice2>
-			<Choice3 next="2WD47" clueID="CABIN3_6">Eastside</Choice3>
+			<Choice1 next="2WD48" clueID="CABIN3_1">Westside</Choice1>
+			<Choice2 next="2WD49" clueID="CABIN3_1">Same as you</Choice2>
+			<Choice3 next="2WD47" clueID="CABIN3_1">Eastside</Choice3>
 		</Choices>
 	</Dialogue>
 	<Dialogue id="2WD47" next="2AD55_2">
@@ -513,8 +513,8 @@
 			<line1>BUT THE BOMB- THAT BOMB.</line1>
 		</Speaker>
 		<Choices>
-			<Choice1 next="2WD67" clueID="CABIN3_1">Ask if he knows anything more</Choice1>
-			<Choice2 next="2WD68" clueID="CABIN3_1">Remain silent</Choice2>
+			<Choice1 next="2WD67">Ask if he knows anything more</Choice1>
+			<Choice2 next="2WD68">Remain silent</Choice2>
 		</Choices>
 	</Dialogue>
 	<Dialogue id="2WD67" next="2AD75">

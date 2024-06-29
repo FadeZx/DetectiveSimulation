@@ -140,9 +140,9 @@
 			<line1>I wonder where you grew up to become  such an absolute failure.</line1>
 		</Speaker>
 		<Choices>
-			<Choice1 next="2WD48" clueID="CABIN3_6">Westside</Choice1>
-			<Choice2 next="2WD49" clueID="CABIN3_6">Same as you</Choice2>
-			<Choice3 next="2WD47" clueID="CABIN3_6">Eastside</Choice3>
+			<Choice1 next="2WD48">Westside</Choice1>
+			<Choice2 next="2WD49">Same as you</Choice2>
+			<Choice3 next="2WD47">Eastside</Choice3>
 		</Choices>
 	</Dialogue>
 	<Dialogue id="2WD47" next="2AD55_2">
