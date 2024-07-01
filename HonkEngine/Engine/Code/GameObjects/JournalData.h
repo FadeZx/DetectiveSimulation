@@ -323,6 +323,7 @@ public:
 
 		// Reset lock book state
 		LockBook = false;
+		LastScene = false;
 
 		unopenedClues.clear();
 

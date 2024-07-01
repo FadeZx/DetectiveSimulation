@@ -79,7 +79,7 @@ public:
 		BlankPage->SetScale(glm::vec3(12.68f, 7.45f, 1.0f));
 		BlankPage->SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 
-		UIButton* CloseJournalButton = new UIButton("CloseButton", "Assets/Images/Journal/Journal_CloseButton.png", glm::vec3(5.25f, 4.0f, 0.0f), glm::vec3(1.04f, 1.70f, 0.0f), true, false, "");
+		CloseJournalButton = new UIButton("CloseButton", "Assets/Images/Journal/Journal_CloseButton.png", glm::vec3(5.25f, 4.0f, 0.0f), glm::vec3(1.04f, 1.70f, 0.0f), true, false, "");
 		CloseJournalButton->SetOnClickAction([this]() { closeJournal(); });
 		CloseJournalButton->SetHoverTexture("Assets/Images/Journal/Journal_CloseButton_Highlight.png");
 
@@ -240,7 +240,6 @@ public:
 			return;
 		}
 
-
 		for (auto it = m_gameObjects.rbegin(); it != m_gameObjects.rend(); ++it) {
 			GameObject* object = *it;
 			if (object->getActiveStatus()) { //CHECK ACTIVE STATUS
@@ -260,6 +259,10 @@ public:
 
 			}
 
+		}
+
+		if (m_journal->GetBookState()) { //If book is locked
+			CloseJournalButton->setActiveStatus(false);
 		}
 
 
@@ -315,11 +318,6 @@ public:
 		m_journal->MarkClueAsOpened(CABIN4);
 	}
 
-
-	/*void setActiveTab3() { if (activePage != CABIN2_PAGE) { activePage = currentPage::CABIN2_PAGE; } audioManager.PlaySound("pageSwitch", false); };
-	void setActiveTab4() { if (activePage != CABIN3_PAGE) { activePage = currentPage::CABIN3_PAGE; } audioManager.PlaySound("pageSwitch", false); };
-	void setActiveTab5() { if (activePage != CABIN4_PAGE) { activePage = currentPage::CABIN4_PAGE; } audioManager.PlaySound("pageSwitch", false); };
-	void setActiveTab6() { if (activePage != CABIN5_PAGE) { activePage = currentPage::CABIN5_PAGE; } audioManager.PlaySound("pageSwitch", false); };*/
 	
 	void setActiveTab7() { if (activePage != FOODGUIDE_PAGE) { activePage = currentPage::FOODGUIDE_PAGE; } audioManager.PlaySound("pageSwitch", false); };
 
@@ -370,6 +368,8 @@ protected:
 
 	GameObject* BackGround;
 	bool lastScene = false;
+
+	UIButton* CloseJournalButton;
 
 	static void RegisterInstance(Book* instance) {
 		allBooks.push_back(instance);
