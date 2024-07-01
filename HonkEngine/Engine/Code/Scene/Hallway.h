@@ -101,7 +101,7 @@ public:
 		audioManager.LoadSound("bellRing", "Assets/Sounds/SFX_CallingBell.mp3",SFX ,0.25f);
 		audioManager.LoadSound("buttonClick", "Assets/Sounds/SFX_DialogueChoice.mp3", SFX, 0.45f);
 		audioManager.LoadSound("dialoguePlay", "Assets/Sounds/SFX_DialoguePlay.mp3", SFX, 0.45f);
-		audioManager.LoadSound("doorSlide", "Assets/Sounds/SFX_SlideDoor.mp3", SFX, 6.0f);
+		audioManager.LoadSound("doorSlide", "Assets/Sounds/SFX_SlideDoor.mp3", SFX, 9.0f);
 
 		/*--------------------------------------------------------------📦CREATE GAMEOBJECT📦------------------------------------------------------------------------------------------------------- */
 		/*-------------------------------------------------------------🌲CREATE ENVIRONMENT🌲------------------------------------------------------------------------------------------------------- */
