@@ -404,14 +404,14 @@ public:
 		JournalData::GetInstance()->ActivateClue(CABIN1, 5);
 		JournalData::GetInstance()->ActivateClue(CABIN1, 6);
 
-		JournalData::GetInstance()->ActivateClue(CABIN3, 0);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 1);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 2);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 3);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 4);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 5);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 6);
-		JournalData::GetInstance()->ActivateClue(CABIN3, 7);*/
+		JournalData::GetInstance()->ActivateClue(CABIN4, 0);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 1);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 2);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 3);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 4);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 5);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 6);*/
+		//JournalData::GetInstance()->ActivateClue(CABIN4, 7);
 
 		// Draggable paper clues test
 		//JournalData::GetInstance()->ActivateClue(CABIN3, 10);

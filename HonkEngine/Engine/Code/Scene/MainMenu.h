@@ -72,6 +72,30 @@ public:
 
 		setMainMenuState();
 
+		/*JournalData::GetInstance()->ActivateClue(CABIN21, 0);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 1);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 2);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 3);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 4);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 5);
+		JournalData::GetInstance()->ActivateClue(CABIN21, 6);
+
+		JournalData::GetInstance()->ActivateClue(CABIN1, 0);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 1);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 2);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 3);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 4);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 5);
+		JournalData::GetInstance()->ActivateClue(CABIN1, 6);
+
+		JournalData::GetInstance()->ActivateClue(CABIN4, 0);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 1);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 2);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 3);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 4);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 5);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 6);*/
+
 	}
 
 	void Update(float dt, long frame)
