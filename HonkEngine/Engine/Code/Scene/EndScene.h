@@ -11,7 +11,7 @@
 
 #include "../GameObjects/JournalData.h"
 
-#define CONTINUE_TIME 15000
+#define CONTINUE_TIME 20000
 class EndScene : public Scene {
 
 public:
