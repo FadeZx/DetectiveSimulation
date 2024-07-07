@@ -86,6 +86,7 @@
     <ClInclude Include="Code\Scene\EndCredit.h" />
     <ClInclude Include="Code\Scene\TutorialScene.h" />
     <ClInclude Include="Code\Scene\BeforeEndCutscene.h" />
+    <ClInclude Include="Code\PopupWidget\SubmitMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="External\Library\freetype.lib" />

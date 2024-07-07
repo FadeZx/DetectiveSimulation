@@ -13,6 +13,7 @@
 #include "../Application.h"
 
 #include "../PopupWidget/PauseMenu.h"
+#include "../PopupWidget/SubmitMenu.h"
 
 
 class JournalEntry : public Scene {
@@ -29,8 +30,7 @@ public:
 
 		CloseCaseButton = new UIButton("CloseCaseButton", "Assets/Images/Ending/EndingSelect_StampCut_Rotate.png", glm::vec3(9.0f, -3.2f, 0.0f), glm::vec3(3.63f, 4.71f, 0.0f), true, false, "");
 		CloseCaseButton->SetHoverTexture("Assets/Images/Ending/EndingSelect_StampBorCut_Rotate.png");
-		CloseCaseButton->SetOnClickAction([this]() { SubmitEvidence(); });
-
+		CloseCaseButton->SetOnClickAction([this]() { submitMenu.Show(); });
 
 		transitionObject = new UINormal("Transition", "Assets/Images/black.png", glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(25.0f, 20.0f, 0.0f), true);
 		transitionEffects = std::make_unique<TransitionEffects>(transitionObject);
@@ -47,6 +47,7 @@ public:
 
 		m_gameObjects.push_back(instructionText);
 
+		submitMenu.SetExitAction([this]() { SubmitEvidence(); });
 
 	}
 
@@ -57,7 +58,13 @@ public:
 		Input& input = Application::GetInput();
 
 		if (input.Get().GetKeyDown(GLFW_KEY_ESCAPE)) {
+
+			if (submitMenu.IsVisible()) {
+				submitMenu.Hide();			
+			}
+
 			pauseMenu.Show();
+
 		}
 
 		if (JournalData::GetInstance()->AllChoicesPicked()) {
@@ -75,11 +82,11 @@ public:
 		JournalData::GetInstance()->ActivateLastScene();
 		m_gameObjects.push_back(Journal);
 		m_gameObjects.push_back(&pauseMenu);
+		m_gameObjects.push_back(&submitMenu);
 		Journal->drawBook();
 		m_gameObjects.push_back(CloseCaseButton);
 		m_gameObjects.push_back(transitionObject);
 		//JournalData::GetInstance()->SetBookState(true); //Lock book	
-
 
 		transitionEffects->FadeIn(2.0f, [this]() {
 			std::cout << "Fade in complete" << std::endl;
@@ -114,5 +121,6 @@ private:
 	UIButton* CloseCaseButton;
 
 	PauseMenu pauseMenu;
+	SubmitMenu submitMenu;
 
 };

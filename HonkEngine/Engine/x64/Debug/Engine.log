@@ -36,4 +36,6 @@ C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\Scene\
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\Scene\MainMenu.h(34,1): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\Scene\MainMenu.h(41,1): warning C4305: 'argument': truncation from 'double' to 'float'
 C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\Scene\MainMenu.h(48,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\SubmitMenu.h(26,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\Engine\Code\PopupWidget\SubmitMenu.h(33,1): warning C4305: 'argument': truncation from 'double' to 'float'
   Engine.vcxproj -> C:\Users\user\Documents\GitHub\DetectiveSimulation\HonkEngine\x64\Debug\Engine.exe

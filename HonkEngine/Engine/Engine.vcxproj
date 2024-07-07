@@ -190,6 +190,7 @@ xcopy /e /i /y "$(ProjectDir)..\Engine\Assets" "$(OutDir)Assets\"
     <ClInclude Include="Code\PopupWidget\OptionsMenu.h" />
     <ClInclude Include="Code\PopupWidget\PauseMenu.h" />
     <ClInclude Include="Code\PopupWidget\PopUp.h" />
+    <ClInclude Include="Code\PopupWidget\SubmitMenu.h" />
     <ClInclude Include="Code\Scene\BeforeEndCutscene.h" />
     <ClInclude Include="Code\Scene\EndCredit.h" />
     <ClInclude Include="Code\Scene\EndScene.h" />
