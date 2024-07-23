@@ -673,7 +673,7 @@ public:
 
         if (inspectingObject != "")
         {
-            SetInstruction("Press [Space] or [Mouse] to continue");
+            SetInstruction("Press [Space] or  [Mouse] to continue");
             bagInspect->setActiveStatus(false);
             medicineFrontInspect->setActiveStatus(false);  
             hatInspect->setActiveStatus(false);
