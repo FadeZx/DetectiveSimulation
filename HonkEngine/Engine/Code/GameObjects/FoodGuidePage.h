@@ -27,11 +27,11 @@ public:
 		TeaGuidePage3->SetScale(glm::vec3(12.27f, 7.48f, 0.0f));
 		TeaGuidePage3->SetPosition(glm::vec3(0.0f, 0.143f, 0.0f));
 
-		FlipRightButton = new UIButton("FlipRightButton", "Assets/Images/Journal/Tea_Guide_Arrow_Right.png", glm::vec3(5.4f, -2.9f, 0.0f), glm::vec3(1.0f, 0.8f, 0.0f), true, false, "");		
+		FlipRightButton = new UIButton("FlipRightButton", "Assets/Images/Journal/Tea_Guide_Arrow_Right.png", glm::vec3(5.25f, -2.7f, 0.0f), glm::vec3(1.0f, 0.8f, 0.0f), true, false, "");		
 		FlipRightButton->SetHoverTexture("Assets/Images/Journal/Tea_Guide_Arrow_Right_Highlight.png");
 		FlipRightButton->SetOnClickAction([this]() { incrementPage(); });
 
-		FlipLeftButton = new UIButton("FlipLeftButton", "Assets/Images/Journal/Tea_Guide_Arrow_Left.png", glm::vec3(5.4f, -2.9f, 0.0f), glm::vec3(1.0f, 0.8f, 0.0f), true, false, "");
+		FlipLeftButton = new UIButton("FlipLeftButton", "Assets/Images/Journal/Tea_Guide_Arrow_Left.png", glm::vec3(5.25f, -2.7f, 0.0f), glm::vec3(1.0f, 0.8f, 0.0f), true, false, "");
 		FlipLeftButton->SetHoverTexture("Assets/Images/Journal/Tea_Guide_Arrow_Left_Highlight.png");
 		FlipLeftButton->SetOnClickAction([this]() {  incrementPage(); });
 

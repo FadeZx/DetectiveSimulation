@@ -94,7 +94,11 @@ public:
 		JournalData::GetInstance()->ActivateClue(CABIN4, 3);
 		JournalData::GetInstance()->ActivateClue(CABIN4, 4);
 		JournalData::GetInstance()->ActivateClue(CABIN4, 5);
-		JournalData::GetInstance()->ActivateClue(CABIN4, 6);*/
+		JournalData::GetInstance()->ActivateClue(CABIN4, 6);
+
+
+		JournalData::GetInstance()->ActivateClue(CABIN3, 8);
+		JournalData::GetInstance()->ActivateClue(CABIN4, 7);*/
 
 	}
 
