@@ -59,12 +59,12 @@ private:
 	Text* sandwichOrderText;
 	Text* pastryOrderText;
 	UIElement* orderPaper;
-	GameObject* journalArrow;
+	UIObject* journalArrow;
 
 	Text* timerText;
     UIElement* timerUI;
 	Text* instructionText;
-	Text* moveGuideText;
+	Text* tutorialText;
 
 	UIButton* ReadyButton;
 
@@ -87,6 +87,7 @@ private:
 
 	bool pressA = false;
 	bool pressD = false;
+
 	bool moveTextOn = true;
 
 	PauseMenu pauseMenu;
@@ -210,10 +211,10 @@ public:
 		instructionText->SetColor(glm::vec3(1, 1, 1));
 
 
-		moveGuideText = new Text("moveGuideText", "Press [A] to move left and [D] to move right", "Assets/Fonts/mvboli.ttf", true);
-		moveGuideText->SetScale(0.6f);
-		moveGuideText->SetPosition(glm::vec3(0.0f, -4.5f, 0.0f));
-		moveGuideText->SetColor(glm::vec3(1, 1, 1));
+		tutorialText = new Text("tutorialText", "Press [A] to move left and [D] to move right", "Assets/Fonts/mvboli.ttf", true);
+		tutorialText->SetScale(0.6f);
+		tutorialText->SetPosition(glm::vec3(0.0f, -4.5f, 0.0f));
+		tutorialText->SetColor(glm::vec3(1, 1, 1));
 		
 
 		/*-------------------------------------------------------------💬CREATE UI💬------------------------------------------------------------------------------------------------------- */
@@ -322,7 +323,7 @@ public:
 		m_gameObjects.push_back(pastryOrderText);
 		m_gameObjects.push_back(timerText);
 		m_gameObjects.push_back(instructionText);
-		m_gameObjects.push_back(moveGuideText);
+		m_gameObjects.push_back(tutorialText);
 
 		//Journal
 		m_gameObjects.push_back(Journal);
@@ -346,13 +347,13 @@ public:
 			audioManager.PlaySound("trainAmbience", true);
 
 		if (firstEntry) {
-			journalArrow->setActiveStatus(true);
-			moveGuideText->setActiveStatus(true);
-			moveTextOn = true;
-		}
-		else {
+			tutorialText->setActiveStatus(true);
 			journalArrow->setActiveStatus(false);
-			moveTextOn = false;
+		}
+		else
+		{
+			tutorialText->setActiveStatus(false);
+			journalArrow->setActiveStatus(false);
 		}
 
 		journalUpdateIcon->setActiveStatus(JournalData::GetInstance()->HasUnopenedClue());
@@ -371,8 +372,8 @@ public:
 		transitionEffects->FadeIn(2.0f, [this]() {});
 
 
-		if ((currentGameState == GameState::ROOM1_STATE || currentGameState == GameState::ROOM2_STATE || currentGameState == GameState::ROOM3_STATE || currentGameState == GameState::ROOM4_STATE) && currentRoomState == RoomState::Order) {
-			ReadyButton->setActiveStatus(true);
+		if ((currentGameState == GameState::ROOM1_STATE || currentGameState == GameState::ROOM2_STATE || currentGameState == GameState::ROOM3_STATE || currentGameState == GameState::ROOM4_STATE) && currentRoomState == RoomState::Order && !firstEntry) {
+				ReadyButton->setActiveStatus(true);
 	    }
 		else if (currentGameState == GameState::END_STATE && currentRoomState == RoomState::End) {
 				player->StopMovement();
@@ -383,7 +384,12 @@ public:
 					player->ResumeMovement();
 					Application::Get().SetScene("JournalEntry");
 				});
-		 }
+		}
+		else if (currentGameState == GameState::ROOM1_STATE && currentRoomState == RoomState::Prepare)
+		{
+			tutorialText->setActiveStatus(true);
+			tutorialText->SetContent("Prepare order in the Kitchen, then return to the cabin to serve.");
+		}
 		entering = false;
 
 		// Test clue activation
@@ -435,10 +441,6 @@ public:
 
 		if (Journal->isOpen()) {
 			Journal->Update(dt, frame);
-			if (firstEntry) {
-				journalArrow->setActiveStatus(false);
-				firstEntry = false;
-			}
 		}
 
 		//To test position of update icon
@@ -529,8 +531,17 @@ public:
 
 			if (pressA && pressD) {
 				// Start countdown to hide text
-				Application::Get().SetTimer(5000, [this]() { moveGuideText->setActiveStatus(false);	}, false);
+				Application::Get().SetTimer(3000, [this]() { tutorialText->setActiveStatus(false); journalArrow->setActiveStatus(true); }, false);
 				moveTextOn = false;
+			}
+		}
+
+		if (firstEntry && !moveTextOn) {
+			if (Journal->isOpen())
+			{
+				journalArrow->setActiveStatus(false);
+				ReadyButton->setActiveStatus(true);
+				firstEntry = false;
 			}
 		}
 
@@ -544,6 +555,8 @@ public:
 		ReadyButton->setActiveStatus(false); 
 		if (currentGameState == GameState::ROOM1_STATE)
 		{
+			tutorialText->setActiveStatus(true);
+			tutorialText->SetContent("Go to the alarmed cabin to recieve order.");
 			Application::Get().SetTimer(ORDER_DURATION1, [this]() {
 				bellCabin1->startRinging();
 				room1Door->setPermission(true);
