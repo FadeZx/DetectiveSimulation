@@ -29,8 +29,8 @@
 #include "../PopupWidget/PauseMenu.h"
 
 //set each cbin time before order (in milliseconds)
-#define ORDER_DURATION1 3500 
-#define ORDER_DURATION2 8500 //for room 2
+#define ORDER_DURATION1 35.00 
+#define ORDER_DURATION2 85.00 //for room 2
 #define ORDER_DURATION3 5000  //for room 3
 #define ORDER_DURATION4 6000
 

@@ -228,16 +228,26 @@ public:
                 // Update the dialogue button text
                 currentDialogueButton->SetButtonText(dialogues[currentDialogueIndex].text[currentLineIndex]);
                 HideChoices(); // Hide choices for the next dialogue
+                isButtonClicked = true;
                 choiceMade = true;
             }
         }
     }
+
+    bool isChoicesClicked() {
+		return isButtonClicked;
+	}
+
+    void setChoicesClicked(bool clicked) {
+        isButtonClicked = clicked;
+      }
 
     void AddChoiceButton(UIButton* choiceButton) {
         int choiceIndex = choiceButtons.size(); // Get the index for the new choice button
         choiceButtons.push_back(choiceButton);
         choiceButton->SetOnClickAction([this, choiceIndex]() {
             HandleChoice(choiceIndex); // Set the OnClick action to handle the choice
+
             });
         HideChoices(); // Hide the choices initially
     }
@@ -616,6 +626,7 @@ private:
 
 
     bool isDialogueVisible = true;
+    bool isButtonClicked = false;
     UIElement* lastActiveSpeakerSprite = nullptr; // Pointer to the last active speaker sprite
     map<string, vector<Dialogue>> dialogueSets;
     string defaultSpriteName;

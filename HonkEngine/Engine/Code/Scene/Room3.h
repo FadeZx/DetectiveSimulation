@@ -739,10 +739,11 @@ public:
     }
 
     void HandleKeyInputs() {
-        if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0)) {
+        if (input.Get().GetKeyDown(GLFW_KEY_SPACE) || input.Get().GetMouseButtonDown(0) || dialogueManager->isChoicesClicked()) {
             if (!pauseMenu.IsVisible()) {
                 dialogueManager->PlayNextDialogue();
                 HideInstruction();
+                dialogueManager->setChoicesClicked(false);
             }
         }
 
