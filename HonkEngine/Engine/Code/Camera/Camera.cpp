@@ -130,3 +130,13 @@ float Camera::GetPosX() const {
 float Camera::GetPosY() const {
     return m_camPos.y;
 }
+
+float Camera::GetLeftBoundary() const {
+    float halfWidth = (m_windowWidth / 200.0f) * m_camZoom;
+    return m_camPos.x - halfWidth;
+}
+
+float Camera::GetRightBoundary() const {
+    float halfWidth = (m_windowWidth / 200.0f) * m_camZoom;
+    return m_camPos.x + halfWidth;
+}

@@ -14,7 +14,6 @@ public:
         : UIAnimated(name, texturePath,row,col,pos,true), animating(false), isRinging(false), m_name(name)
     {
         m_animator.AddAnimation("bell_ring", 1, 3, 3.0f, Animator::LoopType::PingPong, std::bind(&BellSoundClue::onRingComplete, this));
-        // m_animator.AddAnimation("idle",1, 0, 5.0f, Animator::LoopType::Once,[]() {});
     }
 
     virtual void Update(float dt, long frame) override {

@@ -29,6 +29,9 @@ public:
     float GetPosY() const;
     float GetZoom() const;
 
+    float GetLeftBoundary() const;
+    float GetRightBoundary() const;
+
 
 private:
 

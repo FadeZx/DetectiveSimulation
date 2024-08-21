@@ -20,6 +20,7 @@
 #include "../GameObjects/BellManager.h"
 #include "../GameObjects/OrderData.h"
 #include "../GameObjects/Timer.h"
+#include "../GameObjects/BellSoundClueManager.h"
 #include "../Effects/BackgroundParallax.h"
 #include "../GameObjects/Bell.h"
 #include "../GameStateManager.h"
@@ -78,6 +79,8 @@ private:
 	Bell* bellCabin2;
 	Bell* bellCabin3;
 	Bell* bellCabin4;
+
+	BellSoundClueManager* bellSoundClueManager;
 
 	UIElement* transitionObject;
 	std::unique_ptr<TransitionEffects> transitionEffects;
@@ -247,6 +250,14 @@ public:
 		 ReadyButton->SetOnClickAction([this]() { StartOrderTime(); });
 		 ReadyButton->setActiveStatus(false);
 
+
+		 // BellSoundClue
+		 BellSoundClue* leftBellClue = new BellSoundClue("LeftBellClue", "Assets/Images/Corridor/Bell_Ring_Sprite.png", glm::vec3(-9.0f, 5.0f, 0.0f), 1, 3);
+		 BellSoundClue* rightBellClue = new BellSoundClue("RightBellClue", "Assets/Images/Corridor/Bell_Ring_Sprite.png", glm::vec3(9.0f, 5.0f, 0.0f), 1, 3);
+
+		 // Create BellSoundClueManager
+		 bellSoundClueManager = new BellSoundClueManager(leftBellClue, rightBellClue);
+
 		//TO TEST DRAW EMPTY UI
 		/*GameObject* box = new RenderGameObject("textbox", "Assets/Images/Square_Border.png");
 		box->SetScale(glm::vec3(2.8f, 5.7f, 0.0f));
@@ -314,6 +325,10 @@ public:
 		m_gameObjects.push_back(timerUI);
 		m_gameObjects.push_back(orderPaper);
 		m_gameObjects.push_back(ReadyButton);
+		m_gameObjects.push_back(leftBellClue);
+		m_gameObjects.push_back(rightBellClue);
+		
+
 
 		
 		//UITexts
@@ -438,6 +453,8 @@ public:
 
 		BellManager& bellManager = BellManager::GetInstance();
 		bellManager.Update(dt, frame);
+
+		bellSoundClueManager->Update(dt, frame);
 
 		if (Journal->isOpen()) {
 			Journal->Update(dt, frame);
