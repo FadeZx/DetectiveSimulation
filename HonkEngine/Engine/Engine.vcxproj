@@ -167,6 +167,8 @@ xcopy /e /i /y "$(ProjectDir)..\Engine\Assets" "$(OutDir)Assets\"
     <ClInclude Include="Code\Engine.h" />
     <ClInclude Include="Code\GameObjects\Bell.h" />
     <ClInclude Include="Code\GameObjects\BellManager.h" />
+    <ClInclude Include="Code\GameObjects\BellSoundClue.h" />
+    <ClInclude Include="Code\GameObjects\BellSoundClueManager.h" />
     <ClInclude Include="Code\GameObjects\Book.h" />
     <ClInclude Include="Code\GameObjects\CabinPage1.h" />
     <ClInclude Include="Code\GameObjects\CabinPage2.h" />
@@ -216,6 +218,7 @@ xcopy /e /i /y "$(ProjectDir)..\Engine\Assets" "$(OutDir)Assets\"
     <ClInclude Include="Code\Text\TextRenderer.h" />
     <ClInclude Include="Code\UI\Book.h" />
     <ClInclude Include="Code\GameStateManager.h" />
+    <ClInclude Include="Code\UI\UIAnimated.h" />
     <ClInclude Include="Code\UI\UIButton.h" />
     <ClInclude Include="Code\UI\UIButtonEmpty.h" />
     <ClInclude Include="Code\UI\UIDraggable.h" />

@@ -78,6 +78,10 @@ public:
         }
     }
 
+    const std::vector<Bell*>& GetAllBells() const {
+        return bells;
+    }
+
 private:
     std::vector<Bell*> bells;
     std::vector<Door*> linkedDoors;
