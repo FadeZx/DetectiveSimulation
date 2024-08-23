@@ -155,7 +155,10 @@ public:
 
 		UIButton* journalButton = new UIButton("JournalButton", "Assets/Images/UI/JournalButton.png", glm::vec3(-8.32f, -4.8f, 0.0f), glm::vec3(3.0f, 3.0f, 0.0f), true, false, "");
 		journalButton->SetHoverTexture("Assets/Images/UI/JournalButton_Highlight.png");
-		journalButton->SetOnClickAction([this]() { Journal->drawBook(); });
+		journalButton->SetOnClickAction([this]() {
+			Journal->SetKitchenDefaultPage();
+			Journal->drawBook(); 
+			});
 
 		journalUpdateIcon = new UINormal("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", glm::vec3(-7.38f, -3.65f, 0.0f), glm::vec3(0.62f / 2, 1.71f / 2, 0.0f), true);
 
@@ -297,7 +300,6 @@ public:
 		m_gameObjects.push_back(timerText);
 		m_gameObjects.push_back(ResetButton);
 
-
 		//drop area
 		m_gameObjects.push_back(teaDropArea);
 		m_gameObjects.push_back(sandwichDropArea);
@@ -434,6 +436,7 @@ public:
 				Journal->closeBook();
 			}
 			else if (!Journal->isOpen()) {
+				Journal->SetKitchenDefaultPage();
 				Journal->drawBook();
 			}
 		}

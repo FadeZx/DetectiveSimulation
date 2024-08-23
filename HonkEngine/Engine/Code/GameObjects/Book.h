@@ -195,6 +195,10 @@ public:
 
 	}
 
+	void SetKitchenDefaultPage() {
+		activePage = currentPage::FOODGUIDE_PAGE;
+	}
+
 	bool isOpen()
 	{
 			return openStatus;
