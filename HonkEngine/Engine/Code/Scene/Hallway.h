@@ -252,8 +252,11 @@ public:
 
 
 		 // BellSoundClue
-		 BellSoundClue* leftBellClue = new BellSoundClue("LeftBellClue", "Assets/Images/Corridor/Bell_Ring_Sprite.png", glm::vec3(-9.0f, 5.0f, 0.0f), 1, 3);
-		 BellSoundClue* rightBellClue = new BellSoundClue("RightBellClue", "Assets/Images/Corridor/Bell_Ring_Sprite.png", glm::vec3(9.0f, 5.0f, 0.0f), 1, 3);
+		 BellSoundClue* leftBellClue = new BellSoundClue("LeftBellClue", "Assets/Images/Corridor/BellSound_Left_Extend.png", glm::vec3(-8.8f, 1.5f, 0.0f), 1, 15);
+		 BellSoundClue* rightBellClue = new BellSoundClue("RightBellClue", "Assets/Images/Corridor/BellSound_Right_Extend.png", glm::vec3(8.8f, 1.5f, 0.0f), 1, 15);
+
+		 leftBellClue->SetScale(glm::vec3(1.5f, 1.5f, 0.0f));
+		 rightBellClue->SetScale(glm::vec3(1.5f, 1.5f, 0.0f));
 
 		 // Create BellSoundClueManager
 		 bellSoundClueManager = new BellSoundClueManager(leftBellClue, rightBellClue);
@@ -458,6 +461,10 @@ public:
 
 		if (Journal->isOpen()) {
 			Journal->Update(dt, frame);
+			if (journalArrow->getActiveStatus() == true)
+			{
+				journalArrow->setActiveStatus(false);
+			}
 		}
 
 		//To test position of update icon
@@ -546,14 +553,14 @@ public:
 				pressD = true;
 			}
 
-			if (pressA && pressD) {
+			if (pressA || pressD) {
 				// Start countdown to hide text
-				Application::Get().SetTimer(3000, [this]() { tutorialText->setActiveStatus(false); journalArrow->setActiveStatus(true); }, false);
+				Application::Get().SetTimer(2500, [this]() { tutorialText->SetContent(""); journalArrow->setActiveStatus(true); }, false);
 				moveTextOn = false;
 			}
 		}
 
-		if (firstEntry && !moveTextOn) {
+		if (firstEntry && (pressA || pressD)) {
 			if (Journal->isOpen())
 			{
 				journalArrow->setActiveStatus(false);
@@ -573,7 +580,7 @@ public:
 		if (currentGameState == GameState::ROOM1_STATE)
 		{
 			tutorialText->setActiveStatus(true);
-			tutorialText->SetContent("Go to the alarmed cabin to recieve order.");
+			tutorialText->SetContent("Head to the alarming cabin for your next order.");
 			Application::Get().SetTimer(ORDER_DURATION1, [this]() {
 				bellCabin1->startRinging();
 				room1Door->setPermission(true);

@@ -13,7 +13,7 @@ public:
     BellSoundClue(const std::string& name, const std::string& texturePath,glm::vec3 pos,float row, float col)
         : UIAnimated(name, texturePath,row,col,pos,true), animating(false), isRinging(false), m_name(name)
     {
-        m_animator.AddAnimation("bell_ring", 1, 3, 3.0f, Animator::LoopType::PingPong, std::bind(&BellSoundClue::onRingComplete, this));
+        m_animator.AddAnimation("bell_ring", 1, 15, 3.0f, Animator::LoopType::Loop, std::bind(&BellSoundClue::onRingComplete, this));
     }
 
     virtual void Update(float dt, long frame) override {
