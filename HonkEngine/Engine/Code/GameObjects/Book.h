@@ -91,24 +91,24 @@ public:
 
 		//Update bookmark icons
 		UpdateIcon1 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
-		UpdateIcon1->SetScale(glm::vec3(1.04f, 1.0f, 0.0f));
-		UpdateIcon1->SetPosition(glm::vec3(6.57f, 1.85f, 0.0f));
+		UpdateIcon1->SetScale(glm::vec3(0.62f / 2.5, 1.71f / 2.5, 0.0f));
+		UpdateIcon1->SetPosition(glm::vec3(7.5f, 1.95f, 0.0f));
 
 		UpdateIcon2 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
-		UpdateIcon2->SetScale(glm::vec3(1.04f, 1.0f, 0.0f));
-		UpdateIcon2->SetPosition(glm::vec3(6.55f, 0.92f, 0.0f));
+		UpdateIcon2->SetScale(glm::vec3(0.62f / 2.5, 1.71f / 2.5, 0.0f));
+		UpdateIcon2->SetPosition(glm::vec3(7.5f, 1.02f, 0.0f));
 
 		UpdateIcon3 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
-		UpdateIcon3->SetScale(glm::vec3(1.04f, 1.0f, 1.0f));
-		UpdateIcon3->SetPosition(glm::vec3(6.61f, 0.0f, 0.0f));
+		UpdateIcon3->SetScale(glm::vec3(0.62f / 2.5, 1.71f / 2.5, 0.0f));
+		UpdateIcon3->SetPosition(glm::vec3(7.5f, 0.1f, 0.0f));
 
 		UpdateIcon4 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
-		UpdateIcon4->SetScale(glm::vec3(1.04f, 1.0f, 1.0f));
-		UpdateIcon4->SetPosition(glm::vec3(6.55f, -0.93f, 0.0f));
+		UpdateIcon4->SetScale(glm::vec3(0.62f / 2.5, 1.71f / 2.5, 0.0f));
+		UpdateIcon4->SetPosition(glm::vec3(7.45f, -0.83f, 0.0f));
 
 		UpdateIcon5 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
-		UpdateIcon5->SetScale(glm::vec3(1.04f, 1.0f, 1.0f));
-		UpdateIcon5->SetPosition(glm::vec3(6.55f, -1.85f, 0.0f));
+		UpdateIcon5->SetScale(glm::vec3(0.62f / 3, 1.71f / 2.5, 0.0f));
+		UpdateIcon5->SetPosition(glm::vec3(7.45f, -1.75f, 0.0f));
 
 		m_gameObjects.push_back(BackGround);
 		m_gameObjects.push_back(JournalCover);

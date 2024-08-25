@@ -50,7 +50,7 @@ public:
 
 		GameObject* Note = new UIObject("Note", "Assets/Images/Kitchen/Kitchen_Note.png", true);
 		Note->SetScale(glm::vec3(4.04f, 2.05f, 0.0f));
-		Note->SetPosition(glm::vec3(2.46f, 4.18f, 0.0f));
+		Note->SetPosition(glm::vec3(2.46f, 4.175f, 0.0f));
 
 		float sd = 0.85f;
 
