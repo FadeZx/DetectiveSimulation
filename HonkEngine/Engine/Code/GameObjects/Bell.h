@@ -12,7 +12,7 @@ public:
     Bell(const std::string& name, const std::string& texturePath, float row, float col)
         : AnimateGameObject(name, texturePath, row, col), animating(false), isRinging(false),m_name(name)
     {
-        m_animator.AddAnimation("bell_ring", 1, 3, 3.0f, Animator::LoopType::PingPong, std::bind(&Bell::onRingComplete, this));
+        m_animator.AddAnimation("bell_ring", 1, 4, 3.0f, Animator::LoopType::PingPong, std::bind(&Bell::onRingComplete, this));
        // m_animator.AddAnimation("idle",1, 0, 5.0f, Animator::LoopType::Once,[]() {});
     }
 

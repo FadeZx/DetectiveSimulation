@@ -163,10 +163,10 @@ public:
 
 
 		/*-------------------------------------------------------------🔔CREATE BELLS🔔------------------------------------------------------------------------------------------------------- */
-		bellCabin1 = new Bell("bellCabin1", "Assets/Images/Corridor/Bell_Ring_Sprite.png", 1, 3);
-		bellCabin2 = new Bell("bellCabin2", "Assets/Images/Corridor/Bell_Ring_Sprite.png", 1, 3);
-		bellCabin3 = new Bell("bellCabin3", "Assets/Images/Corridor/Bell_Ring_Sprite.png", 1, 3);
-		bellCabin4 = new Bell("bellCabin4", "Assets/Images/Corridor/Bell_Ring_Sprite.png", 1, 3);
+		bellCabin1 = new Bell("bellCabin1", "Assets/Images/Corridor/Bell_Ring_Sprite.png", 1, 4);
+		bellCabin2 = new Bell("bellCabin2", "Assets/Images/Corridor/Bell_Ring_Sprite.png", 1, 4);
+		bellCabin3 = new Bell("bellCabin3", "Assets/Images/Corridor/Bell_Ring_Sprite.png", 1, 4);
+		bellCabin4 = new Bell("bellCabin4", "Assets/Images/Corridor/Bell_Ring_Sprite.png", 1, 4);
 
 		BellManager& bellManager = BellManager::GetInstance();
 
