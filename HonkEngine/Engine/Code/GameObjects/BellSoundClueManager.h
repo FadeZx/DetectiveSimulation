@@ -8,8 +8,7 @@
 class BellSoundClueManager {
 public:
     BellSoundClueManager(BellSoundClue* leftClue, BellSoundClue* rightClue)
-        : m_leftClue(leftClue), m_rightClue(rightClue)
-    {
+        : m_leftClue(leftClue), m_rightClue(rightClue) {
         m_leftClue->setActiveStatus(false);
         m_rightClue->setActiveStatus(false);
     }
@@ -25,14 +24,16 @@ public:
         for (auto* bell : BellManager::GetInstance().GetAllBells()) {
             if (bell->isBellRinging()) {
                 glm::vec3 bellPosition = bell->GetPosition();
+                int bellFrame = bell->getCurrentFrame();
+                int bellRow = bell->getCurrentRow();
 
                 if (bellPosition.x < leftBoundary) { // Bell is outside on the left
-                    m_leftClue->startRinging();
+                    m_leftClue->setFrameAndRow(bellFrame, bellRow);
                     leftClueActive = true;
                     m_leftClue->setActiveStatus(true);
                 }
                 else if (bellPosition.x > rightBoundary) { // Bell is outside on the right
-                    m_rightClue->startRinging();
+                    m_rightClue->setFrameAndRow(bellFrame, bellRow);
                     rightClueActive = true;
                     m_rightClue->setActiveStatus(true);
                 }
@@ -41,11 +42,9 @@ public:
 
         // Stop the clues if no bell is ringing on their side
         if (!leftClueActive) {
-            m_leftClue->stopRinging();
             m_leftClue->setActiveStatus(false);
         }
         if (!rightClueActive) {
-            m_rightClue->stopRinging();
             m_rightClue->setActiveStatus(false);
         }
 

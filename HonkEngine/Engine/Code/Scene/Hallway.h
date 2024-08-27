@@ -252,8 +252,8 @@ public:
 
 
 		 // BellSoundClue
-		 BellSoundClue* leftBellClue = new BellSoundClue("LeftBellClue", "Assets/Images/Corridor/BellSound_Left_Extend.png", glm::vec3(-8.8f, 1.5f, 0.0f), 1, 15);
-		 BellSoundClue* rightBellClue = new BellSoundClue("RightBellClue", "Assets/Images/Corridor/BellSound_Right_Extend.png", glm::vec3(8.8f, 1.5f, 0.0f), 1, 15);
+		 BellSoundClue* leftBellClue = new BellSoundClue("LeftBellClue", "Assets/Images/Corridor/BellSound_Left.png", glm::vec3(-8.8f, 1.5f, 0.0f), 1, 4);
+		 BellSoundClue* rightBellClue = new BellSoundClue("RightBellClue", "Assets/Images/Corridor/BellSound_Right.png", glm::vec3(8.8f, 1.5f, 0.0f), 1, 4);
 
 		 leftBellClue->SetScale(glm::vec3(1.5f, 1.5f, 0.0f));
 		 rightBellClue->SetScale(glm::vec3(1.5f, 1.5f, 0.0f));

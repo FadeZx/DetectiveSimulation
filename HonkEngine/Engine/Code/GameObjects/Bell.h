@@ -51,6 +51,14 @@ public:
         }
     }
 
+    int getCurrentFrame() const {
+        return m_animator.GetCurrentFrame();
+    }
+
+    int getCurrentRow() const {
+        return m_animator.GetCurrentRow();
+    }
+
     void stopRinging() {
         if (timerActive) {
             Application::Get().CancelTimer(timerID);
