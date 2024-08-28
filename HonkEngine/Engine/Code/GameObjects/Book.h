@@ -89,6 +89,26 @@ public:
 		UIDraggable* Cabin4Pamphlet = new UIDraggable("Cabin4Pamphlet", "Assets/Images/PaperClues/Octavia_Cabin4_Pamphlet.png", glm::vec3(-10.2f, -3.5f, 0.0f), glm::vec3(5.34f, 7.37f, 0.0f), true);
 		Cabin4Pamphlet->setDragBoundsByObject(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(30.0f, 20.0f, 0.0f));
 
+		//Update bookmark icons
+		UpdateIcon1 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
+		UpdateIcon1->SetScale(glm::vec3(0.62f / 2.5, 1.71f / 2.5, 0.0f));
+		UpdateIcon1->SetPosition(glm::vec3(7.5f, 1.95f, 0.0f));
+
+		UpdateIcon2 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
+		UpdateIcon2->SetScale(glm::vec3(0.62f / 2.5, 1.71f / 2.5, 0.0f));
+		UpdateIcon2->SetPosition(glm::vec3(7.5f, 1.02f, 0.0f));
+
+		UpdateIcon3 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
+		UpdateIcon3->SetScale(glm::vec3(0.62f / 2.5, 1.71f / 2.5, 0.0f));
+		UpdateIcon3->SetPosition(glm::vec3(7.5f, 0.1f, 0.0f));
+
+		UpdateIcon4 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
+		UpdateIcon4->SetScale(glm::vec3(0.62f / 2.5, 1.71f / 2.5, 0.0f));
+		UpdateIcon4->SetPosition(glm::vec3(7.45f, -0.83f, 0.0f));
+
+		UpdateIcon5 = new UIObject("JournalUpdateIcon", "Assets/Images/Journal/UpdateIcon.png", true);
+		UpdateIcon5->SetScale(glm::vec3(0.62f / 3, 1.71f / 2.5, 0.0f));
+		UpdateIcon5->SetPosition(glm::vec3(7.45f, -1.75f, 0.0f));
 
 		m_gameObjects.push_back(BackGround);
 		m_gameObjects.push_back(JournalCover);
@@ -120,6 +140,12 @@ public:
 
 		draggableClues.push_back(Cabin3Newspaper);
 		draggableClues.push_back(Cabin4Pamphlet);
+
+		updateIcons.push_back(UpdateIcon1);
+		updateIcons.push_back(UpdateIcon2);
+		updateIcons.push_back(UpdateIcon3);
+		updateIcons.push_back(UpdateIcon4);
+		updateIcons.push_back(UpdateIcon5);
 
 		RegisterInstance(this);
 
@@ -163,6 +189,12 @@ public:
 			BackGround->setActiveStatus(false);
 		}
 
+		updateIcons[0]->setActiveStatus(m_journal->UnopenedClueStatus(CABIN1));
+		updateIcons[1]->setActiveStatus(m_journal->UnopenedClueStatus(CABIN21));
+		updateIcons[2]->setActiveStatus(m_journal->UnopenedClueStatus(CABIN22));
+		updateIcons[3]->setActiveStatus(m_journal->UnopenedClueStatus(CABIN3));
+		updateIcons[4]->setActiveStatus(m_journal->UnopenedClueStatus(CABIN4));
+
 		//std::cout << "OPEN BOOKK" << std::endl;
 	}
 
@@ -191,8 +223,17 @@ public:
 			object->setActiveStatus(false);
 		}
 
+
+		for (auto& object : updateIcons)
+		{
+			object->setActiveStatus(false);
+		}
 		//std::cout << "CLOSE BOOKK" << std::endl;
 
+	}
+
+	void SetKitchenDefaultPage() {
+		activePage = currentPage::FOODGUIDE_PAGE;
 	}
 
 	bool isOpen()
@@ -231,6 +272,11 @@ public:
 
 		}
 
+		if (m_journal->UnopenedClueStatus(CABIN1)) { updateIcons[0]->Render();}
+		if (m_journal->UnopenedClueStatus(CABIN21)) { updateIcons[1]->Render(); }
+		if (m_journal->UnopenedClueStatus(CABIN22)) { updateIcons[2]->Render(); }
+		if (m_journal->UnopenedClueStatus(CABIN3)) { updateIcons[3]->Render(); }
+		if (m_journal->UnopenedClueStatus(CABIN4)) { updateIcons[4]->Render(); }
 
 	}
 
@@ -260,6 +306,12 @@ public:
 			}
 
 		}
+
+		if (m_journal->UnopenedClueStatus(CABIN1)) { updateIcons[0]->Update(dt, frame);}
+		if (m_journal->UnopenedClueStatus(CABIN21)) { updateIcons[1]->Update(dt, frame);}
+		if (m_journal->UnopenedClueStatus(CABIN22)) { updateIcons[2]->Update(dt, frame);}
+		if (m_journal->UnopenedClueStatus(CABIN3)) { updateIcons[3]->Update(dt, frame); }
+		if (m_journal->UnopenedClueStatus(CABIN4)) { updateIcons[4]->Update(dt, frame);}
 
 		if (m_journal->GetBookState()) { //If book is locked
 			CloseJournalButton->setActiveStatus(false);
@@ -355,6 +407,7 @@ protected:
 
 	std::vector<GameObject*> m_gameObjects;
 	std::vector<GameObject*> draggableClues;
+	std::vector<GameObject*> updateIcons;
 
 	std::vector<Page*> allPages;
 
@@ -368,6 +421,13 @@ protected:
 
 	GameObject* BackGround;
 	bool lastScene = false;
+
+	GameObject* UpdateIcon1;
+	GameObject* UpdateIcon2;
+	GameObject* UpdateIcon3;
+	GameObject* UpdateIcon4;
+	GameObject* UpdateIcon5;
+
 
 	UIButton* CloseJournalButton;
 

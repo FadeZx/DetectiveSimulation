@@ -346,7 +346,9 @@ public:
 		unopenedClues[cabin] = false;
 	}
 
-
+	bool UnopenedClueStatus(Cabin cabin) {
+		return unopenedClues[cabin];
+	}
 
 private:
 
