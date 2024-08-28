@@ -30,9 +30,8 @@
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
-//int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-//{
-   int main()
+   int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+   //int main()
    {
 
     HANDLE hMutex = CreateMutex(NULL, TRUE, L"Global\\TickingTeaTime");

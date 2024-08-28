@@ -252,11 +252,11 @@ public:
 
 
 		 // BellSoundClue
-		 BellSoundClue* leftBellClue = new BellSoundClue("LeftBellClue", "Assets/Images/Corridor/BellSound_Left.png", glm::vec3(-8.8f, 1.5f, 0.0f), 1, 4);
-		 BellSoundClue* rightBellClue = new BellSoundClue("RightBellClue", "Assets/Images/Corridor/BellSound_Right.png", glm::vec3(8.8f, 1.5f, 0.0f), 1, 4);
+		 BellSoundClue* leftBellClue = new BellSoundClue("LeftBellClue", "Assets/Images/Corridor/BellSound.png", glm::vec3(-8.8f, 1.5f, 0.0f), 1, 4);
+		 BellSoundClue* rightBellClue = new BellSoundClue("RightBellClue", "Assets/Images/Corridor/BellSound.png", glm::vec3(8.8f, 1.5f, 0.0f), 1, 4);
 
 		 leftBellClue->SetScale(glm::vec3(1.5f, 1.5f, 0.0f));
-		 rightBellClue->SetScale(glm::vec3(1.5f, 1.5f, 0.0f));
+		 rightBellClue->SetScale(glm::vec3(-1.5f, 1.5f, 0.0f));
 
 		 // Create BellSoundClueManager
 		 bellSoundClueManager = new BellSoundClueManager(leftBellClue, rightBellClue);
@@ -383,9 +383,6 @@ public:
 		GameState currentGameState = gameStateManager.getGameState();
 		RoomState currentRoomState = gameStateManager.getRoomState();
 
-		// Stop any previous timers to avoid overlapping actions
-		//Application::Get().ClearAllTimers();
-
 
 		transitionEffects->FadeIn(2.0f, [this]() {});
 
@@ -406,8 +403,16 @@ public:
 		else if (currentGameState == GameState::ROOM1_STATE && currentRoomState == RoomState::Prepare)
 		{
 			tutorialText->setActiveStatus(true);
-			tutorialText->SetContent("Prepare order in the Kitchen, then return to the cabin to serve.");
+			if (KitchenData::GetInstance()->checkCompletePlate())
+			{
+				tutorialText->SetContent("Return to the passenger to serve.");
+			}
+			else
+			{
+				tutorialText->SetContent("Head to the kitchen.");
+			}	
 		}
+
 		entering = false;
 
 		// Test clue activation
@@ -580,11 +585,16 @@ public:
 		if (currentGameState == GameState::ROOM1_STATE)
 		{
 			tutorialText->setActiveStatus(true);
-			tutorialText->SetContent("Head to the alarming cabin for your next order.");
-			Application::Get().SetTimer(ORDER_DURATION1, [this]() {
-				bellCabin1->startRinging();
-				room1Door->setPermission(true);
-				}, false);
+			if (currentRoomState == RoomState::Order)
+			{
+				tutorialText->SetContent("Head to the alarming cabin to receive order.");
+				Application::Get().SetTimer(ORDER_DURATION1, [this]() {
+					bellCabin1->startRinging();
+					room1Door->setPermission(true);
+					}, false);
+			}
+
+			
 		}
 		else if (currentGameState == GameState::ROOM2_STATE) {
 			Application::Get().SetTimer(ORDER_DURATION2, [this]() {

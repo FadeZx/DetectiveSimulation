@@ -226,7 +226,7 @@ public:
     void TransitionOut()
     {
         isFadingOut = true;
-        transitionEffects->FadeOut(2.0f, [this]() { Application::Get().SetScene("TutorialScene"); });
+        transitionEffects->FadeOut(2.0f, [this]() { Application::Get().SetScene("Hallway"); });
     }
 
     void Render() override {
