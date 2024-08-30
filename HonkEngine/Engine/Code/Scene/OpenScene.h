@@ -164,10 +164,10 @@ public:
         skipButton->setActiveStatus(false);
     }
 
-    /*void OnExit() override {
+    void OnExit() override {
         audioManager.StopSound("OpenSceneBGMusic");
 
-    }*/
+    }
 
     void Update(float dt, long frame) override {
         Scene::Update(dt, frame);
